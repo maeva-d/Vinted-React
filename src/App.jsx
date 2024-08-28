@@ -17,7 +17,6 @@ function App() {
     <Router>
       <Header></Header>
       <Routes>
-        {/* Ici il y aura toutes les pages de mon site */}
         <Route path="/" element={<Home />} />
         {/* <Route path="Offer" element={<Offer />} /> */}
       </Routes>
