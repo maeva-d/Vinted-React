@@ -1,11 +1,22 @@
+import { useState } from "react";
+
 const Header = () => {
+  const [signup, setSignup] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [sellArticle, setSellArticle] = useState(false);
+
   return (
     <header className="container">
       <img src="\src\assets\logo-vinted.png" />
-      <button>S'inscrire</button>
-      <button>Se connecter</button>
-      <button>Vends tes articles</button>
+      <button onClick={setSignup(true)}>S'inscrire</button>
+      <button onClick={setLogin(true)}>Se connecter</button>
+      <button onClick={setSellArticle(true)}>Vends tes articles</button>
     </header>
+    // {signup ?
+    //   <form>
+
+    //   </form>
+    // }
   );
 };
 

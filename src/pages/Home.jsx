@@ -18,7 +18,7 @@ const Home = () => {
         console.log(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error);
       }
     };
     fetchData();
