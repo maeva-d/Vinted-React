@@ -50,7 +50,6 @@ const Signup = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // if (token === le token fetched) {} else {}
   };
 
   return (
