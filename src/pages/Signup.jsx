@@ -32,11 +32,10 @@ const Signup = () => {
       console.log(response.data);
       const token = response.data.token;
       //Maintenant que j'ai le token, je crée le cookie
-      Cookies.set("Autentification token", token, { expires: 31 });
+      Cookies.set("Authentification token", token, { expires: 31 });
       // Je veux retourner sur ma route home
-      if (Cookies.get("Authentification token") === token) {
-        navigate("/");
-      }
+      // if (token) {
+      navigate("/");
     } catch (error) {
       console.log(error.response.data);
     }

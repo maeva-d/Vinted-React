@@ -47,8 +47,8 @@ header button {
 
 header button:not(:last-child) {
   margin-right: 16px;
-  background-color: white;
-  color: rgb(0 119 132);
+  /* background-color: white;
+  color: rgb(0 119 132); */
 }
 
 .container {

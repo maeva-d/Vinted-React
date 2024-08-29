@@ -11,17 +11,29 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const userWantsToDisconnect = () => {
+    Cookies.remove("Authentification token");
+  };
+
   return (
     <header className="container">
       <img src="\src\assets\logo-vinted.png" />
       <div>
-        <button className="green" onClick={() => navigate("/Signup")}>
-          S'inscrire
-        </button>
+        {console.log(Cookies.get("Authentification token"))}
         {Cookies.get("Authentification token") ? (
-          <button className="red">Se déconnecter</button>
+          <>
+            <p>Bienvenue sur Vinted</p>
+            <button className="red" onClick={userWantsToDisconnect}>
+              Se déconnecter
+            </button>
+          </>
         ) : (
-          <button className="green">Se connecter</button>
+          <>
+            <button className="green" onClick={() => navigate("/Signup")}>
+              S'inscrire
+            </button>
+            <button className="green">Se connecter</button>
+          </>
         )}
         <button className="sell">Vends tes articles</button>
       </div>
