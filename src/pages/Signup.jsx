@@ -15,27 +15,34 @@ const Signup = () => {
   // On utilise useNavigate comme ceci
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const createAccount = async () => {
-      try {
-        const response = await axios.post(
-          "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-          {
-            email: email,
-            username: username,
-            password: password,
-            newsletter: password,
-          }
-          // Si les informations entrées sont valides, le serveur retournera, entre autres, le token. Ce token devra être sauvegardé dans les cookies pour une utilisation ultérieure.
-          // console.log(response)
-        );
-      } catch (error) {
-        console.log(error.response.data);
+  const createAccount = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        {
+          email: email,
+          username: username,
+          password: password,
+          newsletter: newsletter,
+        }
+      );
+      // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
+      //Ce token devra être sauvegardé dans les cookies pour une utilisation ultérieure.
+      console.log(response.data);
+      const token = response.data.token;
+      //Maintenant que j'ai le token, je crée le cookie
+      Cookies.set("Autentification token", token, { expires: 31 });
+      // Je veux retourner sur ma route home
+      if (Cookies.get("Authentification token") === token) {
+        navigate("/");
       }
-    };
-    createAccount();
-  }, []);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 
+  // Je fractionne mes fonctions, car si je déclare directement une fonction anonyme dans le OnClick, event dasn event.target.value est deprecated
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -48,12 +55,8 @@ const Signup = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={createAccount}>
       <h1>Rejoins le mouvement de la seconde main et vends sans frais!</h1>
       <h2>Inscris-toi avec ton email</h2>
       <input
@@ -76,7 +79,9 @@ const Signup = () => {
       />
       <input
         type="checkbox"
-        onClick={newsletter ? setNewsletter(false) : setNewsletter(true)}
+        onClick={() => {
+          newsletter ? setNewsletter(false) : setNewsletter(true);
+        }}
       />
       <button>S'inscrire</button>
     </form>

@@ -3,27 +3,48 @@ body {
 }
 
 header {
-  height: 40px;
+  height: 56px;
   border-bottom: 1px solid red;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
+/* vinted logo */
 header img {
   width: 59px;
   height: 23px;
 }
 
 header button {
-  border: 0.7px solid rgb(0 119 132);
+  border-width: 1px;
+  border-style: solid;
   padding: 0 8px;
   border-radius: 6px;
-  background-color: rgb(0 119 132);
-  color: white;
   line-height: 16px;
   font-size: 12px;
   height: 28px;
+  cursor: pointer;
 }
+
+.green {
+  border-color: #007784;
+  background-color: white;
+  color: #007784;
+}
+
+.red {
+  border-color: #c2175b;
+  background-color: #c2175b;
+  color: white;
+}
+
+.sell {
+  border-color: #007784;
+  background-color: #007784;
+  color: white;
+}
+
 header button:not(:last-child) {
   margin-right: 16px;
   background-color: white;
@@ -35,10 +56,24 @@ header button:not(:last-child) {
   margin: 0 auto;
 }
 
-main > div img {
+/* hero image */
+main > div > img {
   width: 100vw;
+  height: 600px;
+  object-fit: cover;
+  position: relative;
 }
 
+main > div > div {
+  width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  bottom: 300px;
+  left: 0px;
+  background-color: white;
+}
+
+/* all articles */
 main section {
   display: flex;
   flex-wrap: wrap;
@@ -50,4 +85,19 @@ article > img {
   height: 360px;
   width: 235px;
   object-fit: cover;
+}
+
+/* user username and avatar */
+article > div {
+  display: flex;
+  align-items: center;
+}
+
+/* user avatar */
+article > div > img {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  margin-right: 16px;
 }
