@@ -35,6 +35,10 @@ header button:not(:last-child) {
   margin: 0 auto;
 }
 
+main > div img {
+  width: 100vw;
+}
+
 main section {
   display: flex;
   flex-wrap: wrap;
