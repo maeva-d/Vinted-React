@@ -1,25 +1,41 @@
 import "./App.css";
 // Etape 1 : J'instale react-router-dom, puis j'importe ses composants:
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Cookies from "js-cookie";
 
 // Etape 2 :J'importe toutes les pages que j'ai créees dans mon dossier page
 //pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 // components
 import Header from "./Components/Header";
 
 // Etape 3 : J'utilise les composants que j'ai importés
 function App() {
+  const [token, setToken] = useState(Cookies.get("connexion-token") || null);
+
+  const handleToken = (token) => {
+    if (token !== null) {
+      Cookies.set("connexion-token", token, { expires: 31 });
+      setToken(token);
+    } else {
+      Cookies.remove("connexion-token");
+      setToken(null);
+    }
+  };
+
   return (
     <Router>
-      <Header></Header>
+      <Header token={token} handleToken={handleToken}></Header>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/offers/:id" element={<Offer />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup handleToken={handleToken} />} />
+        <Route path="/login" element={<Login handleToken={handleToken} />} />
       </Routes>
     </Router>
   );

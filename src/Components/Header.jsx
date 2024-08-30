@@ -1,38 +1,37 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ token, handleToken }) => {
   ////// À utiliser si je veux essayer le bonus ?
   // const [signup, setSignup] = useState(false);
   // const [login, setLogin] = useState(false);
   // const [sellArticle, setSellArticle] = useState(false);
   // const [display, setDisplay] = useState(false);
 
-  const navigate = useNavigate();
-
-  const userWantsToDisconnect = () => {
-    Cookies.remove("Authentification token");
-  };
-
   return (
     <header className="container">
       <img src="\src\assets\logo-vinted.png" />
       <div>
-        {console.log(Cookies.get("Authentification token"))}
-        {Cookies.get("Authentification token") ? (
+        {token ? (
           <>
             <p>Bienvenue sur Vinted</p>
-            <button className="red" onClick={userWantsToDisconnect}>
+            {/* Gérer la déconnexion */}
+            <button
+              className="red"
+              onClick={() => {
+                handleToken(null);
+              }}
+            >
               Se déconnecter
             </button>
           </>
         ) : (
           <>
-            <button className="green" onClick={() => navigate("/Signup")}>
-              S'inscrire
-            </button>
-            <button className="green">Se connecter</button>
+            <Link to="/signup">
+              <button className="green">S'inscrire</button>
+            </Link>
+            <Link to="/login">
+              <button className="green">Se connecter</button>
+            </Link>
           </>
         )}
         <button className="sell">Vends tes articles</button>
