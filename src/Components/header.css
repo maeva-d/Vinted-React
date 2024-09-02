@@ -1,0 +1,65 @@
+header {
+  height: 56px;
+  border-bottom: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+
+/* vinted logo */
+header img {
+  width: 59px;
+  height: 23px;
+}
+
+header button {
+  border-width: 1px;
+  border-style: solid;
+  padding: 0 8px;
+  border-radius: 6px;
+  line-height: 16px;
+  font-size: 12px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.green {
+  border-color: #007784;
+  background-color: white;
+  color: #007784;
+}
+
+.red {
+  border-color: #c2175b;
+  background-color: #c2175b;
+  color: white;
+}
+
+.sell {
+  border-color: #007784;
+  background-color: #007784;
+  color: white;
+}
+
+header button:not(:last-child) {
+  margin-right: 16px;
+  /* background-color: white;
+    color: rgb(0 119 132); */
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+}

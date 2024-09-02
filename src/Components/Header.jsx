@@ -1,3 +1,4 @@
+import "./header.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ token, handleToken }) => {
@@ -10,44 +11,40 @@ const Header = ({ token, handleToken }) => {
   const navigate = useNavigate();
 
   return (
-    <header className="container">
-      <img src="\src\assets\logo-vinted.png" />
-      {/* <input type="text" placeholder = "Rechercher des articles"
+    <header>
+      <div className="container">
+        <img src="\src\assets\logo-vinted.png" />
+        {/* <input type="text" placeholder = "Rechercher des articles"
       value={search} onChange ={(event) => {setSearch(event.target.value)}}/> */}
-      <div>
-        {token ? (
-          <>
-            <p>Bienvenue sur Vinted</p>
-            {/* Gérer la déconnexion */}
-            <button
-              className="red"
-              onClick={() => {
-                handleToken(null);
-                navigate("/");
-              }}
-            >
-              Se déconnecter
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/signup">
-              <button className="green">S'inscrire</button>
-            </Link>
-            <Link to="/login">
-              <button className="green">Se connecter</button>
-            </Link>
-          </>
-        )}
-        {token ? (
-          <Link to="/publish">
-            <button className="sell">Vends tes articles</button>
+        <nav>
+          {token ? (
+            <>
+              <p>Bienvenue sur Vinted</p>
+              {/* Gérer la déconnexion */}
+              <button
+                className="red"
+                onClick={() => {
+                  handleToken(null);
+                  navigate("/");
+                }}
+              >
+                Se déconnecter
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/signup">
+                <button className="green">S'inscrire</button>
+              </Link>
+              <Link to="/login">
+                <button className="green">Se connecter</button>
+              </Link>
+            </>
+          )}
+          <Link to={token ? "/publish" : "/login"}>
+            <button className="sell">Vends maintenant</button>
           </Link>
-        ) : (
-          <Link to="/login">
-            <button className="sell">Vends tes articles</button>
-          </Link>
-        )}
+        </nav>
       </div>
     </header>
   );

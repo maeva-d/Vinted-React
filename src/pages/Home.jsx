@@ -1,3 +1,4 @@
+import "./home.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -28,44 +29,39 @@ const Home = ({ token }) => {
     <p>Chargement en cours...</p>
   ) : (
     <main>
-      <div>
-        <img src="\src\assets\hero-image.jpg" alt="hero-image" />
-        <div>
-          <h2>Prêts à faire du tri dans vos placards?</h2>
-          {token ? (
-            <Link to="/publish">
-              <button>Vends maintenant</button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <button>Vends maintenant</button>
-            </Link>
-          )}
+      <img
+        className="hero-image"
+        src="\src\assets\hero-image.jpg"
+        alt="hero-image"
+      />
+      <div className="hero-box-large">
+        <div className="hero-box-small">
+          <h2 className="home-h2">Prêts à faire du tri dans vos placards?</h2>
+          <Link to={token ? "/publish" : "/login"}>
+            <button>Vends maintenant</button>
+          </Link>
         </div>
       </div>
-      <section className="container">
+      <section className="home-all-offers">
         {data.offers.map((offer) => {
           return (
             //backticks pour faire une interpolation, et des accolades autours des backticks car je code dans du HTML et HTML ne connait pas les backticks (mais JS oui)
             <Link to={`/offers/${offer._id}`} key={offer._id}>
               <article key={offer._id}>
-                <div>
-                  {/* {console.log("...avatar =>", offer.owner.account.avatar)} */}
+                <div className="home-user-info">
                   {offer.owner.account.avatar && (
                     <img
+                      className="home-avatar"
                       src={offer.owner.account.avatar.secure_url}
                       alt="user avatar"
                     />
                   )}
                   <span>{offer.owner.account.username}</span>
                 </div>
-                {/* {console.log(
-                  "offer product_detail secure_url =>",
-                  offer.product_image.secure_url
-                )} */}
                 {offer.product_image.secure_url && (
                   <img
                     src={offer.product_image.secure_url}
+                    className="  home-article-img"
                     alt="clothes preview"
                   />
                 )}
