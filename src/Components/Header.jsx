@@ -1,15 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ token, handleToken }) => {
-  ////// À utiliser si je veux essayer le bonus ?
+  ////// À utiliser si je veux essayer le bonus avec les modales ?
   // const [signup, setSignup] = useState(false);
   // const [login, setLogin] = useState(false);
   // const [sellArticle, setSellArticle] = useState(false);
   // const [display, setDisplay] = useState(false);
 
+  const navigate = useNavigate();
+
   return (
     <header className="container">
       <img src="\src\assets\logo-vinted.png" />
+      {/* <input type="text" placeholder = "Rechercher des articles"
+      value={search} onChange ={(event) => {setSearch(event.target.value)}}/> */}
       <div>
         {token ? (
           <>
@@ -19,6 +23,7 @@ const Header = ({ token, handleToken }) => {
               className="red"
               onClick={() => {
                 handleToken(null);
+                navigate("/");
               }}
             >
               Se déconnecter
@@ -34,7 +39,15 @@ const Header = ({ token, handleToken }) => {
             </Link>
           </>
         )}
-        <button className="sell">Vends tes articles</button>
+        {token ? (
+          <Link to="/publish">
+            <button className="sell">Vends tes articles</button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button className="sell">Vends tes articles</button>
+          </Link>
+        )}
       </div>
     </header>
   );

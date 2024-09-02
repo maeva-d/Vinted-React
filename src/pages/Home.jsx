@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 // Penser aussi à importer Link
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ token }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,7 +32,15 @@ const Home = () => {
         <img src="\src\assets\hero-image.jpg" alt="hero-image" />
         <div>
           <h2>Prêts à faire du tri dans vos placards?</h2>
-          <button>Vends maintenant</button>
+          {token ? (
+            <Link to="/publish">
+              <button>Vends maintenant</button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button>Vends maintenant</button>
+            </Link>
+          )}
         </div>
       </div>
       <section className="container">
@@ -42,16 +50,25 @@ const Home = () => {
             <Link to={`/offers/${offer._id}`} key={offer._id}>
               <article key={offer._id}>
                 <div>
-                  <img
-                    src={offer.owner.account.avatar.secure_url}
-                    alt="user avatar"
-                  />
+                  {/* {console.log("...avatar =>", offer.owner.account.avatar)} */}
+                  {offer.owner.account.avatar && (
+                    <img
+                      src={offer.owner.account.avatar.secure_url}
+                      alt="user avatar"
+                    />
+                  )}
                   <span>{offer.owner.account.username}</span>
                 </div>
-                <img
-                  src={offer.product_image.secure_url}
-                  alt="clothes preview"
-                />
+                {/* {console.log(
+                  "offer product_detail secure_url =>",
+                  offer.product_image.secure_url
+                )} */}
+                {offer.product_image.secure_url && (
+                  <img
+                    src={offer.product_image.secure_url}
+                    alt="clothes preview"
+                  />
+                )}
                 <p>{offer.product_price}</p>
                 {offer.product_details.map((info, index) => {
                   return (

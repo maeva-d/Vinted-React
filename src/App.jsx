@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 
 // components
 import Header from "./Components/Header";
@@ -17,6 +18,7 @@ import Header from "./Components/Header";
 // Etape 3 : J'utilise les composants que j'ai importés
 function App() {
   const [token, setToken] = useState(Cookies.get("connexion-token") || null);
+  // const [search, setSearch] = useState("");
 
   const handleToken = (token) => {
     if (token !== null) {
@@ -30,12 +32,18 @@ function App() {
 
   return (
     <Router>
-      <Header token={token} handleToken={handleToken}></Header>
+      <Header token={token} handleToken={handleToken}>
+        {/* search={search} setSearch={setSearch} */}
+      </Header>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home handleToken={handleToken} />} />
         <Route path="/offers/:id" element={<Offer />} />
         <Route path="/signup" element={<Signup handleToken={handleToken} />} />
         <Route path="/login" element={<Login handleToken={handleToken} />} />
+        <Route
+          path="/publish"
+          element={<Publish handleToken={handleToken} />}
+        />
       </Routes>
     </Router>
   );
