@@ -1,5 +1,3 @@
-import "../pages/payment.css";
-
 // On installe react-stripe.js et on l'importe:
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
