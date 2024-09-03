@@ -1,7 +1,0 @@
-@import "./Components/header.css";
-@import "./pages/home.css";
-@import "./pages/publish.css";
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
