@@ -1,0 +1,52 @@
+.grey {
+  background-color: #ebedee;
+}
+
+.offer-container {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 0;
+}
+
+.offer-img {
+  width: 400px;
+  object-fit: cover;
+}
+
+.offer-aside {
+  box-sizing: border-box;
+  padding: 48px;
+  width: 400px;
+  background-color: white;
+}
+
+.offer-li {
+  color: #999;
+  display: flex;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.offer-text-align {
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.offer-desc {
+  border-top: 1px solid lightgray;
+  margin: 48px 0;
+  line-height: 30px;
+  padding: 48px 0;
+}
+
+.buy {
+  color: white;
+  background-color: #007784;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px 0;
+  font-size: 17px;
+}

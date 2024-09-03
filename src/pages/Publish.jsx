@@ -1,9 +1,9 @@
 import "./Publish.css";
 import axios from "axios";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
-  // const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -46,7 +46,9 @@ const Publish = ({ token }) => {
     }
   };
 
-  return (
+  return !token ? (
+    <Navigate to={"/login"} />
+  ) : (
     <main className="publish-main">
       <div className="container">
         <h2 className="publish-h2">Vends ton article</h2>
@@ -63,7 +65,7 @@ const Publish = ({ token }) => {
           </section>
           <section className="publish-section">
             <div className="publish-line">
-              <label forhtml="title">Titre</label>
+              <label htmlFor="title">Titre</label>
               <input
                 className="publish-input"
                 type="text"
@@ -76,10 +78,9 @@ const Publish = ({ token }) => {
               />
             </div>
             <div className="publish-line">
-              <label forhtml="description">Décris ton article</label>
-              <input
+              <label htmlFor="description">Décris ton article</label>
+              <textarea
                 className="publish-input"
-                type="text"
                 id="description"
                 placeholder="ex: porté quelquefois, taille correctement"
                 value={description}
@@ -91,7 +92,7 @@ const Publish = ({ token }) => {
           </section>
           <section className="publish-section">
             <div className="publish-line">
-              <label forhtml="brand">Marque</label>
+              <label htmlFor="brand">Marque</label>
               <input
                 className="publish-input"
                 type="text"
@@ -104,7 +105,7 @@ const Publish = ({ token }) => {
               />
             </div>
             <div className="publish-line">
-              <label forhtml="size">Taille</label>
+              <label htmlFor="size">Taille</label>
               <input
                 className="publish-input"
                 type="text"
@@ -117,7 +118,7 @@ const Publish = ({ token }) => {
               />{" "}
             </div>
             <div className="publish-line">
-              <label forhtml="color">Couleur</label>
+              <label htmlFor="color">Couleur</label>
               <input
                 className="publish-input"
                 type="text"
@@ -130,7 +131,7 @@ const Publish = ({ token }) => {
               />
             </div>
             <div className="publish-line">
-              <label forhtml="condition">Etat</label>
+              <label htmlFor="condition">Etat</label>
               <input
                 className="publish-input"
                 type="text"
@@ -143,7 +144,7 @@ const Publish = ({ token }) => {
               />
             </div>
             <div className="publish-line">
-              <label forhtml="location">Lieu</label>
+              <label htmlFor="location">Lieu</label>
               <input
                 className="publish-input"
                 type="text"
@@ -158,7 +159,7 @@ const Publish = ({ token }) => {
           </section>
           <section className="publish-section">
             <div className="publish-line">
-              <label forhtml="price">Prix</label>
+              <label htmlFor="price">Prix</label>
               <input
                 className="publish-input"
                 type="text"

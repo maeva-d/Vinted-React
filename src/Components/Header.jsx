@@ -13,7 +13,9 @@ const Header = ({ token, handleToken }) => {
   return (
     <header>
       <div className="container">
-        <img src="\src\assets\logo-vinted.png" />
+        <Link to={"/"}>
+          <img src="\src\assets\logo-vinted.png" />
+        </Link>
         {/* <input type="text" placeholder = "Rechercher des articles"
       value={search} onChange ={(event) => {setSearch(event.target.value)}}/> */}
         <nav>
@@ -41,7 +43,7 @@ const Header = ({ token, handleToken }) => {
               </Link>
             </>
           )}
-          <Link to={token ? "/publish" : "/login"}>
+          <Link to={"/publish"}>
             <button className="sell">Vends maintenant</button>
           </Link>
         </nav>
