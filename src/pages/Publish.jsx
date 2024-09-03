@@ -1,4 +1,4 @@
-import "./Publish.css";
+import "./publish.css";
 import axios from "axios";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
