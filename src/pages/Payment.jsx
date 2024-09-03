@@ -17,7 +17,7 @@ const Payment = ({ token }) => {
   // ! important
   const location = useLocation();
   const { title, amount } = location.state;
-  //   console.log(title, amount);
+  //   console.log(title, amount); undefined??
   const options = {
     mode: "payment",
     title: title,
