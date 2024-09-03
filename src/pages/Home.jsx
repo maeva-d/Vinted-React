@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 // Penser aussi à importer Link
 import { Link } from "react-router-dom";
 
-const Home = ({ token }) => {
+const Home = ({ token, search }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,16 +14,19 @@ const Home = ({ token }) => {
       try {
         const response = await axios.get(
           "https://lereacteur-vinted-api.herokuapp.com/v2/offers"
+          //, {
+          //   params: { title: search },
+          // }
         );
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return isLoading ? (
     <p>Chargement en cours...</p>

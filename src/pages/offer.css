@@ -22,6 +22,12 @@
   background-color: white;
 }
 
+.offer-avatar {
+  width: 20px;
+  object-fit: cover;
+  margin-right: 16px;
+}
+
 .offer-li {
   color: #999;
   display: flex;

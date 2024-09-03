@@ -1,14 +1,10 @@
 import "./header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Header = ({ token, handleToken }) => {
+const Header = ({ token, handleToken, search, setSearch }) => {
   ////// À utiliser si je veux essayer le bonus avec les modales ?
   // const [signup, setSignup] = useState(false);
   // const [login, setLogin] = useState(false);
-  // const [sellArticle, setSellArticle] = useState(false);
-  // const [display, setDisplay] = useState(false);
-
-  const navigate = useNavigate();
 
   return (
     <header>
@@ -16,8 +12,14 @@ const Header = ({ token, handleToken }) => {
         <Link to={"/"}>
           <img src="\src\assets\logo-vinted.png" />
         </Link>
-        {/* <input type="text" placeholder = "Rechercher des articles"
-      value={search} onChange ={(event) => {setSearch(event.target.value)}}/> */}
+        <input
+          type="text"
+          placeholder="Rechercher des articles"
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
         <nav>
           {token ? (
             <>

@@ -20,7 +20,7 @@ import Header from "./Components/Header";
 function App() {
   const [token, setToken] = useState(Cookies.get("connexion-token") || null);
   // search et setSearch sont dans App car je ne peux pas mettre dans header et ensuite remonter à Home: je les mets dans l'ancêtre commun le plus proche
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   const handleToken = (token) => {
     if (token !== null) {
@@ -34,9 +34,12 @@ function App() {
 
   return (
     <Router>
-      <Header token={token} handleToken={handleToken}>
-        {/* search={search} setSearch={setSearch} */}
-      </Header>
+      <Header
+        token={token}
+        handleToken={handleToken}
+        search={search}
+        setSearch={setSearch}
+      ></Header>
       <Routes>
         <Route
           path="/"

@@ -20,20 +20,23 @@ body {
   object-fit: cover;
   position: relative;
   box-sizing: border-box;
+  margin-bottom: 96px;
 }
 
 .hero-box-large {
   width: 1280px;
   margin: 0 auto;
-  position: relative;
-  bottom: 350px;
-  left: 0px;
+  position: absolute;
+  bottom: 30px;
+  left: 300px;
+  box-sizing: border-box;
 }
 
 .hero-box-small {
   max-width: 384px;
   background-color: white;
   padding: 32px;
+  box-sizing: border-box;
 }
 
 .home-sell-button {
