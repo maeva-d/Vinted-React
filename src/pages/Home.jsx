@@ -38,7 +38,7 @@ const Home = ({ token }) => {
         <div className="hero-box-small">
           <h2 className="home-h2">Prêts à faire du tri dans vos placards?</h2>
           <Link to={token ? "/publish" : "/login"}>
-            <button>Vends maintenant</button>
+            <button className="home-sell-button">Vends maintenant</button>
           </Link>
         </div>
       </div>
@@ -49,10 +49,16 @@ const Home = ({ token }) => {
             <Link to={`/offers/${offer._id}`} key={offer._id}>
               <article key={offer._id}>
                 <div className="home-user-info">
-                  {offer.owner.account.avatar && (
+                  {offer.owner.account.avatar ? (
                     <img
                       className="home-avatar"
                       src={offer.owner.account.avatar.secure_url}
+                      alt="user avatar"
+                    />
+                  ) : (
+                    <img
+                      className="home-avatar"
+                      src="src/assets/react.svg"
                       alt="user avatar"
                     />
                   )}
@@ -65,7 +71,7 @@ const Home = ({ token }) => {
                     alt="clothes preview"
                   />
                 )}
-                <p>{offer.product_price}</p>
+                <p className="home-price">{offer.product_price}</p>
                 {offer.product_details.map((info, index) => {
                   return (
                     <div key={index}>

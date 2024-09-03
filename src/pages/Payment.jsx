@@ -1,4 +1,5 @@
-import axios from "axios";
+import "../pages/payment.css";
+
 // On installe react-stripe.js et on l'importe:
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -10,14 +11,13 @@ import { Navigate, useLocation } from "react-router-dom";
 import CheckoutForm from "../Components/CheckoutForm";
 // clé publique
 const stripePromise = loadStripe(
-  "pk_test_51Pux3xP5BeUBwArZYrkTGYEVbS4swgumcNLuVEsVp2WWXGnJXR1L8lJcXYy9JQZF7GY0AawKm9nDbist6Gh2Oxr100Ap1YmMil"
+  "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
 );
 
 const Payment = ({ token }) => {
   // ! important
   const location = useLocation();
   const { title, amount } = location.state;
-  //   console.log(title, amount); undefined??
   const options = {
     mode: "payment",
     title: title,
@@ -28,9 +28,9 @@ const Payment = ({ token }) => {
   return !token ? (
     <Navigate to={"/login"} />
   ) : (
-    <Element stripe={stripePromise} options={options}>
-      <CheckoutForm />
-    </Element>
+    <Elements stripe={stripePromise} options={options}>
+      <CheckoutForm title={title} amount={amount} />
+    </Elements>
   );
 };
 

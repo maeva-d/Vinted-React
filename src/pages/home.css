@@ -11,6 +11,7 @@ body {
   color: rgb(23 23 23);
   font-size: 32px;
   font-weight: 500;
+  margin-bottom: 48px;
 }
 
 .hero-image {
@@ -35,6 +36,16 @@ body {
   padding: 32px;
 }
 
+.home-sell-button {
+  color: white;
+  background-color: #007784;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
 .home-all-offers {
   width: 1280px;
   margin: 0 auto;
@@ -42,6 +53,11 @@ body {
   flex-wrap: wrap;
   flex: 1;
   gap: 24px;
+}
+
+article:link {
+  text-decoration: none;
+  color: black;
 }
 
 .home-article-img {
@@ -62,3 +78,8 @@ body {
   object-fit: cover;
   margin-right: 16px;
 }
+
+/* .home-price {
+  color: black;
+  text-decoration: none;
+} */

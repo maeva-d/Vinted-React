@@ -76,7 +76,7 @@ const Offer = () => {
               data.product_price
             )} */}
             {/* // => The dress 50 OK !*/}
-            {console.log("les clés =>", title, amount)}
+            {/* {console.log("les clés =>", title, amount)} */}
           </ul>
         </aside>
       </section>

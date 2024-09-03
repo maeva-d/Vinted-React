@@ -1,3 +1,4 @@
+import "./signup.css";
 import axios from "axios";
 import { useState } from "react";
 // Pour gérer les redirections
@@ -65,36 +66,41 @@ const Signup = ({ handleToken }) => {
   };
 
   return (
-    <main>
-      <form onSubmit={createAccount}>
+    <main className="signup-container">
+      <form onSubmit={createAccount} className="signup-form">
         <h1>Rejoins le mouvement de la seconde main et vends sans frais!</h1>
         <h2>Inscris-toi avec ton email</h2>
         <input
+          className="signup-input"
           type="text"
           placeholder="Nom d'utilisateur"
           onChange={handleUsernameChange}
           // value={username}
         />
         <input
+          className="signup-input"
           type="email"
           placeholder="Email"
           onChange={handleEmailChange}
           // value={email}
         />
         <input
+          className="signup-input"
           type="password"
           placeholder="Mot de passe"
           onChange={handlePasswordChange}
           // value={password}
         />
         <input
+          className="signup-input"
           type="checkbox"
           // Pour des input de type checkbox, on utilise onChange au lieu de onClick (même si les deux fonctionnent très bien)
           onChange={() => {
             setNewsletter(!newsletter);
           }}
         />
-        <button>S'inscrire</button>
+        <span>Je souhaite m'inscrire à la newsletter</span>
+        <button className="signup-button">S'inscrire</button>
       </form>
       {errorMessage !== "" && <p>{errorMessage}</p>}
       <Link to="/login">Tu as déjà un compte? Connecte-toi !</Link>

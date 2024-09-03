@@ -39,6 +39,7 @@ header button {
   border-color: #007784;
   background-color: white;
   color: #007784;
+  margin-right: 16px;
 }
 
 .red {

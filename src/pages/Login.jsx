@@ -1,3 +1,4 @@
+import "./login.css";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,10 +30,11 @@ const Login = ({ handleToken }) => {
   };
 
   return (
-    <main>
+    <main className="login-container">
       <h1>Rejoins le mouvement de la seconde main et vends sans frais!</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login-form">
         <input
+          className="login-input"
           type="email"
           placeholder="Email"
           value={email}
@@ -41,6 +43,7 @@ const Login = ({ handleToken }) => {
           }}
         />
         <input
+          className="login-input"
           type="password"
           placeholder="Mot de passe"
           value={password}
@@ -48,7 +51,7 @@ const Login = ({ handleToken }) => {
             setPassword(event.target.value);
           }}
         />
-        <button type="submit">Se connecter</button>
+        <button className="login-button">Se connecter</button>
       </form>
       <Link to="/signup">Pas encore de compte ? Inscris-toi !</Link>
     </main>

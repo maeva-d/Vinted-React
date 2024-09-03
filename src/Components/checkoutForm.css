@@ -1,0 +1,36 @@
+.checkout-container {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 32px;
+}
+
+.pay-h2 {
+  color: #999999;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 8px 0;
+  color: white;
+  background-color: #008960;
+  border: none;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.pay-line,
+.pay-total {
+  display: flex;
+  justify-content: space-between;
+  line-height: 30px;
+  color: #666666;
+  font-size: 15px;
+}
+
+.pay-total {
+  font-weight: bold;
+  margin-bottom: 48px;
+}
