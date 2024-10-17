@@ -1,4 +1,6 @@
 import "./home.scss";
+import heroimage from "../../assets/hero-image.jpg";
+import placeholder from "../../assets/react.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -30,11 +32,7 @@ const Home = ({ token, search }) => {
     <p>Chargement en cours...</p>
   ) : (
     <main>
-      <img
-        className="hero-image"
-        src="\src\assets\hero-image.jpg"
-        alt="hero-image"
-      />
+      <img className="hero-image" src={heroimage} alt="hero-image" />
       <div className="hero-box-large">
         <div className="hero-box-small">
           <h2 className="home-h2">Prêts à faire du tri dans vos placards?</h2>
@@ -59,7 +57,7 @@ const Home = ({ token, search }) => {
                   ) : (
                     <img
                       className="home-avatar"
-                      src="src/assets/react.svg"
+                      src={placeholder}
                       alt="user-avatar-unknown"
                     />
                   )}
@@ -68,7 +66,7 @@ const Home = ({ token, search }) => {
                 {offer.product_image.secure_url && (
                   <img
                     src={offer.product_image.secure_url}
-                    className="  home-article-img"
+                    className="home-article-img"
                     alt="clothes-preview"
                   />
                 )}

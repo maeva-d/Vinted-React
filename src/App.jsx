@@ -13,7 +13,7 @@ import Publish from "./pages/publish-offer-page/Publish";
 import Payment from "./pages/Payment";
 
 // components
-import Header from "./Components/Header";
+import Header from "./Components/header-component/Header";
 
 // Etape 3 : J'utilise les composants que j'ai importés
 function App() {

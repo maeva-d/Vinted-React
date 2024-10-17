@@ -1,0 +1,32 @@
+.header-CTA-button {
+  border-width: 1px;
+  border-style: solid;
+  padding: 0 8px;
+  border-radius: 6px;
+  line-height: 16px;
+  font-size: 12px;
+  height: 28px;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+
+.green {
+  border-color: #007784;
+  color: #007784;
+  background-color: white;
+  margin-right: 16px;
+}
+
+.disconnect {
+  border-color: #c2175b;
+  background-color: #c2175b;
+  color: white;
+}
+
+.sell {
+  border-color: #007784;
+  background-color: #007784;
+  color: white;
+}

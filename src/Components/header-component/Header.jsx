@@ -1,6 +1,8 @@
 import "./header.scss";
-import vinted from "../assets/logo-vinted.png";
 import { Link, useNavigate } from "react-router-dom";
+
+import vinted from "../../assets/logo-vinted.png";
+import HeaderCTAButton from "./Header-CTAButton";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   ////// À utiliser si je veux essayer le bonus avec les modales ?
@@ -9,8 +11,8 @@ const Header = ({ token, handleToken, search, setSearch }) => {
   const navigate = useNavigate();
 
   return (
-    <header>
-      <div className="container">
+    <header className="header-component">
+      <div className="header-container">
         <Link to={"/"}>
           <img src={vinted} alt="vinted-logo" />
         </Link>
@@ -27,28 +29,39 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             <>
               <p>Bienvenue sur Vinted</p>
               {/* Gérer la déconnexion */}
-              <button
-                className="red"
+              {/* <button
+                className="disconnect"
                 onClick={() => {
                   handleToken(null);
                   navigate("/");
                 }}
               >
                 Se déconnecter
-              </button>
+              </button> */}
+              <HeaderCTAButton
+                onDisconnect={() => {
+                  handleToken(null);
+                  navigate("/");
+                }}
+              >
+                Se déconnecter
+              </HeaderCTAButton>
             </>
           ) : (
             <>
               <Link to="/signup">
-                <button className="green">S'inscrire</button>
+                {/* <button className="green">S'inscrire</button> */}
+                <HeaderCTAButton>S'inscrire</HeaderCTAButton>
               </Link>
               <Link to="/login">
-                <button className="green">Se connecter</button>
+                {/* <button className="green">Se connecter</button> */}
+                <HeaderCTAButton>Se connecter</HeaderCTAButton>
               </Link>
             </>
           )}
           <Link to={"/publish"}>
-            <button className="sell">Vends maintenant</button>
+            {/* <button className="sell">Vends maintenant</button> */}
+            <HeaderCTAButton>Vends maintenant</HeaderCTAButton>
           </Link>
         </nav>
       </div>
