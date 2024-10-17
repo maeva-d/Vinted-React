@@ -1,4 +1,4 @@
-import "./signup.css";
+import "./signup.scss";
 import axios from "axios";
 import { useState } from "react";
 // Pour gérer les redirections

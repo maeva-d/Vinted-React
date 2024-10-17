@@ -1,4 +1,4 @@
-import "../Components/checkoutForm.css";
+import "../Components/checkoutForm.scss";
 
 import axios from "axios";
 import { useState } from "react";
@@ -22,8 +22,9 @@ const CheckoutForm = ({ title, amount }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsPaying(true);
+    setErrorMessage("");
     try {
-      setIsPaying(true);
       if (elements == null) {
         return;
       }
@@ -54,6 +55,7 @@ const CheckoutForm = ({ title, amount }) => {
 
       if (error) {
         setErrorMessage(error.message);
+        return;
       }
       if (paymentIntent.status === "succeeded") {
         setSuccess(true);

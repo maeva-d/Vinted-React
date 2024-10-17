@@ -1,16 +1,18 @@
-import "./header.css";
-import { Link } from "react-router-dom";
+import "./header.scss";
+import vinted from "../assets/logo-vinted.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   ////// À utiliser si je veux essayer le bonus avec les modales ?
   // const [signup, setSignup] = useState(false);
   // const [login, setLogin] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header>
       <div className="container">
         <Link to={"/"}>
-          <img src="\src\assets\logo-vinted.png" />
+          <img src={vinted} alt="vinted-logo" />
         </Link>
         <input
           type="text"

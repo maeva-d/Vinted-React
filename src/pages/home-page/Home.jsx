@@ -1,8 +1,6 @@
-import "./home.css";
+import "./home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
-// Penser aussi à importer Link
 import { Link } from "react-router-dom";
 
 const Home = ({ token, search }) => {
@@ -56,13 +54,13 @@ const Home = ({ token, search }) => {
                     <img
                       className="home-avatar"
                       src={offer.owner.account.avatar.secure_url}
-                      alt="user avatar"
+                      alt="user-avatar"
                     />
                   ) : (
                     <img
                       className="home-avatar"
                       src="src/assets/react.svg"
-                      alt="user avatar"
+                      alt="user-avatar-unknown"
                     />
                   )}
                   <span>{offer.owner.account.username}</span>
@@ -71,7 +69,7 @@ const Home = ({ token, search }) => {
                   <img
                     src={offer.product_image.secure_url}
                     className="  home-article-img"
-                    alt="clothes preview"
+                    alt="clothes-preview"
                   />
                 )}
                 <p className="home-price">{offer.product_price}</p>
