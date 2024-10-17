@@ -33,13 +33,11 @@ const Home = ({ token, search }) => {
   ) : (
     <main>
       <img className="hero-image" src={heroimage} alt="hero-image" />
-      <div className="hero-box-large">
-        <div className="hero-box-small">
-          <h2>Prêts à faire du tri dans vos placards?</h2>
-          <Link to={token ? "/publish" : "/login"}>
-            <button>Vends maintenant</button>
-          </Link>
-        </div>
+      <div className="hero-box">
+        <h2>Prêts à faire du tri dans vos placards?</h2>
+        <Link to={token ? "/publish" : "/login"}>
+          <button>Vends maintenant</button>
+        </Link>
       </div>
       <section className="home-all-offers">
         {data.offers.map((offer) => {

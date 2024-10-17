@@ -11,22 +11,26 @@ body {
   width: 100%;
   height: 600px;
   object-fit: cover;
-  position: relative;
   margin-bottom: 96px;
+  position: relative;
 }
 
-.hero-box-large {
-  width: 1280px;
-  margin: 0 auto;
-  position: absolute;
-  bottom: 30px;
-  left: 300px;
-}
+// .hero-box-large {
+//   width: 100%;
+//   height: 100%;
+//   position: relative;
+//   // bottom: 30px;
+//   // left: 300px;
+// }
 
-.hero-box-small {
-  max-width: 384px;
+// hero
+.hero-box {
   background-color: white;
+  width: 384px;
   padding: 32px;
+  position: absolute;
+  bottom: 50%;
+  left: 300px;
 
   h2 {
     color: rgb(23 23 23);
@@ -46,6 +50,7 @@ body {
   }
 }
 
+// home offers
 .home-all-offers {
   width: 1280px;
   margin: 0 auto;
@@ -55,7 +60,7 @@ body {
   gap: 24px;
 
   article {
-    //top info (username + avatar) and bottom info (brand + size)
+    //top info (username + avatar)
     > div {
       display: flex;
       align-items: center;
@@ -69,6 +74,7 @@ body {
         margin-right: 16px;
       }
 
+      // bottom info (brand + size)
       span {
         color: #828482;
         font-size: 12px;
