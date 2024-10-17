@@ -18,8 +18,8 @@ const Home = ({ token, search }) => {
           //   params: { title: search },
           // }
         );
+        console.log(response.data);
         setData(response.data);
-        // console.log(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -35,9 +35,9 @@ const Home = ({ token, search }) => {
       <img className="hero-image" src={heroimage} alt="hero-image" />
       <div className="hero-box-large">
         <div className="hero-box-small">
-          <h2 className="home-h2">Prêts à faire du tri dans vos placards?</h2>
+          <h2>Prêts à faire du tri dans vos placards?</h2>
           <Link to={token ? "/publish" : "/login"}>
-            <button className="home-sell-button">Vends maintenant</button>
+            <button>Vends maintenant</button>
           </Link>
         </div>
       </div>
@@ -45,42 +45,30 @@ const Home = ({ token, search }) => {
         {data.offers.map((offer) => {
           return (
             //backticks pour faire une interpolation, et des accolades autours des backticks car je code dans du HTML et HTML ne connait pas les backticks (mais JS oui)
-            <Link to={`/offers/${offer._id}`} key={offer._id}>
-              <article key={offer._id}>
-                <div className="home-user-info">
-                  {offer.owner.account.avatar ? (
-                    <img
-                      className="home-avatar"
-                      src={offer.owner.account.avatar.secure_url}
-                      alt="user-avatar"
-                    />
-                  ) : (
-                    <img
-                      className="home-avatar"
-                      src={placeholder}
-                      alt="user-avatar-unknown"
-                    />
-                  )}
-                  <span>{offer.owner.account.username}</span>
-                </div>
-                {offer.product_image.secure_url && (
-                  <img
-                    src={offer.product_image.secure_url}
-                    className="home-article-img"
-                    alt="clothes-preview"
-                  />
-                )}
-                <p className="home-price">{offer.product_price}</p>
-                {offer.product_details.map((info, index) => {
-                  return (
-                    <div key={index}>
-                      {info.TAILLE && <p>{info.TAILLE}</p>}
-                      {info.MARQUE && <p>{info.MARQUE}</p>}
-                    </div>
-                  );
-                })}
-              </article>
-            </Link>
+            <article key={offer._id}>
+              <div>
+                <img
+                  alt="user-avatar"
+                  src={offer.owner.account.avatar?.secure_url ?? placeholder}
+                />
+                <span>{offer.owner.account.username}</span>
+              </div>
+              <Link to={`/offers/${offer._id}`} key={offer._id}>
+                <img
+                  alt="clothes-preview"
+                  src={offer.product_image.secure_url}
+                />
+              </Link>
+              <p>{offer.product_price} €</p>
+              {offer.product_details.map((info, index) => {
+                return (
+                  <div key={index}>
+                    {info.MARQUE && <p>{info.MARQUE}</p>}
+                    {info.TAILLE && <p>{info.TAILLE}</p>}
+                  </div>
+                );
+              })}
+            </article>
           );
         })}
       </section>
