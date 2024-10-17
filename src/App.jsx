@@ -1,4 +1,3 @@
-import "./App.css";
 // Etape 1 : J'instale react-router-dom, puis j'importe ses composants:
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -6,11 +5,11 @@ import Cookies from "js-cookie";
 
 // Etape 2 :J'importe toutes les pages que j'ai créees dans mon dossier page
 //pages
-import Home from "./pages/Home";
-import Offer from "./pages/Offer";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Publish from "./pages/Publish";
+import Home from "./pages/home-page/Home";
+import Offer from "./pages/offer-page/Offer";
+import Signup from "./pages/signup-page/Signup";
+import Login from "./pages/login-page/Login";
+import Publish from "./pages/publish-offer-page/Publish";
 import Payment from "./pages/Payment";
 
 // components
