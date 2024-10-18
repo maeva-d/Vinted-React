@@ -2,6 +2,7 @@ import axios from "axios";
 import "./offer.scss";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import placeholder from "../../assets/react.svg";
 
 const Offer = () => {
   const [data, setData] = useState();
@@ -36,7 +37,7 @@ const Offer = () => {
           <div className="product-info">
             <h1>{data.product_price} €</h1>
             {data.product_details.map((detail, index) => {
-              // console.log(data);
+              console.log(data);
               const keys = Object.keys(detail);
               // console.log("keys (Object.keys(details)) ==>", keys);
               const key = keys[0];
@@ -65,9 +66,10 @@ const Offer = () => {
             <button>Acheter</button>
           </Link>
           <div className="user-info">
-            {data.owner.account.avatar && (
-              <img src={data.owner.account.avatar.secure_url} />
-            )}
+            <img
+              src={data.owner.account.avatar?.secure_url ?? placeholder}
+              alt="user-avatar"
+            />
             <span>{data.owner.account.username}</span>
           </div>
         </aside>
