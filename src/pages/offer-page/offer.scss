@@ -1,5 +1,90 @@
-.grey {
-  background-color: #ebedee;
+.offer-page {
+  background-color: #f2f2f2;
+  min-height: 100vh;
+
+  section {
+    // offer images :
+    img {
+      width: 400px;
+      object-fit: cover;
+    }
+
+    // offer window :
+    aside {
+      width: 250px;
+      background-color: white;
+      padding: 16px;
+      align-self: flex-start; // empêche le stretch vertical
+
+      .product-info {
+        h1 {
+          color: #007784;
+          font-weight: 500;
+          border-bottom: 1px solid rgb(211, 211, 211, 0.5);
+          line-height: 25px;
+          padding-bottom: 8px;
+        }
+
+        div {
+          display: flex;
+          ul {
+            width: 50%;
+            li {
+              color: #757575;
+              display: flex;
+              margin: 8px 0;
+              font-size: 12px;
+              line-height: 15px;
+            }
+          }
+        }
+      }
+
+      menu {
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+        line-height: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 0;
+        margin-bottom: 16px;
+        h2 {
+          color: black;
+          line-height: 25px;
+          font-size: 18px;
+        }
+        h3 {
+          color: #4d4d4d;
+          line-height: 20px;
+        }
+      }
+
+      button {
+        color: white;
+        background-color: #007784;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 8px 0;
+        font-size: 17px;
+        border-radius: 4px;
+      }
+
+      .user-info {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 40px;
+          object-fit: cover;
+          margin-right: 8px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 }
 
 .offer-container {
@@ -8,51 +93,4 @@
   display: flex;
   justify-content: space-around;
   padding: 40px 0;
-}
-
-.offer-img {
-  width: 400px;
-  object-fit: cover;
-}
-
-.offer-aside {
-  box-sizing: border-box;
-  padding: 48px;
-  width: 400px;
-  background-color: white;
-}
-
-.offer-avatar {
-  width: 20px;
-  object-fit: cover;
-  margin-right: 16px;
-}
-
-.offer-li {
-  color: #999;
-  display: flex;
-  margin: 8px 0;
-  font-size: 14px;
-}
-
-.offer-text-align {
-  text-transform: uppercase;
-  margin-left: auto;
-}
-
-.offer-desc {
-  border-top: 1px solid lightgray;
-  margin: 48px 0;
-  line-height: 30px;
-  padding: 48px 0;
-}
-
-.buy {
-  color: white;
-  background-color: #007784;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  padding: 8px 0;
-  font-size: 17px;
 }

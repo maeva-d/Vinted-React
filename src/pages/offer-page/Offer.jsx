@@ -1,9 +1,7 @@
-import "./offer.scss";
 import axios from "axios";
+import "./offer.scss";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-// Pour pouvoir utiliser des params
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Offer = () => {
   const [data, setData] = useState();
@@ -31,56 +29,47 @@ const Offer = () => {
   return isLoading ? (
     <p>Chargement de la page...</p>
   ) : (
-    <main className="grey">
+    <main className="offer-page">
       <section className="offer-container">
-        <img
-          className="offer-img"
-          src={data.product_image.secure_url}
-          alt={data.product_name}
-        />
-        <aside className="offer-aside">
-          <ul className="ul">
-            <p>{data.product_price} €</p>
-            {/* data.product.details[allIndexes] = { MARQUE : QQc,TAILE : QQc} etc x4 */}
+        <img src={data.product_image.secure_url} alt={data.product_name} />
+        <aside>
+          <div className="product-info">
+            <h1>{data.product_price} €</h1>
             {data.product_details.map((detail, index) => {
               // console.log(data);
               const keys = Object.keys(detail);
-              // console.log("keys ==>", keys);
+              // console.log("keys (Object.keys(details)) ==>", keys);
               const key = keys[0];
-              // console.log("key =>", key);
+              // console.log("key (keys[0]) =>", key);
 
               return (
-                <li className="offer-li" key={index}>
-                  <span>{key} </span>
-                  <span className="offer-text-align">{detail[key]}</span>
-                </li>
+                <div key={index}>
+                  <ul>
+                    <li>{key}</li>
+                  </ul>
+                  <ul>
+                    <li>{detail[key]}</li>
+                  </ul>
+                </div>
               );
             })}
-            <div className="offer-desc">
-              <p>{data.product_name}</p>
-              <p>{data.product_description}</p>
-              {data.owner.account.avatar && (
-                <img
-                  src={data.owner.account.avatar.secure_url}
-                  className="offer-avatar"
-                />
-              )}
-              <span>{data.owner.account.username}</span>
-            </div>
-            <Link
-              to="/payment"
-              state={{ title: data.product_name, amount: data.product_price }}
-            >
-              <button className="buy">Acheter</button>
-            </Link>
-            {/* {console.log(
-              "les clé de data =>",
-              data.product_name,
-              data.product_price
-            )} */}
-            {/* // => The dress 50 OK !*/}
-            {/* {console.log("les clés =>", title, amount)} */}
-          </ul>
+          </div>
+          <menu>
+            <h2>{data.product_name}</h2>
+            <h3>{data.product_description}</h3>
+          </menu>
+          <Link
+            to="/payment"
+            state={{ title: data.product_name, amount: data.product_price }}
+          >
+            <button>Acheter</button>
+          </Link>
+          <div className="user-info">
+            {data.owner.account.avatar && (
+              <img src={data.owner.account.avatar.secure_url} />
+            )}
+            <span>{data.owner.account.username}</span>
+          </div>
         </aside>
       </section>
     </main>
