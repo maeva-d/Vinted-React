@@ -1,12 +1,12 @@
 import "./header-CTA-button.scss";
 
-const HeaderCTAButton = ({ onDisconnect, children }) => {
+const HeaderCTAButton = ({ onClick, children }) => {
   return (
     <button
-      onClick={onDisconnect}
+      onClick={onClick}
       className={
         "header-CTA-button " +
-        (children === "S'inscrire" || children === "Se connecter"
+        (children === "S'inscrire | Se connecter"
           ? "green"
           : children === "Se déconnecter"
           ? "disconnect"

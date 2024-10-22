@@ -1,13 +1,17 @@
 import "./header.scss";
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import vinted from "../../assets/vinted-logo.svg";
 import HeaderCTAButton from "./Header-CTAButton";
+import SignUpModal from "./SignUpModal";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
-  ////// À utiliser si je veux essayer le bonus avec les modales ?
-  // const [signup, setSignup] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
   // const [login, setLogin] = useState(false);
   const navigate = useNavigate();
+
+  const signUpModal = document.getElementById("sign-up-modal-root");
 
   return (
     <header className="header-component">
@@ -30,17 +34,8 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             <>
               <p>Bienvenue sur Vinted</p>
               {/* Gérer la déconnexion */}
-              {/* <button
-                className="disconnect"
-                onClick={() => {
-                  handleToken(null);
-                  navigate("/");
-                }}
-              >
-                Se déconnecter
-              </button> */}
               <HeaderCTAButton
-                onDisconnect={() => {
+                onClick={() => {
                   handleToken(null);
                   navigate("/");
                 }}
@@ -50,18 +45,29 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </>
           ) : (
             <>
-              <Link to="/signup">
-                {/* <button className="green">S'inscrire</button> */}
-                <HeaderCTAButton>S'inscrire</HeaderCTAButton>
-              </Link>
-              <Link to="/login">
-                {/* <button className="green">Se connecter</button> */}
-                <HeaderCTAButton>Se connecter</HeaderCTAButton>
-              </Link>
+              {/* <Link to="/signup"> */}
+              {/* <button className="green">S'inscrire</button> */}
+              <HeaderCTAButton onClick={() => setShowSignUpModal(true)}>
+                S'inscrire | Se connecter
+              </HeaderCTAButton>
+              {/* </Link> */}
+              {/* <Link to="/login"> */}
+              {/* <button className="green">Se connecter</button> */}
+              {/* <HeaderCTAButton>Se connecter</HeaderCTAButton> */}
+              {/* </Link> */}
+              {showSignUpModal &&
+                createPortal(
+                  <SignUpModal
+                    onClose={() => {
+                      setShowSignUpModal(false);
+                    }}
+                  />,
+                  signUpModal
+                )}
+              {/* } */}
             </>
           )}
           <Link to={"/publish"}>
-            {/* <button className="sell">Vends maintenant</button> */}
             <HeaderCTAButton>Vends tes articles</HeaderCTAButton>
           </Link>
         </nav>
