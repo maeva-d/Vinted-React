@@ -1,5 +1,6 @@
 import "./home.scss";
 import heroimage from "../../assets/hero-image.jpg";
+import tear from "../../assets/tear.svg";
 import placeholder from "../../assets/react.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -18,7 +19,7 @@ const Home = ({ token, search }) => {
           //   params: { title: search },
           // }
         );
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -32,13 +33,20 @@ const Home = ({ token, search }) => {
     <p>Chargement en cours...</p>
   ) : (
     <main>
-      <img className="hero-image" src={heroimage} alt="hero-image" />
-      <div className="hero-box">
-        <h2>Prêts à faire du tri dans vos placards?</h2>
-        <Link to={token ? "/publish" : "/login"}>
-          <button>Vends maintenant</button>
-        </Link>
+      {/* <div> */}
+      <div className="hero-section">
+        <img alt="hero-image" src={heroimage} />
+        <img alt="torn-effect" src={tear} />
+        <div>
+          <div>
+            <h2>Prêts à faire du tri dans vos placards?</h2>
+            <Link to={token ? "/publish" : "/login"}>
+              <button>Vends maintenant</button>
+            </Link>
+          </div>
+        </div>
       </div>
+      {/* </div> */}
       <section className="home-all-offers">
         {data.offers.map((offer) => {
           return (
