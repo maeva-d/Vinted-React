@@ -39,10 +39,12 @@ const Home = ({ token, search }) => {
         <img alt="torn-effect" src={tear} />
         <div>
           <div>
-            <h2>Prêts à faire du tri dans vos placards?</h2>
-            <Link to={token ? "/publish" : "/login"}>
-              <button>Vends maintenant</button>
-            </Link>
+            <div>
+              <h2>Prêts à faire du tri dans vos placards?</h2>
+              <Link to={token ? "/publish" : "/login"}>
+                <button>Vends maintenant</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
