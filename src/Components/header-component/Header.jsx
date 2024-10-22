@@ -12,17 +12,19 @@ const Header = ({ token, handleToken, search, setSearch }) => {
   return (
     <header className="header-component">
       <div className="header-container">
-        <Link to={"/"}>
-          <img src={vinted} alt="vinted-logo" />
-        </Link>
-        <input
-          type="text"
-          placeholder="Rechercher des articles"
-          value={search}
-          onChange={(event) => {
-            setSearch(event.target.value);
-          }}
-        />
+        <div>
+          <Link to={"/"}>
+            <img src={vinted} alt="vinted-logo" />
+          </Link>
+          <input
+            type="text"
+            placeholder="Rechercher des articles"
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+        </div>
         <nav>
           {token ? (
             <>
