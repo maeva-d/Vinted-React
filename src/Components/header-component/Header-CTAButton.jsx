@@ -10,7 +10,7 @@ const HeaderCTAButton = ({ onDisconnect, children }) => {
           ? "green"
           : children === "Se déconnecter"
           ? "disconnect"
-          : children === "Vends maintenant" && "sell")
+          : children === "Vends tes articles" && "sell")
       }
     >
       {children}

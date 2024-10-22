@@ -1,7 +1,6 @@
 import "./header.scss";
 import { Link, useNavigate } from "react-router-dom";
-
-import vinted from "../../assets/logo-vinted.png";
+import vinted from "../../assets/vinted-logo.svg";
 import HeaderCTAButton from "./Header-CTAButton";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
@@ -61,7 +60,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
           )}
           <Link to={"/publish"}>
             {/* <button className="sell">Vends maintenant</button> */}
-            <HeaderCTAButton>Vends maintenant</HeaderCTAButton>
+            <HeaderCTAButton>Vends tes articles</HeaderCTAButton>
           </Link>
         </nav>
       </div>
