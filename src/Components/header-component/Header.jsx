@@ -46,9 +46,12 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </>
           ) : (
             <>
-              <HeaderCTAButton onClick={() => setShowMainModal(true)}>
-                S'inscrire | Se connecter
-              </HeaderCTAButton>
+              {/* Si la page actuelle est Home ALORS je change le state ? Comme ça la modale n'apparaîtra pas avec le fond noir */}
+              <Link to={"/"}>
+                <HeaderCTAButton onClick={() => setShowMainModal(true)}>
+                  S'inscrire | Se connecter
+                </HeaderCTAButton>
+              </Link>
               {showMainModal &&
                 createPortal(
                   <Modals
