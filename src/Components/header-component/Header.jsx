@@ -6,6 +6,7 @@ import vinted from "../../assets/vinted-logo.svg";
 // Components :
 import HeaderCTAButton from "./Header-CTAButton";
 import Modals from "./Modals";
+import "./modals.scss";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);
@@ -45,19 +46,13 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </>
           ) : (
             <>
-              {/* <Link to="/Main"> */}
-              {/* <button className="green">S'inscrire</button> */}
               <HeaderCTAButton onClick={() => setShowMainModal(true)}>
                 S'inscrire | Se connecter
               </HeaderCTAButton>
-              {/* </Link> */}
-              {/* <Link to="/login"> */}
-              {/* <button className="green">Se connecter</button> */}
-              {/* <HeaderCTAButton>Se connecter</HeaderCTAButton> */}
-              {/* </Link> */}
               {showMainModal &&
                 createPortal(
                   <Modals
+                    darkBG={showMainModal}
                     handleToken={handleToken}
                     onClose={() => {
                       setShowMainModal(false);
@@ -65,7 +60,6 @@ const Header = ({ token, handleToken, search, setSearch }) => {
                   />,
                   MainModalRoot
                 )}
-              {/* } */}
             </>
           )}
           <Link to={"/publish"}>

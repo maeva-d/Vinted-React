@@ -6,9 +6,9 @@ import Cookies from "js-cookie";
 // Etape 2 :J'importe toutes les pages que j'ai créees dans mon dossier page
 //pages
 import Home from "./pages/home-page/Home";
+import Auth from "./pages/auth-page/Auth";
 import Offer from "./pages/offer-page/Offer";
 import Signup from "./pages/signup-page/Signup";
-import Login from "./pages/login-page/Login";
 import Publish from "./pages/publish-offer-page/Publish";
 import Payment from "./pages/Payment";
 
@@ -54,7 +54,7 @@ function App() {
         />
         <Route
           path="/login"
-          element={<Login token={token} handleToken={handleToken} />}
+          element={<Auth token={token} handleToken={handleToken} />}
         />
         <Route
           path="/publish"

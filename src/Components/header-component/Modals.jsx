@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./main-modal.scss";
+import "./modals.scss";
 import cross from "../../assets/cross.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import RedirectionModal from "./RedirectionModal";
 import LogInModal from "./LogInModal";
 import SignUpModal from "./SignUpModal";
 
-const Modals = ({ onClose, handleToken }) => {
+const Modals = ({ darkBG, onClose, handleToken }) => {
   const [showRedirectionModal, setShowRedirectionModal] = useState(true);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -28,9 +28,6 @@ const Modals = ({ onClose, handleToken }) => {
       document.body.style.overflow = "scroll";
     };
   }, []);
-
-  // const signUpModalRoot = document.getElementById("sign-up-modal-root");
-  // const logInModalRoot = document.getElementById("log-in-modal-root");
 
   const switchToLoginForm = () => {
     setShowRedirectionModal(false);
@@ -65,7 +62,7 @@ const Modals = ({ onClose, handleToken }) => {
   };
 
   return (
-    <main className="modals">
+    <main className={`all-modals ${darkBG && `dark-background`}`}>
       <div>
         <img alt="close-pop-up" src={cross} onClick={onClose} />
         {/* -- Main modal -- */}
