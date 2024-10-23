@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import vinted from "../../assets/vinted-logo.svg";
 // Components :
 import HeaderCTAButton from "./Header-CTAButton";
-import MainModal from "./MainModal";
+import Modals from "./Modals";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   // const [login, setLogin] = useState(false);
@@ -58,7 +58,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
               {/* </Link> */}
               {showMainModal &&
                 createPortal(
-                  <MainModal
+                  <Modals
                     onClose={() => {
                       setShowMainModal(false);
                     }}
