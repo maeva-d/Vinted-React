@@ -9,6 +9,7 @@ const SignUpModal = ({
   password,
   setPassword,
   // passwordErr
+  onClickSwitch,
 }) => {
   return (
     <menu>
@@ -50,6 +51,10 @@ const SignUpModal = ({
           </small>
         </div>
         <button>Continuer</button>
+        <p>
+          Tu as déjà un compte?
+          <button onClick={onClickSwitch}>Connecte-toi !</button>
+        </p>
       </form>
     </menu>
   );

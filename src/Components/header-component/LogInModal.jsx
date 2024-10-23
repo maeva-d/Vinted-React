@@ -5,6 +5,7 @@ const LogInModal = ({
   setEmail,
   password,
   setPassword,
+  onClickSwitch,
 }) => {
   return (
     <menu>
@@ -28,6 +29,10 @@ const LogInModal = ({
           />
         </div>
         <button>Continuer</button>
+        <p>
+          Pas encore de compte ?
+          <button onClick={onClickSwitch}>Inscris-toi !</button>
+        </p>
       </form>
     </menu>
   );

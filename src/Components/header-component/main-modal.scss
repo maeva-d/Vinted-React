@@ -13,6 +13,7 @@
   button {
     cursor: pointer;
     border: none;
+    background-color: transparent;
   }
 
   > div {
@@ -88,13 +89,22 @@
           }
         }
 
-        button {
+        > button {
           width: 100%;
           color: white;
           padding: 16px 0;
           background-color: #007784;
           border-radius: 4px;
           font-size: 18px;
+        }
+
+        p {
+          line-height: 80px;
+          text-align: center;
+          button {
+            color: #007784;
+            font-size: 16px;
+          }
         }
       }
     }

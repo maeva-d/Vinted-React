@@ -88,6 +88,7 @@ const Modals = ({ onClose, handleToken }) => {
             setPassword={(event) => {
               setPassword(event.target.value);
             }}
+            onClickSwitch={switchToSignUpForm}
           />
         )}
         {/* -- Signup modal -- */}
@@ -107,6 +108,7 @@ const Modals = ({ onClose, handleToken }) => {
             setPassword={(event) => {
               setPassword(event.target.value);
             }}
+            onClickSwitch={switchToLoginForm}
           />
         )}
       </div>
