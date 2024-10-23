@@ -8,7 +8,6 @@ import HeaderCTAButton from "./Header-CTAButton";
 import Modals from "./Modals";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
-  // const [login, setLogin] = useState(false);
   const [showMainModal, setShowMainModal] = useState(false);
 
   const navigate = useNavigate();
@@ -59,6 +58,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
               {showMainModal &&
                 createPortal(
                   <Modals
+                    handleToken={handleToken}
                     onClose={() => {
                       setShowMainModal(false);
                     }}
