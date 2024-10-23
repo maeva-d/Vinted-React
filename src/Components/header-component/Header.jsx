@@ -3,15 +3,16 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import vinted from "../../assets/vinted-logo.svg";
+// Components :
 import HeaderCTAButton from "./Header-CTAButton";
-import SignUpModal from "./SignUpModal";
+import MainModal from "./MainModal";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
   // const [login, setLogin] = useState(false);
+  const [showMainModal, setShowMainModal] = useState(false);
   const navigate = useNavigate();
 
-  const signUpModal = document.getElementById("sign-up-modal-root");
+  const MainModalRoot = document.getElementById("main-modal-root");
 
   return (
     <header className="header-component">
@@ -45,9 +46,9 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </>
           ) : (
             <>
-              {/* <Link to="/signup"> */}
+              {/* <Link to="/Main"> */}
               {/* <button className="green">S'inscrire</button> */}
-              <HeaderCTAButton onClick={() => setShowSignUpModal(true)}>
+              <HeaderCTAButton onClick={() => setShowMainModal(true)}>
                 S'inscrire | Se connecter
               </HeaderCTAButton>
               {/* </Link> */}
@@ -55,14 +56,14 @@ const Header = ({ token, handleToken, search, setSearch }) => {
               {/* <button className="green">Se connecter</button> */}
               {/* <HeaderCTAButton>Se connecter</HeaderCTAButton> */}
               {/* </Link> */}
-              {showSignUpModal &&
+              {showMainModal &&
                 createPortal(
-                  <SignUpModal
+                  <MainModal
                     onClose={() => {
-                      setShowSignUpModal(false);
+                      setShowMainModal(false);
                     }}
                   />,
-                  signUpModal
+                  MainModalRoot
                 )}
               {/* } */}
             </>
