@@ -10,8 +10,8 @@ import MainModal from "./MainModal";
 const Header = ({ token, handleToken, search, setSearch }) => {
   // const [login, setLogin] = useState(false);
   const [showMainModal, setShowMainModal] = useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const MainModalRoot = document.getElementById("main-modal-root");
 
   return (
