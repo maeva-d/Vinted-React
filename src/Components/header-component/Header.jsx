@@ -1,3 +1,4 @@
+import cross from "../../assets/cross.svg";
 import "./header.scss";
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -12,6 +13,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);
 
   const navigate = useNavigate();
+
   const MainModalRoot = document.getElementById("main-modal-root");
 
   return (
@@ -29,6 +31,21 @@ const Header = ({ token, handleToken, search, setSearch }) => {
               setSearch(event.target.value);
             }}
           />
+          <svg
+            className="header-burger"
+            width="45"
+            height="45"
+            viewBox="0 0 45 45"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.625 11.2518H39.375M5.625 22.5018H39.375M5.625 33.7518H39.375"
+              stroke="black"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </div>
         <nav>
           {token ? (
@@ -46,7 +63,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </>
           ) : (
             <>
-              {/* Si la page actuelle est Home ALORS je change le state ? Comme ça la modale n'apparaîtra pas avec le fond noir */}
+              {/* Navigation : comme ça la modale n'apparaîtra pas avec le fond noir */}
               <Link to={"/"}>
                 <HeaderCTAButton onClick={() => setShowMainModal(true)}>
                   S'inscrire | Se connecter
