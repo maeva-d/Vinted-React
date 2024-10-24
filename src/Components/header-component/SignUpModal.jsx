@@ -9,6 +9,9 @@ const SignUpModal = ({
   password,
   setPassword,
   // passwordErr
+  // newsletter,
+  setNewsletter,
+  setTermsAndConditions,
   onClickSwitch,
 }) => {
   return (
@@ -49,6 +52,29 @@ const SignUpModal = ({
           <small>
             Il doit contenir 7 lettres minimum, dont au moins un chiffre.
           </small>
+        </div>
+        <div className="checkboxes">
+          <input
+            // Pour des input de type checkbox, on utilise onChange au lieu de onClick (même si les deux fonctionnent très bien)
+            type="checkbox"
+            onChange={setNewsletter}
+          />
+          <span>
+            Je souhaite recevoir par e-mail des offres personnalisées et les
+            dernières mises à jour de Vinted.
+          </span>
+        </div>
+        <div className="checkboxes">
+          <input
+            // Pour des input de type checkbox, on utilise onChange au lieu de onClick (même si les deux fonctionnent très bien)
+            type="checkbox"
+            onChange={setTermsAndConditions}
+          />
+          <span>
+            En t'inscrivant, tu confirmes que tu acceptes les{" "}
+            <a>Termes & Conditions de Vinted</a>, avoir lu la{" "}
+            <a>Politique de confidentialité</a> et avoir au moins 18 ans.
+          </span>
         </div>
         <button>Continuer</button>
         <p>

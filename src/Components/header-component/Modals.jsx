@@ -15,6 +15,8 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [newsletter, setNewsletter] = useState(false);
+  const [termsAndConditions, setTermsAndConditions] = useState(false);
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [signUpUsernameError, setSignUpUsernameError] = useState("");
   // const [signUpEmailError, setSignUpEmailError] = useState("");
@@ -41,7 +43,8 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     setShowSignUpModal(true);
   };
 
-  const handleLoginSubmit = async (event) => {
+  // LOGIN REQUEST :
+  const loginSubmit = async (event) => {
     event.preventDefault();
     setLoginErrorMessage("");
     try {
@@ -61,6 +64,43 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     }
   };
 
+  // SIGN UP REQUEST :
+  const createAccount = async (event) => {
+    event.preventDefault();
+    setSignUpUsernameError("");
+    try {
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        {
+          email: email,
+          username: username,
+          password: password,
+          newsletter: newsletter,
+          // termsAndConditions: termsAndConditions,
+        }
+      );
+      // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
+      //Ce token devra être sauvegardé dans les cookies pour une utilisation ultérieure.
+      console.log(response.data);
+      // const token = response.data.token;
+      // Maintenant que j'ai le token, je crée le cookie
+      // Cookies.set("Authentification token", token, { expires: 31 });
+      // MAIS Je peux aussi fractionner mon code avec une fonction réutilisable sur chaque page où j'ai besoin d'un token
+      handleToken(response.data.token);
+      navigate("/");
+    } catch (error) {
+      console.log(error.response.data);
+      // C'est ici qu'on va gérer plusieurs cas d'erreurs!
+      // if (error.response.status === 409) {
+      //   setErrorMessage("Cet email existe déjà");
+      // } else if (error.response.data.message === "Missing parameters") {
+      //   setErrorMessage("Veuillez remplir tous les champs");
+      // } else {
+      //   setErrorMessage("Une erreur est survenue, merci de réessayer");
+      // }
+    }
+  };
+
   return (
     <main className={`all-modals ${darkBG && `dark-background`}`}>
       <div>
@@ -75,7 +115,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
         {/* -- Login modal -- */}
         {showLoginModal && (
           <LogInModal
-            onSubmit={handleLoginSubmit}
+            onSubmit={loginSubmit}
             errorMessage={loginErrorMessage}
             email={email}
             setEmail={(event) => {
@@ -91,7 +131,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
         {/* -- Signup modal -- */}
         {showSignUpModal && (
           <SignUpModal
-            onSubmit="foo"
+            onSubmit={createAccount}
             username={username}
             setUsername={(event) => {
               setUsername(event.target.value);
@@ -104,6 +144,12 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
             password={password}
             setPassword={(event) => {
               setPassword(event.target.value);
+            }}
+            setNewsletter={() => {
+              setNewsletter(!newsletter);
+            }}
+            setTermsAndConditions={() => {
+              setTermsAndConditions(!termsAndConditions);
             }}
             onClickSwitch={switchToLoginForm}
           />

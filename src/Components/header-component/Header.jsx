@@ -1,4 +1,3 @@
-import cross from "../../assets/cross.svg";
 import "./header.scss";
 import { useState } from "react";
 import { createPortal } from "react-dom";
