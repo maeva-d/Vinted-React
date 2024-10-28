@@ -20,7 +20,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [signUpUsernameError, setSignUpUsernameError] = useState("");
   // const [signUpEmailError, setSignUpEmailError] = useState("");
-  // const [signUpPasswordError, setSignUpPasswordError] = useState("");
+  const [signUpPasswordError, setSignUpPasswordError] = useState("");
 
   const navigate = useNavigate();
 
@@ -76,6 +76,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   const createAccount = async (event) => {
     event.preventDefault();
     setSignUpUsernameError("");
+    setSignUpPasswordError("");
     try {
       const response = await axios.post(
         "https://site--backend-vinted--rfd99txfpp4t.code.run/user/signup",
@@ -84,7 +85,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
           username: username,
           password: password,
           newsletter: newsletter,
-          termsAndConditions: termsAndConditions,
+          termsAndConditions: termsAndConditions.toString(),
         }
       );
       // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
@@ -97,15 +98,18 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {
-      console.log(error.response.data);
-      // C'est ici qu'on va gérer plusieurs cas d'erreurs!
-      // if (error.response.status === 409) {
-      //   setErrorMessage("Cet email existe déjà");
-      // } else if (error.response.data.message === "Missing parameters") {
-      //   setErrorMessage("Veuillez remplir tous les champs");
-      // } else {
-      //   setErrorMessage("Une erreur est survenue, merci de réessayer");
-      // }
+      console.log(error.response.data.message);
+      if (
+        error.response.data.message === "Mot de passe : 7 caractères minimum"
+      ) {
+        setSignUpPasswordError(error.response.data.message);
+      }
+      if (
+        error.response.data.message ===
+        "Le mot de passe doit contenir au moins un chiffre."
+      ) {
+        setSignUpPasswordError(error.response.data.message);
+      }
     }
   };
 
@@ -149,10 +153,12 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
             setEmail={(event) => {
               setEmail(event.target.value);
             }}
+            // emailErr={signUpEmailError}
             password={password}
             setPassword={(event) => {
               setPassword(event.target.value);
             }}
+            passwordErr={signUpPasswordError}
             setNewsletter={() => {
               setNewsletter(!newsletter);
             }}

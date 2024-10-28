@@ -5,10 +5,10 @@ const SignUpModal = ({
   usernameErr,
   email,
   setEmail,
-  //   emailErr,
+  // emailErr,
   password,
   setPassword,
-  // passwordErr
+  passwordErr,
   // newsletter,
   setNewsletter,
   setTermsAndConditions,
@@ -49,8 +49,14 @@ const SignUpModal = ({
             value={password}
             onChange={setPassword}
           />
-          <small>
-            Il doit contenir 7 lettres minimum, dont au moins un chiffre.
+          <small
+            style={{
+              color: passwordErr && "#df0000",
+            }}
+          >
+            {passwordErr
+              ? passwordErr
+              : `Il doit contenir 7 lettres minimum, dont au moins un chiffre.`}
           </small>
         </div>
         <div className="checkboxes">
