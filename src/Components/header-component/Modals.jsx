@@ -64,7 +64,6 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
           password: password,
         }
       );
-      console.log(response.data);
       // Si ça a fonctionné, la réponse me renvoie le token:
       handleToken(response.data.token);
       navigate("/");
@@ -79,7 +78,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     setSignUpUsernameError("");
     try {
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        "https://site--backend-vinted--rfd99txfpp4t.code.run/user/signup",
         {
           email: email,
           username: username,
