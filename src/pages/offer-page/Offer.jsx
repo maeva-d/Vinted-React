@@ -15,7 +15,7 @@ const Offer = () => {
       try {
         const response = await axios.get(
           //Pas de guillemets avec les backticks!
-          `https://lereacteur-vinted-api.herokuapp.com/v2/offers/${id}`
+          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/${id}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -32,12 +32,22 @@ const Offer = () => {
   ) : (
     <main className="offer-page">
       <section className="offer-container">
-        <img src={data.product_image.secure_url} alt={data.product_name} />
+        {data.product_images.map((picture) => {
+          console.log("data =>", data);
+          console.log("picture.secure_url =>", picture.secure_url);
+          return (
+            <img
+              key={picture.asset_id}
+              src={picture.secure_url}
+              alt="offer-picture"
+            />
+          );
+        })}
         <aside>
           <div className="product-info">
             <h1>{data.product_price} €</h1>
             {data.product_details.map((detail, index) => {
-              console.log(data);
+              // console.log(data);
               const keys = Object.keys(detail);
               // console.log("keys (Object.keys(details)) ==>", keys);
               const key = keys[0];
@@ -45,12 +55,16 @@ const Offer = () => {
 
               return (
                 <div key={index}>
-                  <ul>
-                    <li>{key}</li>
-                  </ul>
-                  <ul>
-                    <li>{detail[key]}</li>
-                  </ul>
+                  {key && (
+                    <ul>
+                      <li>{key}</li>
+                    </ul>
+                  )}
+                  {detail[key] && (
+                    <ul>
+                      <li>{detail[key]}</li>
+                    </ul>
+                  )}
                 </div>
               );
             })}

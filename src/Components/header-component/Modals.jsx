@@ -43,6 +43,15 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     setShowSignUpModal(true);
   };
 
+  // let errorMessage = "";
+  // Vérifier si la propriété "message" existe dans la réponse
+  // if (response.message && response.message.includes("Choisis un identifiant différent, celui-ci est déjà pris")) {
+  //     // Extraire le message d'erreur spécifique
+  //     errorMessage = "Choisis un identifiant différent, celui-ci est déjà pris";
+  // } else {
+  //     errorMessage = "Erreur inattendue";
+  // }
+
   // LOGIN REQUEST :
   const loginSubmit = async (event) => {
     event.preventDefault();
@@ -76,7 +85,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
           username: username,
           password: password,
           newsletter: newsletter,
-          // termsAndConditions: termsAndConditions,
+          termsAndConditions: termsAndConditions,
         }
       );
       // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)

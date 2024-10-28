@@ -1,8 +1,9 @@
+import axios from "axios";
 import "./home.scss";
+// images :
 import heroimage from "../../assets/hero-image.jpg";
 import tear from "../../assets/tear.svg";
 import placeholder from "../../assets/react.svg";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -14,12 +15,12 @@ const Home = ({ token, search }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/v2/offers"
+          "https://site--backend-vinted--rfd99txfpp4t.code.run/offers"
           //, {
           //   params: { title: search },
           // }
         );
-        // console.log(response.data);
+        console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -41,7 +42,7 @@ const Home = ({ token, search }) => {
           <div>
             <div>
               <h2>Prêts à faire du tri dans vos placards?</h2>
-              <Link to={token ? "/publish" : "/login"}>
+              <Link to={token ? "offers/publish" : "user/login"}>
                 <button>Vends maintenant</button>
               </Link>
             </div>
@@ -64,8 +65,9 @@ const Home = ({ token, search }) => {
               <Link to={`/offers/${offer._id}`} key={offer._id}>
                 <img
                   alt="clothes-preview"
-                  src={offer.product_image.secure_url}
+                  src={offer.product_images[0].secure_url}
                 />
+                ;
               </Link>
               <p>{offer.product_price} €</p>
               {offer.product_details.map((info, index) => {
