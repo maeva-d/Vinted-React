@@ -19,8 +19,10 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   const [termsAndConditions, setTermsAndConditions] = useState(false);
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [signUpUsernameError, setSignUpUsernameError] = useState("");
-  // const [signUpEmailError, setSignUpEmailError] = useState("");
+  const [signUpEmailError, setSignUpEmailError] = useState("");
   const [signUpPasswordError, setSignUpPasswordError] = useState("");
+  const [signUpTermsAndConditionsError, setSignUpTermsAndConditionsError] =
+    useState("");
 
   const navigate = useNavigate();
 
@@ -76,7 +78,9 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   const createAccount = async (event) => {
     event.preventDefault();
     setSignUpUsernameError("");
+    setSignUpEmailError("");
     setSignUpPasswordError("");
+    setSignUpTermsAndConditionsError("");
     try {
       const response = await axios.post(
         "https://site--backend-vinted--rfd99txfpp4t.code.run/user/signup",
@@ -85,7 +89,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
           username: username,
           password: password,
           newsletter: newsletter,
-          termsAndConditions: termsAndConditions.toString(),
+          termsAndConditions: termsAndConditions.toString(termsAndConditions),
         }
       );
       // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
@@ -99,16 +103,28 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
       navigate("/");
     } catch (error) {
       console.log(error.response.data.message);
-      if (
-        error.response.data.message === "Mot de passe : 7 caractères minimum"
-      ) {
+      // if (
+      //   error.response.data.message === "Mot de passe : 7 caractères minimum"
+      // ) {
+      //   setSignUpPasswordError(error.response.data.message);
+      // }
+      // if (
+      //   error.response.data.message ===
+      //   "Le mot de passe doit contenir au moins un chiffre."
+      // ) {
+      //   setSignUpPasswordError(error.response.data.message);
+      // }
+      if (error.response.data.message.search("L'email") !== -1) {
+        setSignUpUsernameError(error.response.data.message);
+      }
+      if (error.response.data.message.search("de passe") !== -1) {
         setSignUpPasswordError(error.response.data.message);
       }
-      if (
-        error.response.data.message ===
-        "Le mot de passe doit contenir au moins un chiffre."
-      ) {
-        setSignUpPasswordError(error.response.data.message);
+      if (error.response.data.message.search("déja un compte") !== -1) {
+        setSignUpEmailError(error.response.data.message);
+      }
+      if (error.response.data.message.search("poursuivre") !== -1) {
+        setSignUpTermsAndConditionsError(error.response.data.message);
       }
     }
   };
@@ -153,7 +169,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
             setEmail={(event) => {
               setEmail(event.target.value);
             }}
-            // emailErr={signUpEmailError}
+            emailErr={signUpEmailError}
             password={password}
             setPassword={(event) => {
               setPassword(event.target.value);
@@ -165,6 +181,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
             setTermsAndConditions={() => {
               setTermsAndConditions(!termsAndConditions);
             }}
+            termsAndConditionsErr={signUpTermsAndConditionsError}
             onClickSwitch={switchToLoginForm}
           />
         )}

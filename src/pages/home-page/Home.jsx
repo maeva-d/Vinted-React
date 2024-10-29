@@ -42,7 +42,7 @@ const Home = ({ token, search }) => {
           <div>
             <div>
               <h2>Prêts à faire du tri dans vos placards?</h2>
-              <Link to={token ? "offers/publish" : "user/login"}>
+              <Link to={token ? "/publish" : "/login"}>
                 <button>Vends maintenant</button>
               </Link>
             </div>

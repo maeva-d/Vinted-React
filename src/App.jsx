@@ -49,7 +49,7 @@ function App() {
           element={<Offer token={token} handleToken={handleToken} />}
         />
         <Route
-          path="/signup"
+          path="user/signup"
           element={<Signup token={token} handleToken={handleToken} />}
         />
         <Route

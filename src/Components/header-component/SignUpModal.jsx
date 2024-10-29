@@ -5,13 +5,13 @@ const SignUpModal = ({
   usernameErr,
   email,
   setEmail,
-  // emailErr,
+  emailErr,
   password,
   setPassword,
   passwordErr,
-  // newsletter,
   setNewsletter,
   setTermsAndConditions,
+  termsAndConditionsErr,
   onClickSwitch,
 }) => {
   return (
@@ -25,7 +25,11 @@ const SignUpModal = ({
             value={username}
             onChange={setUsername}
           />
-          <small>
+          <small
+            style={{
+              color: usernameErr && "#df0000",
+            }}
+          >
             {usernameErr
               ? usernameErr
               : `Crée ton nom d'utilisateur en n'utilisant que des lettres et des chiffres. Choisis-en un qui te plaît, tu ne pourras plus le changer.`}
@@ -38,8 +42,14 @@ const SignUpModal = ({
             value={email}
             onChange={setEmail}
           />
-          <small>
-            Saisis l'adresse e-mail que tu souhaites utiliser sur Vinted
+          <small
+            style={{
+              color: emailErr && "#df0000",
+            }}
+          >
+            {emailErr
+              ? emailErr
+              : `Saisis l'adresse e-mail que tu souhaites utiliser sur Vinted`}
           </small>
         </div>
         <div className="sign-up-form">
@@ -82,6 +92,11 @@ const SignUpModal = ({
             <a>Politique de confidentialité</a> et avoir au moins 18 ans.
           </span>
         </div>
+        {termsAndConditionsErr && (
+          <small className="error-message">
+            Merci de confirmer pour poursuivre.
+          </small>
+        )}
         <button>Continuer</button>
         <p>
           Tu as déjà un compte?
