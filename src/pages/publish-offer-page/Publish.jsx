@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
+  const [data, setData] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -12,9 +13,7 @@ const Publish = ({ token }) => {
   const [condition, setCondition] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
-  const [picture, setPicture] = useState(null);
-
-  // const [cloudinaryPic, setCloudinaryPic] = useState(null);
+  const [pictures, setPictures] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,9 +27,12 @@ const Publish = ({ token }) => {
       formData.append("brand", brand);
       formData.append("size", size);
       formData.append("color", color);
-      formData.append("picture", picture);
+      for (let pic of pictures) {
+        formData.append("pictures", pic);
+      }
+
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        "https://site--backend-vinted--rfd99txfpp4t.code.run/offers/publish",
         formData,
         {
           headers: {
@@ -39,15 +41,24 @@ const Publish = ({ token }) => {
           },
         }
       );
-      console.log(response);
-      // Est-ce que j'ai bien un response.data.secure_url ?
+      setData(response.data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+    }
+  };
+
+  const handleFilesSelected = (event) => {
+    let copy = [...pictures];
+    for (let i = 0; i < event.target.files.length; i++) {
+      copy.push(event.target.files[i]);
+      setPictures(copy);
     }
   };
 
   return !token ? (
     <Navigate to={"/login"} />
+  ) : data ? ( // Si data existe (donc si l'annonce a bien été crée) alors je redirige l'utilisateur :
+    <Navigate to={"/"} />
   ) : (
     <main className="publish-component">
       <div className="publish-container">
@@ -56,11 +67,10 @@ const Publish = ({ token }) => {
           <menu>
             <input
               className="custom-file-input"
-              // Ici on veut POSTER UNE PHOTO : c'est un input de type file
+              // Ici on veut POSTER UNE OU DES PHOTO(S) : c'est un input de type file
               type="file"
-              onChange={(event) => {
-                setPicture(event.target.files[0]);
-              }}
+              multiple
+              onChange={handleFilesSelected}
             />
           </menu>
           <menu>
