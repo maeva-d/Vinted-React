@@ -4,7 +4,6 @@
 
   section {
     // offer images :
-
     > div {
       display: flex;
       gap: 2px;
@@ -14,7 +13,6 @@
         object-fit: cover;
       }
     }
-
     // offer window :
     aside {
       width: 250px;
@@ -99,4 +97,20 @@
   display: flex;
   justify-content: space-around;
   padding: 40px 0;
+}
+
+.picture-l {
+  width: 400px;
+  height: 620px;
+  object-fit: cover;
+}
+
+.picture-m {
+  width: 400px;
+  height: 310px;
+}
+
+.picture-s {
+  width: 200px;
+  height: 310px;
 }

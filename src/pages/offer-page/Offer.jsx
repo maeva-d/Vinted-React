@@ -32,14 +32,10 @@ const Offer = () => {
     <main className="offer-page">
       <section className="offer-container">
         <div>
-          {data.product_images.map((picture) => {
+          {data.product_images.map((picture, index) => {
             console.log("data =>", data);
             return (
-              <img
-                key={picture.asset_id}
-                src={picture.secure_url}
-                alt="offer-picture"
-              />
+              <img key={index} src={picture.secure_url} alt="offer-picture" />
             );
           })}
         </div>
