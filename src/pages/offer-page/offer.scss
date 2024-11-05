@@ -4,9 +4,15 @@
 
   section {
     // offer images :
-    img {
-      width: 400px;
-      object-fit: cover;
+
+    > div {
+      display: flex;
+      gap: 2px;
+      img {
+        width: 400px;
+        height: 620px;
+        object-fit: cover;
+      }
     }
 
     // offer window :

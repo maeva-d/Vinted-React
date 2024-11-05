@@ -58,7 +58,7 @@ const Publish = ({ token }) => {
   return !token ? (
     <Navigate to={"/login"} />
   ) : data ? ( // Si data existe (donc si l'annonce a bien été crée) alors je redirige l'utilisateur :
-    <Navigate to={"/"} />
+    <Navigate to={`/offers/${data._id}`} />
   ) : (
     <main className="publish-component">
       <div className="publish-container">

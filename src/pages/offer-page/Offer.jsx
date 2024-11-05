@@ -14,7 +14,6 @@ const Offer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          //Pas de guillemets avec les backticks!
           `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/${id}`
         );
         setData(response.data);
@@ -32,17 +31,18 @@ const Offer = () => {
   ) : (
     <main className="offer-page">
       <section className="offer-container">
-        {data.product_images.map((picture) => {
-          console.log("data =>", data);
-          console.log("picture.secure_url =>", picture.secure_url);
-          return (
-            <img
-              key={picture.asset_id}
-              src={picture.secure_url}
-              alt="offer-picture"
-            />
-          );
-        })}
+        <div>
+          {data.product_images.map((picture) => {
+            console.log("data =>", data);
+            return (
+              <img
+                key={picture.asset_id}
+                src={picture.secure_url}
+                alt="offer-picture"
+              />
+            );
+          })}
+        </div>
         <aside>
           <div className="product-info">
             <h1>{data.product_price} €</h1>
