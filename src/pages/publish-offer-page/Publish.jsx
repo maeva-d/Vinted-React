@@ -49,38 +49,36 @@ const Publish = ({ token }) => {
   return !token ? (
     <Navigate to={"/login"} />
   ) : (
-    <main className="publish-main">
-      <div className="container">
-        <h2 className="publish-h2">Vends ton article</h2>
-        <form onSubmit={handleSubmit} className="publish-form">
-          <section className="publish-section">
+    <main className="publish-component">
+      <div className="publish-container">
+        <h2>Vends ton article</h2>
+        <form onSubmit={handleSubmit}>
+          <menu>
             <input
+              className="custom-file-input"
               // Ici on veut POSTER UNE PHOTO : c'est un input de type file
               type="file"
               onChange={(event) => {
                 setPicture(event.target.files[0]);
               }}
-              className="custom-file-input"
             />
-          </section>
-          <section className="publish-section">
-            <div className="publish-line">
+          </menu>
+          <menu>
+            <section>
               <label htmlFor="title">Titre</label>
               <input
-                className="publish-input"
-                type="text"
                 id="title"
+                type="text"
                 placeholder="ex: Chemise Sézane verte"
                 value={title}
                 onChange={(event) => {
                   setTitle(event.target.value);
                 }}
               />
-            </div>
-            <div className="publish-line">
+            </section>
+            <section>
               <label htmlFor="description">Décris ton article</label>
               <textarea
-                className="publish-input"
                 id="description"
                 placeholder="ex: porté quelquefois, taille correctement"
                 value={description}
@@ -88,91 +86,85 @@ const Publish = ({ token }) => {
                   setDescription(event.target.value);
                 }}
               />
-            </div>
-          </section>
-          <section className="publish-section">
-            <div className="publish-line">
+            </section>
+          </menu>
+          <menu>
+            <section>
               <label htmlFor="brand">Marque</label>
               <input
-                className="publish-input"
-                type="text"
                 id="brand"
+                type="text"
                 placeholder="ex: Zara"
                 value={brand}
                 onChange={(event) => {
                   setBrand(event.target.value);
                 }}
               />
-            </div>
-            <div className="publish-line">
+            </section>
+            <section>
               <label htmlFor="size">Taille</label>
               <input
-                className="publish-input"
-                type="text"
                 id="size"
+                type="text"
                 placeholder="ex: L / 40 / 12"
                 value={size}
                 onChange={(event) => {
                   setSize(event.target.value);
                 }}
               />{" "}
-            </div>
-            <div className="publish-line">
+            </section>
+            <section>
               <label htmlFor="color">Couleur</label>
               <input
-                className="publish-input"
-                type="text"
                 id="color"
+                type="text"
                 placeholder="ex: Jaune"
                 value={color}
                 onChange={(event) => {
                   setColor(event.target.value);
                 }}
               />
-            </div>
-            <div className="publish-line">
+            </section>
+            <section>
               <label htmlFor="condition">Etat</label>
               <input
-                className="publish-input"
-                type="text"
                 id="condition"
+                type="text"
                 placeholder="Neuf avec étiquette"
                 value={condition}
                 onChange={(event) => {
                   setCondition(event.target.value);
                 }}
               />
-            </div>
-            <div className="publish-line">
+            </section>
+            <section>
               <label htmlFor="location">Lieu</label>
               <input
-                className="publish-input"
-                type="text"
                 id="location"
+                type="text"
                 placeholder="ex: Paris"
                 value={location}
                 onChange={(event) => {
                   setLocation(event.target.value);
                 }}
               />
-            </div>
-          </section>
-          <section className="publish-section">
-            <div className="publish-line">
+            </section>
+          </menu>
+          <menu>
+            <section>
               <label htmlFor="price">Prix</label>
               <input
-                className="publish-input"
-                type="text"
                 id="price"
+                type="text"
                 placeholder="0,00 €"
                 value={price}
                 onChange={(event) => {
                   setPrice(event.target.value);
                 }}
               />
-            </div>
-          </section>
-          <button className="publish-button">Ajouter</button>
+            </section>
+          </menu>
+          <button>Ajouter</button>
         </form>
       </div>
     </main>

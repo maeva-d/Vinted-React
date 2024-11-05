@@ -1,49 +1,55 @@
-.publish-main {
-  background-color: #ebedee;
-}
-
-.container {
+.publish-container {
   width: 1280px;
   margin: 0 auto;
 }
 
-/* form {
-  display: flex;
-  flex-direction: column;
-} */
-
-.publish-form {
+.publish-component {
   background-color: #ebedee;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+  min-height: 100vh;
 
-.publish-h2 {
-  font-size: 24px;
-  font-family: "Maison Neue";
-  padding: 24px 0;
-  margin-top: 24px;
-}
+  h2 {
+    font-size: 24px;
+    padding: 24px 0;
+    margin-top: 24px;
+  }
 
-.publish-section {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgb(190, 190, 190);
-}
+  form {
+    background-color: #ebedee;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
-.publish-line {
-  display: flex;
-  padding: 32px;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid lightgrey;
-}
+    menu {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgb(190, 190, 190);
 
-.publish-input {
-  border: none;
-  width: 50%;
+      section {
+        display: flex;
+        padding: 32px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid lightgrey;
+
+        input,
+        textarea {
+          border: none;
+          width: 50%;
+        }
+      }
+    }
+
+    button {
+      color: white;
+      background-color: #09b1ba;
+      border: none;
+      width: 100px;
+      margin-left: auto;
+      padding: 8px;
+      border-radius: 5px;
+    }
+  }
 }
 
 /* add picture button */
@@ -51,7 +57,7 @@
   visibility: hidden;
 }
 .custom-file-input::before {
-  content: "Ajoute une photo";
+  content: "Ajoute des photos";
   display: inline-block;
   background-color: white;
   color: #09b1ba;
@@ -70,14 +76,4 @@
 }
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
-
-.publish-button {
-  color: white;
-  background-color: #09b1ba;
-  border: none;
-  width: 100px;
-  margin-left: auto;
-  padding: 8px;
-  border-radius: 5px;
 }
