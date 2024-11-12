@@ -51,6 +51,7 @@ const Home = ({ token, search }) => {
       </div>
       {/* </div> */}
       <section className="home-all-offers">
+        <h3>Fil d'actu</h3>
         {data.offers.map((offer) => {
           return (
             //backticks pour faire une interpolation, et des accolades autours des backticks car je code dans du HTML et HTML ne connait pas les backticks (mais JS oui)
