@@ -10,10 +10,23 @@ import "./modals.scss";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);
+  // const [width, setWidth] = useState(window.innerWidth);
 
   const navigate = useNavigate();
 
   const MainModalRoot = document.getElementById("main-modal-root");
+
+  // useEffect(() => {
+  //   const handleResponsiveWidth = () => {
+  //     setWidth(window.innerWidth);
+  //   };
+
+  //   window.addEventListener("resize", handleResponsiveWidth);
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResponsiveWidth);
+  //   };
+  // }, [width]);
 
   return (
     <header className="header-component">
@@ -23,6 +36,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             <img src={vinted} alt="vinted-logo" />
           </Link>
           <input
+            className="big-screen-input search-bar"
             type="text"
             placeholder="Rechercher des articles"
             value={search}
@@ -46,11 +60,11 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             />
           </svg>
         </div>
+
         <nav>
           {token ? (
             <>
               <p>Bienvenue !</p>
-              {/* Gérer la déconnexion */}
               <HeaderCTAButton
                 onClick={() => {
                   handleToken(null);
@@ -85,6 +99,17 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             <HeaderCTAButton>Vends tes articles</HeaderCTAButton>
           </Link>
         </nav>
+      </div>
+      <div className="small-screen-input ">
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Rechercher des articles"
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
       </div>
     </header>
   );

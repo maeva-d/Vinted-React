@@ -19,7 +19,7 @@
   top: 0;
   z-index: 10;
 
-  > div {
+  > div:nth-of-type(1) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,20 +41,20 @@
       //   display: none;
       // }
 
-      input {
-        height: 40px;
-        width: 600px;
-        background-color: #f2f2f2;
-        border: none;
-        border-radius: 4px;
-        padding-left: 16px;
-        &::placeholder {
-          font-size: 18px;
-        }
-        &:focus {
-          outline-style: none;
-        }
-      }
+      // input {
+      //   height: 40px;
+      //   // width: 600px;
+      //   background-color: #f2f2f2;
+      //   border: none;
+      //   border-radius: 4px;
+      //   padding-left: 16px;
+      //   &::placeholder {
+      //     font-size: 18px;
+      //   }
+      //   &:focus {
+      //     outline-style: none;
+      //   }
+      // }
     }
 
     > nav {
@@ -70,44 +70,82 @@
   }
 }
 
+// Style général pour la barre de recherche
+.search-bar {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 4px;
+  padding-left: 16px;
+  &::placeholder {
+    font-size: 18px;
+  }
+  &:focus {
+    outline-style: none;
+  }
+}
+
+// Pour les grandes dimensions :
+.big-screen-input {
+  width: 600px;
+  height: 40px;
+}
+
+// Pour les plus petites dimensions (avec le burger menu)
+.small-screen-input {
+  border-top: 1px solid lightgray;
+  padding: 8px 32px;
+  background-color: white;
+  width: 100%;
+  display: none;
+
+  input {
+    width: 100%;
+    height: 48px;
+  }
+}
+
 // -- MEDIA -- //
 @media (max-width: 1200px) {
   .header-container {
     width: 1024px;
   }
-  .header-component {
-    div {
-      div {
-        input {
-          width: 380px;
-        }
-      }
-    }
+
+  .big-screen-input {
+    width: 380px;
   }
 }
+
 @media (max-width: 992px) {
   .header-container {
     width: 100%;
-    // padding: 0 32px;
   }
 
   .header-burger {
     display: inline-block;
-    height: 100%;
+    transform: scale(0.8);
+  }
+
+  .big-screen-input {
+    display: none;
+  }
+
+  .small-screen-input {
+    display: inline-block;
   }
 
   .header-component {
-    > div {
+    flex-direction: column;
+
+    > div:nth-of-type(1) {
+      // On cache les CTA :
       nav {
         display: none;
       }
 
+      // Logo et burger menu :
       > div {
         width: 100%;
         justify-content: space-between;
-        input {
-          display: none;
-        }
       }
     }
   }
