@@ -49,7 +49,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
         <nav>
           {token ? (
             <>
-              <p>Bienvenue sur Vinted</p>
+              <p>Bienvenue !</p>
               {/* Gérer la déconnexion */}
               <HeaderCTAButton
                 onClick={() => {

@@ -45,15 +45,6 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     setShowSignUpModal(true);
   };
 
-  // let errorMessage = "";
-  // Vérifier si la propriété "message" existe dans la réponse
-  // if (response.message && response.message.includes("Choisis un identifiant différent, celui-ci est déjà pris")) {
-  //     // Extraire le message d'erreur spécifique
-  //     errorMessage = "Choisis un identifiant différent, celui-ci est déjà pris";
-  // } else {
-  //     errorMessage = "Erreur inattendue";
-  // }
-
   // LOGIN REQUEST :
   const loginSubmit = async (event) => {
     event.preventDefault();
@@ -93,11 +84,9 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
         }
       );
       // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
-      //Ce token devra être sauvegardé dans les cookies pour une utilisation ultérieure.
       console.log(response.data);
       // const token = response.data.token;
-      // Maintenant que j'ai le token, je crée le cookie
-      // Cookies.set("Authentification token", token, { expires: 31 });
+      // Maintenant que j'ai le token, je crée le cookie pour une utilisation ultérieure => Cookies.set("Authentification token", token, { expires: 31 });
       // MAIS Je peux aussi fractionner mon code avec une fonction réutilisable sur chaque page où j'ai besoin d'un token
       handleToken(response.data.token);
       navigate("/");
