@@ -9,7 +9,6 @@ body {
 
 .hero-section {
   position: relative;
-  margin-bottom: 80px;
   // hero image :
   img:nth-of-type(1) {
     width: 100%;
@@ -33,9 +32,7 @@ body {
     left: 0px;
 
     > div {
-      width: 1280px;
       height: 100%;
-      margin: 0 auto;
       position: relative;
       display: flex;
       align-items: center;
@@ -73,8 +70,6 @@ body {
 
 // home offers
 .home-all-offers {
-  width: 1280px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   flex: 1;
@@ -85,6 +80,7 @@ body {
     display: block;
     width: 100%; // permet de prendre toute la ligne sans trop modifier le style déjà ajouté
     margin-bottom: 8px;
+    margin-top: 80px;
   }
 
   article {
@@ -131,6 +127,65 @@ body {
       &:hover {
         text-decoration: underline;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+// ---- MEDIA ---- //
+@media (max-width: 1400px) {
+  .container {
+    width: 1024px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: 100%;
+    padding: 0px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    margin-bottom: unset;
+    position: unset;
+    img:nth-of-type(2) {
+      position: absolute;
+      bottom: 100px;
+      left: -40px;
+    }
+
+    > div {
+      position: unset;
+      bottom: unset;
+      left: unset;
+
+      > div {
+        > div {
+          width: 100%;
+          padding: unset;
+
+          h2 {
+            width: unset;
+            font-size: 25px;
+            text-align: center;
+            margin: 24px 0;
+            line-height: 32px;
+          }
+
+          button {
+            margin-top: unset;
+            padding: 8px;
+            line-height: 26px;
+          }
+        }
       }
     }
   }

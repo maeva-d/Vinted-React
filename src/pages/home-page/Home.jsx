@@ -34,14 +34,13 @@ const Home = ({ token, search }) => {
     <p>Chargement en cours...</p>
   ) : (
     <main>
-      {/* <div> */}
       <div className="hero-section">
         <img alt="hero-image" src={heroimage} />
         <img alt="torn-effect" src={tear} />
         <div>
-          <div>
+          <div className="container">
             <div>
-              <h2>Prêts à faire du tri dans vos placards?</h2>
+              <h2>Prêts à faire du tri dans vos placards ?</h2>
               <Link to={token ? "/publish" : "/login"}>
                 <button>Vends maintenant</button>
               </Link>
@@ -49,12 +48,10 @@ const Home = ({ token, search }) => {
           </div>
         </div>
       </div>
-      {/* </div> */}
-      <section className="home-all-offers">
+      <section className="home-all-offers container">
         <h3>Fil d'actu</h3>
         {data.offers.map((offer) => {
           return (
-            //backticks pour faire une interpolation, et des accolades autours des backticks car je code dans du HTML et HTML ne connait pas les backticks (mais JS oui)
             <article key={offer._id}>
               <div>
                 <img
@@ -63,6 +60,7 @@ const Home = ({ token, search }) => {
                 />
                 <span>{offer.owner.account.username}</span>
               </div>
+              {/* backticks pour faire une interpolation, et des accolades autours des backticks car je code dans du HTML et HTML ne connait pas les backticks (mais JS oui) */}
               <Link to={`/offers/${offer._id}`} key={offer._id}>
                 <img
                   alt="clothes-preview"
