@@ -10,23 +10,10 @@ import "./modals.scss";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);
-  // const [width, setWidth] = useState(window.innerWidth);
 
   const navigate = useNavigate();
 
   const MainModalRoot = document.getElementById("main-modal-root");
-
-  // useEffect(() => {
-  //   const handleResponsiveWidth = () => {
-  //     setWidth(window.innerWidth);
-  //   };
-
-  //   window.addEventListener("resize", handleResponsiveWidth);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResponsiveWidth);
-  //   };
-  // }, [width]);
 
   return (
     <header className="header-component">
