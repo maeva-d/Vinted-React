@@ -66,7 +66,6 @@ const Home = ({ token, search }) => {
                   alt="clothes-preview"
                   src={offer.product_images[0].secure_url}
                 />
-                ;
               </Link>
               <p>{offer.product_price} €</p>
               {offer.product_details.map((info, index) => {

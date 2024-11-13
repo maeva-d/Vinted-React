@@ -72,8 +72,8 @@ body {
 .home-all-offers {
   display: flex;
   flex-wrap: wrap;
-  flex: 1;
   gap: 16px;
+  // justify-content: space-between;
 
   h3 {
     font-size: 26px;
@@ -84,6 +84,8 @@ body {
   }
 
   article {
+    width: calc(20% - 16px);
+    max-height: 500px;
     //top info (pseudo + avatar)
     > div {
       display: flex;
@@ -115,7 +117,7 @@ body {
     a {
       img {
         height: 360px;
-        width: 235px;
+        width: 100%;
         object-fit: cover;
       }
     }
@@ -143,6 +145,12 @@ body {
   .container {
     width: 992px;
   }
+
+  .home-all-offers {
+    article {
+      width: calc(25% - 16px);
+    }
+  }
 }
 
 @media (max-width: 992px) {
@@ -150,16 +158,25 @@ body {
     width: 100%;
     padding: 0px 32px;
   }
+
+  .home-all-offers {
+    article {
+      width: calc(33% - 16px);
+    }
+  }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0px 16px;
+  }
   .hero-section {
     margin-bottom: unset;
-    position: unset;
+    // position: unset;
     img:nth-of-type(2) {
       position: absolute;
-      bottom: 100px;
-      left: -40px;
+      bottom: 125px;
+      left: 0px;
     }
 
     > div {
@@ -185,6 +202,34 @@ body {
             padding: 8px;
             line-height: 26px;
           }
+        }
+      }
+    }
+  }
+
+  .home-all-offers {
+    gap: 8px;
+    justify-content: space-between;
+
+    article {
+      // 4 au lieu de 8 à cause du justify content juste au-dessus
+      width: calc(50% - 4px);
+    }
+  }
+}
+
+@media (max-width: 490px) {
+  .hero-section {
+    img:nth-of-type(2) {
+      bottom: 155px;
+    }
+  }
+
+  .home-all-offers {
+    article {
+      a {
+        img {
+          height: 300px;
         }
       }
     }
