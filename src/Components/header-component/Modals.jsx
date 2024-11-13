@@ -34,12 +34,22 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   }, []);
 
   const switchToLoginForm = () => {
+    setEmail("");
+    setPassword("");
+    setLoginErrorMessage("");
     setShowRedirectionModal(false);
     setShowSignUpModal(false);
     setShowLoginModal(true);
   };
 
   const switchToSignUpForm = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setSignUpUsernameError("");
+    setSignUpEmailError("");
+    setSignUpPasswordError("");
+    setSignUpTermsAndConditionsError(false);
     setShowRedirectionModal(false);
     setShowLoginModal(false);
     setShowSignUpModal(true);
@@ -91,30 +101,29 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {
-      console.log(error.response.data.message);
-      // if (
-      //   error.response.data.message === "Mot de passe : 7 caractères minimum"
-      // ) {
-      //   setSignUpPasswordError(error.response.data.message);
-      // }
-      // if (
-      //   error.response.data.message ===
-      //   "Le mot de passe doit contenir au moins un chiffre."
-      // ) {
-      //   setSignUpPasswordError(error.response.data.message);
-      // }
-      if (error.response.data.message.search("L'email") !== -1) {
-        setSignUpUsernameError(error.response.data.message);
+      let response = error.response.data.message;
+
+      // Erreurs relatives au nom d'utilisateurs
+      if (response.search("account.username:") !== -1) {
+        let errUsername = response.slice(42);
+        setSignUpUsernameError(errUsername);
       }
-      if (error.response.data.message.search("de passe") !== -1) {
-        setSignUpPasswordError(error.response.data.message);
+
+      // Erreurs relatives aux MDP
+      let result = response.search(new RegExp("mot de passe", "i"));
+      if (result !== -1) setSignUpPasswordError(response);
+
+      // Erreurs relatives à l'email
+      if (response.search("email:") !== -1) {
+        let errEmail = response.slice(31);
+        setSignUpEmailError(errEmail);
       }
-      if (error.response.data.message.search("déja un compte") !== -1) {
-        setSignUpEmailError(error.response.data.message);
-      }
-      if (error.response.data.message.search("poursuivre") !== -1) {
-        setSignUpTermsAndConditionsError(error.response.data.message);
-      }
+      if (response === "Tu possèdes déjà un compte !")
+        setSignUpEmailError(response);
+
+      // Erreur relative aux conditions générales :
+      if (response === "Merci de confirmer pour poursuivre.")
+        setSignUpTermsAndConditionsError(response);
     }
   };
 
