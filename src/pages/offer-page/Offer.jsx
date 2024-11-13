@@ -31,7 +31,7 @@ const Offer = () => {
   ) : (
     <main className="offer-page">
       <section className="offer-container">
-        <div>
+        <div className={data.product_images.length === 1 && `one-pic`}>
           {data.product_images.map((picture, index) => {
             console.log("data =>", data);
             return (

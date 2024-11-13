@@ -3,19 +3,21 @@
   min-height: 100vh;
 
   section {
-    // offer images :
+    // container images :
     > div {
       display: flex;
       gap: 2px;
+      width: calc(75% - 24px);
+
       img {
-        width: 400px;
+        width: 50%;
         height: 620px;
         object-fit: cover;
       }
     }
     // offer window :
     aside {
-      width: 250px;
+      width: 25%;
       background-color: white;
       padding: 16px;
       align-self: flex-start; // empêche le stretch vertical
@@ -95,22 +97,27 @@
   width: 1280px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 40px 0;
 }
 
-.picture-l {
-  width: 400px;
-  height: 620px;
-  object-fit: cover;
+// offres avec une seule image :
+.one-pic {
+  justify-content: center;
 }
 
-.picture-m {
-  width: 400px;
-  height: 310px;
-}
+// --- MEDIA --- //
 
-.picture-s {
-  width: 200px;
-  height: 310px;
+@media (max-width: 1400px) {
+  .offer-container {
+    width: 1024px;
+  }
+
+  // .offer-page {
+  //   section {
+  //     div {
+
+  //     }
+  //   }
+  // }
 }
