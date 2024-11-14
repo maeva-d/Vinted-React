@@ -64,116 +64,152 @@ const Publish = ({ token }) => {
       <div className="publish-container">
         <h2>Vends ton article</h2>
         <form onSubmit={handleSubmit}>
-          <menu>
-            <input
-              className="custom-file-input"
-              // Ici on veut POSTER UNE OU DES PHOTO(S) : c'est un input de type file
-              type="file"
-              multiple
-              onChange={handleFilesSelected}
-            />
+          <menu className="pictures-section">
+            <p>Ajoute jusqu'à deux photos.</p>
+            <div>
+              <input
+                className="custom-file-input"
+                // Ici on veut POSTER UNE OU DES PHOTO(S) : c'est un input de type file
+                type="file"
+                multiple
+                onChange={handleFilesSelected}
+              />
+            </div>
+            <small>Erreur placeholder</small>
           </menu>
           <menu>
             <section>
               <label htmlFor="title">Titre</label>
-              <input
-                id="title"
-                type="text"
-                placeholder="ex: Chemise Sézane verte"
-                value={title}
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                }}
-              />
+              <div>
+                <input
+                  id="title"
+                  type="text"
+                  placeholder="ex: Chemise Sézane verte"
+                  value={title}
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                  }}
+                />
+                <small>erreur placeholder</small>
+              </div>
             </section>
             <section>
               <label htmlFor="description">Décris ton article</label>
-              <textarea
-                id="description"
-                placeholder="ex: porté quelquefois, taille correctement"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-              />
+              <div>
+                <textarea
+                  id="description"
+                  placeholder="ex: porté quelquefois, taille correctement"
+                  value={description}
+                  onChange={(event) => {
+                    setDescription(event.target.value);
+                  }}
+                />
+                <small>erreur placeholder</small>
+              </div>
             </section>
           </menu>
           <menu>
             <section>
               <label htmlFor="brand">Marque</label>
-              <input
-                id="brand"
-                type="text"
-                placeholder="ex: Zara"
-                value={brand}
-                onChange={(event) => {
-                  setBrand(event.target.value);
-                }}
-              />
+              <div>
+                <input
+                  id="brand"
+                  type="text"
+                  placeholder="ex: Zara"
+                  value={brand}
+                  onChange={(event) => {
+                    setBrand(event.target.value);
+                  }}
+                />
+                <small>erreur placeholder</small>
+              </div>
             </section>
             <section>
               <label htmlFor="size">Taille</label>
-              <input
-                id="size"
-                type="text"
-                placeholder="ex: L / 40 / 12"
-                value={size}
-                onChange={(event) => {
-                  setSize(event.target.value);
-                }}
-              />{" "}
+              <div>
+                <input
+                  id="size"
+                  type="text"
+                  placeholder="ex: L / 40 / 12"
+                  value={size}
+                  onChange={(event) => {
+                    setSize(event.target.value);
+                  }}
+                />
+                <small>erreur placeholder</small>
+              </div>
             </section>
             <section>
               <label htmlFor="color">Couleur</label>
-              <input
-                id="color"
-                type="text"
-                placeholder="ex: Jaune"
-                value={color}
-                onChange={(event) => {
-                  setColor(event.target.value);
-                }}
-              />
+              <div>
+                <input
+                  id="color"
+                  type="text"
+                  placeholder="ex: Jaune"
+                  value={color}
+                  onChange={(event) => {
+                    setColor(event.target.value);
+                  }}
+                />
+              </div>
             </section>
             <section>
               <label htmlFor="condition">Etat</label>
-              <input
-                id="condition"
-                type="text"
-                placeholder="Neuf avec étiquette"
-                value={condition}
-                onChange={(event) => {
-                  setCondition(event.target.value);
-                }}
-              />
+              <div>
+                <input
+                  id="condition"
+                  type="text"
+                  placeholder="Neuf avec étiquette"
+                  value={condition}
+                  onChange={(event) => {
+                    setCondition(event.target.value);
+                  }}
+                />
+              </div>
             </section>
             <section>
               <label htmlFor="location">Lieu</label>
-              <input
-                id="location"
-                type="text"
-                placeholder="ex: Paris"
-                value={location}
-                onChange={(event) => {
-                  setLocation(event.target.value);
-                }}
-              />
+              <div>
+                <input
+                  id="location"
+                  type="text"
+                  placeholder="ex: Paris"
+                  value={location}
+                  onChange={(event) => {
+                    setLocation(event.target.value);
+                  }}
+                />
+              </div>
             </section>
           </menu>
           <menu>
             <section>
               <label htmlFor="price">Prix</label>
-              <input
-                id="price"
-                type="text"
-                placeholder="0,00 €"
-                value={price}
-                onChange={(event) => {
-                  setPrice(event.target.value);
-                }}
-              />
+              <div>
+                <input
+                  id="price"
+                  type="text"
+                  placeholder="0,00 €"
+                  value={price}
+                  onChange={(event) => {
+                    setPrice(event.target.value);
+                  }}
+                />
+                <small>erreur placeholder</small>
+              </div>
             </section>
           </menu>
+          <small>
+            Un vendeur professionnel se faisant passer pour un consommateur ou
+            un non-professionnel sur Vinted encourt les sanctions prévues à l'
+            <a
+              href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049532070"
+              target="_blank"
+            >
+              Article L. 132-2
+            </a>{" "}
+            du Code de la Consommation.
+          </small>
           <button>Ajouter</button>
         </form>
       </div>
