@@ -1,4 +1,4 @@
-import "../info-input.scss";
+import "../../info-input.scss";
 
 const LogInModal = ({
   onSubmit,

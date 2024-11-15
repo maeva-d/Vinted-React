@@ -1,4 +1,4 @@
-import "./nav-modal.scss";
+import "./burger-modal.scss";
 import { Link } from "react-router-dom";
 
 const BurgerModal = ({ onClickDisconnect, onClickGoToProfile }) => {

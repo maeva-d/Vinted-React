@@ -1,9 +1,9 @@
 import axios from "axios";
-import "./modals.scss";
-import cross from "../../assets/cross.svg";
+import cross from "../../../assets/cross.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // Components :
+import "./modals.scss";
 import RedirectionModal from "./RedirectionModal";
 import LogInModal from "./LogInModal";
 import SignUpModal from "./SignUpModal";

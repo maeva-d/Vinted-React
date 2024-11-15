@@ -5,10 +5,10 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 // Components :
-import HeaderCTAButton from "../Header-CTAButton";
-import Modals from "../Auth-Modals/Modals";
-import "./modals.scss";
-import BurgerModal from "../Burger-Modal/BurgerModal";
+import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
+import Modals from "../Header/Auth-Modals/Modals.jsx";
+import "../Header/Auth-Modals/modals.scss";
+import BurgerModal from "../Header/Burger-Modal/BurgerModal.jsx";
 
 const Header = ({ token, handleToken, search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);

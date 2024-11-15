@@ -1,4 +1,4 @@
-import "../Components/CheckoutForm/checkout-form.scss";
+import "./checkout-form.scss";
 
 import axios from "axios";
 import { useState } from "react";
