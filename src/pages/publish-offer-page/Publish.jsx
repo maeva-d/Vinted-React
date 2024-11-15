@@ -1,4 +1,5 @@
 import "./publish.scss";
+import "../../Components/info-input.scss";
 import axios from "axios";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
@@ -14,6 +15,14 @@ const Publish = ({ token }) => {
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [pictures, setPictures] = useState([]);
+
+  const [descCharLimit, setDescCharLimit] = useState(500);
+  const [offerCharLimit, setOfferCharLimit] = useState(40);
+
+  const [photoErr, setPhotoErr] = useState("");
+  // const [titleErr, setTitleErr] = useState("");
+  // const [descErr, setDescErr] = useState("");
+  // const [priceErr, setPriceErr] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,7 +52,8 @@ const Publish = ({ token }) => {
       );
       setData(response.data);
     } catch (error) {
-      console.log(error.response.data.message);
+      let message = error.response.data.message;
+      console.log(message);
     }
   };
 
@@ -75,28 +85,36 @@ const Publish = ({ token }) => {
                 onChange={handleFilesSelected}
               />
             </div>
-            <small>Erreur placeholder</small>
+            <small className="error-message">Erreur placeholder</small>
           </menu>
           <menu>
             <section>
               <label htmlFor="title">Titre</label>
               <div>
                 <input
+                  className="info-input"
                   id="title"
                   type="text"
                   placeholder="ex: Chemise Sézane verte"
                   value={title}
                   onChange={(event) => {
                     setTitle(event.target.value);
+                    console.log(title);
                   }}
                 />
-                <small>erreur placeholder</small>
+                <div>
+                  {photoErr && (
+                    <small className="error-message">erreur placeholder</small>
+                  )}
+                  <p>Limite de caractère : {offerCharLimit}</p>
+                </div>
               </div>
             </section>
             <section>
               <label htmlFor="description">Décris ton article</label>
               <div>
                 <textarea
+                  className="info-input"
                   id="description"
                   placeholder="ex: porté quelquefois, taille correctement"
                   value={description}
@@ -104,7 +122,10 @@ const Publish = ({ token }) => {
                     setDescription(event.target.value);
                   }}
                 />
-                <small>erreur placeholder</small>
+                <div>
+                  <small className="error-message">erreur placeholder</small>
+                  <p>Limite de caractère : {descCharLimit}</p>
+                </div>
               </div>
             </section>
           </menu>
@@ -113,6 +134,7 @@ const Publish = ({ token }) => {
               <label htmlFor="brand">Marque</label>
               <div>
                 <input
+                  className="info-input"
                   id="brand"
                   type="text"
                   placeholder="ex: Zara"
@@ -121,13 +143,13 @@ const Publish = ({ token }) => {
                     setBrand(event.target.value);
                   }}
                 />
-                <small>erreur placeholder</small>
               </div>
             </section>
             <section>
               <label htmlFor="size">Taille</label>
               <div>
                 <input
+                  className="info-input"
                   id="size"
                   type="text"
                   placeholder="ex: L / 40 / 12"
@@ -136,13 +158,13 @@ const Publish = ({ token }) => {
                     setSize(event.target.value);
                   }}
                 />
-                <small>erreur placeholder</small>
               </div>
             </section>
             <section>
               <label htmlFor="color">Couleur</label>
               <div>
                 <input
+                  className="info-input"
                   id="color"
                   type="text"
                   placeholder="ex: Jaune"
@@ -157,6 +179,7 @@ const Publish = ({ token }) => {
               <label htmlFor="condition">Etat</label>
               <div>
                 <input
+                  className="info-input"
                   id="condition"
                   type="text"
                   placeholder="Neuf avec étiquette"
@@ -171,6 +194,7 @@ const Publish = ({ token }) => {
               <label htmlFor="location">Lieu</label>
               <div>
                 <input
+                  className="info-input"
                   id="location"
                   type="text"
                   placeholder="ex: Paris"
@@ -187,6 +211,7 @@ const Publish = ({ token }) => {
               <label htmlFor="price">Prix</label>
               <div>
                 <input
+                  className="info-input"
                   id="price"
                   type="text"
                   placeholder="0,00 €"
@@ -195,7 +220,7 @@ const Publish = ({ token }) => {
                     setPrice(event.target.value);
                   }}
                 />
-                <small>erreur placeholder</small>
+                <small className="error-message">erreur placeholder</small>
               </div>
             </section>
           </menu>

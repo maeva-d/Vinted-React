@@ -64,23 +64,8 @@
 
         div {
           input {
-            width: 100%;
-            // flex-direction: column;
-            padding: 8px 0;
-            border-right: none;
-            border-left: none;
-            border-top: none;
-            border-bottom: 1px solid lightgrey;
             font-size: 18px;
-            color: black;
-            font-weight: 200;
-            &::placeholder {
-              color: darkgray;
-            }
-            &:focus {
-              outline-style: none;
-              border-bottom: 1px solid #007784;
-            }
+            border-bottom: 1px solid lightgrey;
           }
 
           small,
@@ -153,7 +138,7 @@
   z-index: 100;
 }
 
-// -- MEDIA -- //
+// ----------------- MEDIA ----------------- //
 @media (max-width: 1400px) {
   .all-modals {
     height: 100%;

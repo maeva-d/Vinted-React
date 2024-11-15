@@ -1,7 +1,6 @@
 .header-container {
   width: 1280px;
   margin: 0 auto;
-  // border-bottom: 1px solid lightgray;
   padding: 0 24px;
 }
 
@@ -10,6 +9,7 @@
 }
 
 .header-component {
+  border-bottom: 1px solid lightgray;
   height: 56px;
   display: flex;
   align-items: center;
@@ -23,7 +23,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // gap: 40px;
 
     div {
       display: flex;
@@ -35,39 +34,23 @@
           margin-right: 40px;
         }
       }
-
-      // > img {
-      //   transform: scale(2);
-      //   display: none;
-      // }
-
-      // input {
-      //   height: 40px;
-      //   // width: 600px;
-      //   background-color: #f2f2f2;
-      //   border: none;
-      //   border-radius: 4px;
-      //   padding-left: 16px;
-      //   &::placeholder {
-      //     font-size: 18px;
-      //   }
-      //   &:focus {
-      //     outline-style: none;
-      //   }
-      // }
     }
 
     > nav {
       // width: 35%;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      // justify-content: flex-end;
 
       p {
         margin-right: 24px;
       }
     }
   }
+}
+
+.cross-on-small-screen {
+  display: none;
 }
 
 // Style général pour la barre de recherche
@@ -92,6 +75,7 @@
 
 // Pour les plus petites dimensions (avec le burger menu)
 .small-screen-input {
+  border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray;
   padding: 8px 24px;
   background-color: white;
@@ -120,17 +104,23 @@
     width: 100%;
   }
 
-  .header-burger {
+  .header-burger,
+  .cross-on-small-screen,
+  .small-screen-input {
     display: inline-block;
+  }
+
+  .header-burger {
     transform: scale(0.8);
+  }
+
+  .cross-on-small-screen {
+    transform: scale(2.3);
+    margin-right: 8px;
   }
 
   .big-screen-input {
     display: none;
-  }
-
-  .small-screen-input {
-    display: inline-block;
   }
 
   .header-component {

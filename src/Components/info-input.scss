@@ -1,0 +1,16 @@
+.info-input {
+  width: 100%;
+  padding: 8px 0;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  color: black;
+  font-weight: 200;
+  &::placeholder {
+    color: rgb(117, 117, 117, 0.7);
+  }
+  &:focus {
+    outline-style: none;
+    border-bottom: 1px solid #007784;
+  }
+}
