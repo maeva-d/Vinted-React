@@ -16,13 +16,13 @@ const Publish = ({ token }) => {
   const [price, setPrice] = useState("");
   const [pictures, setPictures] = useState([]);
 
-  const [descCharLimit, setDescCharLimit] = useState(500);
-  const [offerCharLimit, setOfferCharLimit] = useState(40);
-
   const [photoErr, setPhotoErr] = useState("");
-  // const [titleErr, setTitleErr] = useState("");
-  // const [descErr, setDescErr] = useState("");
-  // const [priceErr, setPriceErr] = useState("");
+  const [titleErr, setTitleErr] = useState("");
+  const [descErr, setDescErr] = useState("");
+  const [priceErr, setPriceErr] = useState("");
+
+  const descCharLimit = 500;
+  const offerCharLimit = 40;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,8 +52,19 @@ const Publish = ({ token }) => {
       );
       setData(response.data);
     } catch (error) {
-      let message = error.response.data.message;
-      console.log(message);
+      const errorsArray = error.response.data.error;
+
+      errorsArray.map((elem) => {
+        if (elem.property === "product_name") {
+          setTitleErr(elem.error);
+        } else if (elem.property === "product_images") {
+          setPhotoErr(elem.error);
+        } else if (elem.property === "product_description") {
+          setDescErr(elem.error);
+        } else if (elem.property === "product_price") {
+          setPriceErr(elem.error);
+        }
+      });
     }
   };
 
@@ -85,7 +96,7 @@ const Publish = ({ token }) => {
                 onChange={handleFilesSelected}
               />
             </div>
-            <small className="error-message">Erreur placeholder</small>
+            {photoErr && <small className="error-message">{photoErr}</small>}
           </menu>
           <menu>
             <section>
@@ -103,8 +114,8 @@ const Publish = ({ token }) => {
                   }}
                 />
                 <div>
-                  {photoErr && (
-                    <small className="error-message">erreur placeholder</small>
+                  {titleErr && (
+                    <small className="error-message">{titleErr}</small>
                   )}
                   <p>Limite de caractère : {offerCharLimit}</p>
                 </div>
@@ -123,7 +134,9 @@ const Publish = ({ token }) => {
                   }}
                 />
                 <div>
-                  <small className="error-message">erreur placeholder</small>
+                  {descErr && (
+                    <small className="error-message">{descErr}</small>
+                  )}
                   <p>Limite de caractère : {descCharLimit}</p>
                 </div>
               </div>
@@ -220,7 +233,11 @@ const Publish = ({ token }) => {
                     setPrice(event.target.value);
                   }}
                 />
-                <small className="error-message">erreur placeholder</small>
+                <div>
+                  {priceErr && (
+                    <small className="error-message">{priceErr}</small>
+                  )}
+                </div>
               </div>
             </section>
           </menu>

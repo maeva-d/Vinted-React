@@ -81,17 +81,16 @@ const Header = ({ token, handleToken, search, setSearch }) => {
 
         <nav>
           {token ? (
-            <>
-              <p>Bienvenue !</p>
-              <HeaderCTAButton
-                onClick={() => {
-                  handleToken(null);
-                  navigate("/");
-                }}
-              >
-                Se déconnecter
-              </HeaderCTAButton>
-            </>
+            <HeaderCTAButton
+              onClick={() => {
+                // setShowMainModal(!showMainModal);
+                handleToken(null);
+                navigate("/");
+                // navigate("/profile");
+              }}
+            >
+              Mon profil
+            </HeaderCTAButton>
           ) : (
             <>
               {/* Navigation : comme ça la modale n'apparaîtra pas avec le fond noir */}

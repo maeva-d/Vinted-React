@@ -37,6 +37,10 @@
         font-size: 15px;
       }
 
+      > div {
+        margin-bottom: 16px;
+      }
+
       section {
         display: flex;
         padding: 24px;
@@ -59,22 +63,17 @@
           }
 
           div {
+            margin-top: 16px;
             display: flex;
-            // justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
+            gap: 32px;
             > p {
-              margin-top: 16px;
               font-size: 13px;
               margin-left: auto;
             }
           }
         }
       }
-
-      // small {
-      //   color: #d04555;
-      //   margin-top: 16px;
-      // }
     }
 
     > small {
@@ -103,7 +102,7 @@
 
 .error-message {
   color: #d04555;
-  margin-top: 16px;
+  width: 50%;
 }
 
 // -- add picture section

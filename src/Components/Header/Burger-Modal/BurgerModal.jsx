@@ -16,7 +16,6 @@ const BurgerModal = ({ onClickDisconnect, onClickGoToProfile }) => {
           <h2>Mon compte</h2>
           <ul>
             <div>
-              {/* <Link to="/profile">Mon profil</Link> */}
               <button onClick={onClickGoToProfile}>Mon profil</button>
             </div>
             <div>
