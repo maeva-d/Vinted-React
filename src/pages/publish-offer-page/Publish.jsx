@@ -22,7 +22,7 @@ const Publish = ({ token }) => {
   const [priceErr, setPriceErr] = useState("");
 
   const descCharLimit = 500;
-  const offerCharLimit = 40;
+  const offerCharLimit = 50;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
