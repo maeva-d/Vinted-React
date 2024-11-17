@@ -33,23 +33,31 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     };
   }, []);
 
-  const switchToLoginForm = () => {
+  const resetFormStates = () => {
+    setUsername("");
     setEmail("");
     setPassword("");
+    setSignUpTermsAndConditionsError(false);
+  };
+
+  const resetErrorsStates = () => {
     setLoginErrorMessage("");
+    setSignUpUsernameError("");
+    setSignUpEmailError("");
+    setSignUpPasswordError("");
+  };
+
+  const switchToLoginForm = () => {
+    resetFormStates();
+    resetErrorsStates();
     setShowRedirectionModal(false);
     setShowSignUpModal(false);
     setShowLoginModal(true);
   };
 
   const switchToSignUpForm = () => {
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    setSignUpUsernameError("");
-    setSignUpEmailError("");
-    setSignUpPasswordError("");
-    setSignUpTermsAndConditionsError(false);
+    resetFormStates();
+    resetErrorsStates();
     setShowRedirectionModal(false);
     setShowLoginModal(false);
     setShowSignUpModal(true);
@@ -58,7 +66,8 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   // LOGIN REQUEST :
   const loginSubmit = async (event) => {
     event.preventDefault();
-    setLoginErrorMessage("");
+    resetErrorsStates();
+
     try {
       const response = await axios.post(
         "https://site--backend-vinted--rfd99txfpp4t.code.run/user/login",
@@ -78,10 +87,8 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   // SIGN UP REQUEST :
   const createAccount = async (event) => {
     event.preventDefault();
-    setSignUpUsernameError("");
-    setSignUpEmailError("");
-    setSignUpPasswordError("");
-    setSignUpTermsAndConditionsError("");
+    resetErrorsStates();
+
     try {
       const response = await axios.post(
         "https://site--backend-vinted--rfd99txfpp4t.code.run/user/signup",
@@ -102,28 +109,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
       navigate("/");
     } catch (error) {
       let response = error.response.data.message;
-
-      // Erreurs relatives au nom d'utilisateurs
-      if (response.search("account.username:") !== -1) {
-        let errUsername = response.slice(42);
-        setSignUpUsernameError(errUsername);
-      }
-
-      // Erreurs relatives aux MDP
-      let result = response.search(new RegExp("mot de passe", "i"));
-      if (result !== -1) setSignUpPasswordError(response);
-
-      // Erreurs relatives à l'email
-      if (response.search("email:") !== -1) {
-        let errEmail = response.slice(31);
-        setSignUpEmailError(errEmail);
-      }
-      if (response === "Tu possèdes déjà un compte !")
-        setSignUpEmailError(response);
-
-      // Erreur relative aux conditions générales :
-      if (response === "Merci de confirmer pour poursuivre.")
-        setSignUpTermsAndConditionsError(response);
+      console.log("response =>", response);
     }
   };
 
