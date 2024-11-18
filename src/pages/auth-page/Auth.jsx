@@ -1,5 +1,4 @@
 import "./auth.scss";
-// import Modals from "../../Components/header-component/Modals";
 import Modals from "../../Components/Header/Auth-Modals/Modals.jsx";
 
 // Je récupère la fonction handleToken en props

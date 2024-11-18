@@ -128,7 +128,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   };
 
   return (
-    <main className={`all-modals ${darkBG && `dark-background`}`}>
+    <main className={`all-modals ${darkBG ? `dark-background` : `not-fixed`}`}>
       <div>
         <img alt="close-pop-up" src={cross} onClick={onClose} />
         {/* -- Main modal -- */}
