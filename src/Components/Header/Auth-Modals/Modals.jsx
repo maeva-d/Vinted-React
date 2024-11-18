@@ -37,7 +37,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     setUsername("");
     setEmail("");
     setPassword("");
-    setSignUpTermsAndConditionsError(false);
+    setTermsAndConditions(false);
   };
 
   const resetErrorsStates = () => {
@@ -45,6 +45,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
     setSignUpUsernameError("");
     setSignUpEmailError("");
     setSignUpPasswordError("");
+    setSignUpTermsAndConditionsError(false);
   };
 
   const switchToLoginForm = () => {
@@ -97,7 +98,7 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
           username: username,
           password: password,
           newsletter: newsletter,
-          termsAndConditions: termsAndConditions.toString(termsAndConditions),
+          termsAndConditions: termsAndConditions,
         }
       );
       // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
@@ -108,8 +109,21 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {
-      let response = error.response.data.message;
-      console.log("response =>", response);
+      const { error: errorsArray, message } = error.response.data;
+
+      if (message) setSignUpPasswordError(message);
+
+      if (errorsArray) {
+        errorsArray.map((elem) => {
+          if (elem.property === "account.username") {
+            setSignUpUsernameError(elem.error);
+          } else if (elem.property === "email") {
+            setSignUpEmailError(elem.error);
+          } else if (elem.property === "termsAndConditions") {
+            setSignUpTermsAndConditionsError(elem.error);
+          }
+        });
+      }
     }
   };
 
