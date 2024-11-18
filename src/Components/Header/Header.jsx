@@ -64,6 +64,14 @@ const Header = ({ token, handleToken, search, setSearch }) => {
           {showBurgerModal &&
             createPortal(
               <BurgerModal
+                token={token}
+                onClickAuth={() => {
+                  setShowMainModal(!showMainModal);
+                }}
+                onClickSell={() => {
+                  setShowBurgerModal(!showBurgerModal);
+                  navigate("/publish");
+                }}
                 onClickGoToProfile={() => {
                   setShowBurgerModal(!showBurgerModal);
                   navigate("/profile");

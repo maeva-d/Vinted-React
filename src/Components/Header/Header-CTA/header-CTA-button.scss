@@ -20,18 +20,29 @@
 }
 
 .my-profile {
-  text-decoration: none;
-  color: #555555;
   border: none;
+  color: #555555;
   background-color: transparent;
+  margin-right: 24px !important;
+  text-decoration: none;
   text-align: left;
   font-size: 16px;
   padding: 0;
-  margin-right: 24px !important;
 }
 
 .sell {
   border-color: #007784;
   background-color: #007784;
   color: white;
+}
+
+@media (max-width: 996px) {
+  .header-CTA-button {
+    width: 100%;
+    height: unset;
+    line-height: 30px;
+    font-size: 17px;
+    margin: 8px 0;
+    padding: 8px 0px;
+  }
 }
