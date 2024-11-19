@@ -159,7 +159,7 @@ body {
   }
 
   .hero-section {
-    margin-top: 56px;
+    margin-top: 48px;
   }
 
   .home-all-offers {
@@ -178,7 +178,7 @@ body {
     // position: unset;
     img:nth-of-type(2) {
       position: absolute;
-      bottom: 125px;
+      bottom: 120px;
       left: 0px;
     }
 
@@ -224,7 +224,7 @@ body {
 @media (max-width: 490px) {
   .hero-section {
     img:nth-of-type(2) {
-      bottom: 155px;
+      bottom: 150px;
     }
   }
 
