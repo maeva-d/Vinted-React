@@ -32,10 +32,13 @@ const Offer = () => {
     <main className="offer-page">
       <section className="offer-container">
         <div className={data.product_images.length === 1 && `one-pic`}>
-          {data.product_images.map((picture, index) => {
-            console.log("data =>", data);
+          {data.product_images.map((picture) => {
             return (
-              <img key={index} src={picture.secure_url} alt="offer-picture" />
+              <img
+                key={picture.secure_url}
+                src={picture.secure_url}
+                alt="offer-picture"
+              />
             );
           })}
         </div>
@@ -43,25 +46,16 @@ const Offer = () => {
           <div className="product-info">
             <h1>{data.product_price} €</h1>
             {data.product_details.map((detail, index) => {
-              // console.log(data);
               const keys = Object.keys(detail);
               // console.log("keys (Object.keys(details)) ==>", keys);
               const key = keys[0];
               // console.log("key (keys[0]) =>", key);
 
               return (
-                <div key={index}>
-                  {key && (
-                    <ul>
-                      <li>{key}</li>
-                    </ul>
-                  )}
-                  {detail[key] && (
-                    <ul>
-                      <li>{detail[key]}</li>
-                    </ul>
-                  )}
-                </div>
+                <ul key={index}>
+                  {key && <li>{key}</li>}
+                  {detail[key] && <li>{detail[key]}</li>}
+                </ul>
               );
             })}
           </div>
@@ -69,14 +63,13 @@ const Offer = () => {
             <h2>{data.product_name}</h2>
             <h3>{data.product_description}</h3>
           </menu>
-          <figure className="fixed-button-sm-screen">
-            <Link
-              to="/payment"
-              state={{ title: data.product_name, amount: data.product_price }}
-            >
-              <button>Acheter</button>
-            </Link>
-          </figure>
+          <Link
+            to="/payment"
+            state={{ title: data.product_name, amount: data.product_price }}
+            className="fixed-button-sm-screen"
+          >
+            <button>Acheter</button>
+          </Link>
 
           <div className="user-info">
             <img

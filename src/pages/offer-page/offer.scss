@@ -25,23 +25,20 @@
       .product-info {
         h1 {
           color: #007784;
-          font-weight: 500;
           border-bottom: 1px solid rgb(211, 211, 211, 0.5);
           line-height: 25px;
           padding-bottom: 8px;
         }
 
-        div {
+        ul {
           display: flex;
-          ul {
+          li {
             width: 50%;
-            li {
-              color: #757575;
-              display: flex;
-              margin: 8px 0;
-              font-size: 12px;
-              line-height: 15px;
-            }
+            color: #757575;
+            display: flex;
+            margin: 8px 0;
+            font-size: 12px;
+            line-height: 15px;
           }
         }
       }
