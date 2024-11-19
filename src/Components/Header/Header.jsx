@@ -3,7 +3,7 @@ import cross from "../../assets/cross.svg";
 import vinted from "../../assets/vinted-logo.svg";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 // Components :
 import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
 import Modals from "../Header/Auth-Modals/Modals.jsx";
@@ -15,6 +15,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
   const [showBurgerModal, setShowBurgerModal] = useState(false);
 
   const navigate = useNavigate();
+  // const location = useLocation();
 
   const MainModalRoot = document.getElementById("main-modal-root");
   const burgerModalRoot = document.getElementById("burger-modal-root");
@@ -101,12 +102,15 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </HeaderCTAButton>
           ) : (
             <>
-              {/* Navigation : comme ça la modale n'apparaîtra pas avec le fond noir */}
-              <Link to={"/"}>
-                <HeaderCTAButton onClick={() => setShowMainModal(true)}>
-                  S'inscrire | Se connecter
-                </HeaderCTAButton>
-              </Link>
+              <HeaderCTAButton
+                onClick={() => {
+                  setShowMainModal(true);
+                  navigate("/");
+                }}
+              >
+                S'inscrire | Se connecter
+              </HeaderCTAButton>
+
               {/* -- Modal pour s'inscrire ou se connecter -- */}
               {showMainModal &&
                 createPortal(
@@ -126,6 +130,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
           </Link>
         </nav>
       </div>
+
       {/* -- Si burger modale n'est pas ouverte, je veux afficher en bas du header la barre de recherche pour écrans plus petits --  */}
       {!showBurgerModal && (
         <div className="small-screen-input ">

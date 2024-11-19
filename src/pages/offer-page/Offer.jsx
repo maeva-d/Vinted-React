@@ -69,12 +69,15 @@ const Offer = () => {
             <h2>{data.product_name}</h2>
             <h3>{data.product_description}</h3>
           </menu>
-          <Link
-            to="/payment"
-            state={{ title: data.product_name, amount: data.product_price }}
-          >
-            <button>Acheter</button>
-          </Link>
+          <figure className="fixed-button-sm-screen">
+            <Link
+              to="/payment"
+              state={{ title: data.product_name, amount: data.product_price }}
+            >
+              <button>Acheter</button>
+            </Link>
+          </figure>
+
           <div className="user-info">
             <img
               src={data.owner.account.avatar?.secure_url ?? placeholder}
