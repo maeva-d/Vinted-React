@@ -42,6 +42,7 @@ const CheckoutForm = ({ title, amount }) => {
         {
           title: title,
           amount: amount,
+          // currency: currency,
         }
       );
       console.log("response.data =>", response.data); // OK !
@@ -78,19 +79,21 @@ const CheckoutForm = ({ title, amount }) => {
     <main className="checkout-container">
       <form className="checkout-form" onSubmit={handleSubmit}>
         <h2>Résumé de la commande</h2>
-        <ul>
-          <p>Commande</p> <span>{amount} €</span>
-        </ul>
-        <ul>
-          <p>Frais protection acheteurs</p> <span>{protectionFees} €</span>
-        </ul>
-        <ul>
-          <p>Frais de port</p> <span>{shippingFees} €</span>
-        </ul>
-        <ul>
-          <span>Total</span>
-          <span>{amount + protectionFees + shippingFees} €</span>
-        </ul>
+        <menu>
+          <ul>
+            <p>Commande</p> <span>{amount} €</span>
+          </ul>
+          <ul>
+            <p>Frais protection acheteurs</p> <span>{protectionFees} €</span>
+          </ul>
+          <ul>
+            <p>Frais de port</p> <span>{shippingFees} €</span>
+          </ul>
+          <ul>
+            <span>Total</span>
+            <span>{amount + protectionFees + shippingFees} €</span>
+          </ul>
+        </menu>
         <PaymentElement />
         <button disabled={!stripe || !elements || isPaying}>
           Confirmer votre achat

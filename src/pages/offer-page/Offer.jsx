@@ -65,7 +65,10 @@ const Offer = () => {
           </menu>
           <Link
             to="/payment"
-            state={{ title: data.product_name, amount: data.product_price }}
+            state={{
+              title: data.product_name,
+              amount: data.product_price,
+            }}
             className="fixed-button-sm-screen"
           >
             <button>Acheter</button>

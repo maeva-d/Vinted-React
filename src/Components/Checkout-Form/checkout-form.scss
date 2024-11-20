@@ -8,20 +8,23 @@
   h2 {
     color: #999999;
     font-size: 15px;
-    margin-bottom: 40px;
+    // margin-bottom: 40px;
   }
 
-  ul {
-    display: flex;
-    justify-content: space-between;
-    line-height: 30px;
-    color: #666666;
-    font-size: 15px;
-  }
+  menu {
+    margin: 32px 0 48px 0;
 
-  ul:last-of-type {
-    font-weight: bold;
-    margin-bottom: 48px;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      line-height: 30px;
+      color: #666666;
+      font-size: 15px;
+    }
+
+    ul:last-of-type {
+      font-weight: bold;
+    }
   }
 
   button {
