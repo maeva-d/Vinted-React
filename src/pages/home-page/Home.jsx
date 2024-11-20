@@ -15,16 +15,15 @@ const Home = ({ token, search }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://site--backend-vinted--rfd99txfpp4t.code.run/offers"
+          "https://site--backend-vinted--rfd99txfpp4t.code.run/offers/"
           //, {
           //   params: { title: search },
           // }
         );
-        console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data);
       }
     };
     fetchData();

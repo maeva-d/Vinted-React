@@ -67,6 +67,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
               <BurgerModal
                 token={token}
                 onClickAuth={() => {
+                  setShowBurgerModal(!showBurgerModal);
                   setShowMainModal(!showMainModal);
                 }}
                 onClickSell={() => {
@@ -75,7 +76,9 @@ const Header = ({ token, handleToken, search, setSearch }) => {
                 }}
                 onClickGoToProfile={() => {
                   setShowBurgerModal(!showBurgerModal);
-                  navigate("/profile");
+                  setShowMainModal(!showMainModal);
+                  // navigate("/profile");
+                  navigate("/");
                 }}
                 onClickDisconnect={() => {
                   setShowBurgerModal(!showBurgerModal);
@@ -90,18 +93,18 @@ const Header = ({ token, handleToken, search, setSearch }) => {
 
         <nav>
           {token ? (
-            <HeaderCTAButton
+            <button
               onClick={() => {
-                // setShowMainModal(!showMainModal);
+                setShowMainModal(!showMainModal);
                 handleToken(null);
                 navigate("/");
                 // navigate("/profile");
               }}
             >
-              Mon profil
-            </HeaderCTAButton>
+              Mon profil (se déco)
+            </button>
           ) : (
-            <>
+            <div>
               <HeaderCTAButton
                 onClick={() => {
                   setShowMainModal(true);
@@ -123,7 +126,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
                   />,
                   MainModalRoot
                 )}
-            </>
+            </div>
           )}
           <Link to={"/publish"}>
             <HeaderCTAButton>Vends tes articles</HeaderCTAButton>
