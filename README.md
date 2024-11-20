@@ -2,7 +2,7 @@
 
 ## Description
 
-Bienvenue sur Vinted-React, une mini-reproduction de la célèbre application du même non.
+Bienvenue sur Vinted-React, une mini-reproduction de la célèbre application du même nom.
 
 ## Fonctionnalités
 
@@ -17,13 +17,12 @@ Bienvenue sur Vinted-React, une mini-reproduction de la célèbre application du
 - [![yarn][yarn]][yarn-url]
 - [![React][React.js]][React-url]
 - [![Axios][Axios]][Axios-url]
+- [![SASS][SASS]][SASS-url]
 <!-- - [![Express][Express]][Express-url]
 - [![Node][Node.js]][Node-url] -->
-- [![SASS][SASS]][SASS-url]
 
 ## Prérequis
 
-- [React.js (v18+)](https://nodejs.org/en/download/package-manager)
 - [yarn](https://yarnpkg.com/)
 
 ## Instalation
