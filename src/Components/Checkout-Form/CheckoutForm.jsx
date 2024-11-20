@@ -25,30 +25,34 @@ const CheckoutForm = ({ title, amount }) => {
     setIsPaying(true);
     setErrorMessage("");
     try {
+      const { error: submitError } = await elements.submit();
+
       if (elements == null) {
         return;
       }
 
-      const { error: submitError } = await elements.submit();
       if (submitError) {
         setErrorMessage(submitError.message);
         return;
       }
 
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/v2/payment",
+        // "https://lereacteur-vinted-api.herokuapp.com/v2/payment",
+        "https://site--backend-vinted--rfd99txfpp4t.code.run/payment",
         {
           title: title,
           amount: amount,
         }
       );
-      console.log(response.data); // OK !
+      console.log("response.data =>", response.data); // OK !
       const clientSecret = response.data.client_secret;
+
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements: elements,
         clientSecret: clientSecret,
         confirmParams: {
-          return_url: "http://localhost:5173/",
+          return_url:
+            "https://site--backend-vinted--rfd99txfpp4t.code.run/offers/",
         },
         redirect: "if_required",
       });
@@ -57,43 +61,43 @@ const CheckoutForm = ({ title, amount }) => {
         setErrorMessage(error.message);
         return;
       }
+
       if (paymentIntent.status === "succeeded") {
         setSuccess(true);
       }
     } catch (error) {
       console.log(error);
     }
-    // ma fonction est finie j'arrete le loading
+
     setIsPaying(false);
   };
 
   return success ? (
     <p>Transaction validée</p>
   ) : (
-    <form className="checkout-container" onSubmit={handleSubmit}>
-      <h2 className="pay-h2">Résumé de la commande</h2>
-      <div className="pay-line">
-        <p>Commande</p> <span>{amount} €</span>
-      </div>
-      <div className="pay-line">
-        <p>Frais protection acheteurs</p> <span>{protectionFees} €</span>
-      </div>
-      <div className="pay-line">
-        <p>Frais de port</p> <span>{shippingFees} €</span>
-      </div>
-      <div className="pay-total">
-        <span>Total</span>
-        <span>{amount + protectionFees + shippingFees} €</span>
-      </div>
-      <PaymentElement />
-      <button
-        disabled={!stripe || !elements || isPaying}
-        className="pay-button"
-      >
-        Confirmer votre achat
-      </button>
-      {errorMessage && <p>{errorMessage}</p>}
-    </form>
+    <main className="checkout-container">
+      <form className="checkout-form" onSubmit={handleSubmit}>
+        <h2>Résumé de la commande</h2>
+        <ul>
+          <p>Commande</p> <span>{amount} €</span>
+        </ul>
+        <ul>
+          <p>Frais protection acheteurs</p> <span>{protectionFees} €</span>
+        </ul>
+        <ul>
+          <p>Frais de port</p> <span>{shippingFees} €</span>
+        </ul>
+        <ul>
+          <span>Total</span>
+          <span>{amount + protectionFees + shippingFees} €</span>
+        </ul>
+        <PaymentElement />
+        <button disabled={!stripe || !elements || isPaying}>
+          Confirmer votre achat
+        </button>
+        {errorMessage && <p>{errorMessage}</p>}
+      </form>
+    </main>
   );
 };
 

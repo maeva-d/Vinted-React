@@ -4,6 +4,7 @@ import vinted from "../../assets/vinted-logo.svg";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { PiMagnifyingGlassLight } from "react-icons/pi";
 // Components :
 import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
 import Modals from "../Header/Auth-Modals/Modals.jsx";
@@ -30,7 +31,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
           <input
             className="big-screen-input search-bar"
             type="text"
-            placeholder="Rechercher des articles"
+            placeholder="&#128270; Rechercher des articles"
             value={search}
             onChange={(event) => {
               setSearch(event.target.value);
