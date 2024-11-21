@@ -1,13 +1,16 @@
 import "./burger-modal.scss";
 import HeaderCTAButton from "../Header-CTA/Header-CTAButton";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/authContext";
 
 const BurgerModal = ({
-  token,
+  // token,
   onClickAuth,
   onClickSell,
   onClickDisconnect,
   onClickGoToProfile,
 }) => {
+  const { token } = useContext(AuthContext);
   return (
     <main className="burger-modal">
       <menu>
@@ -22,8 +25,8 @@ const BurgerModal = ({
           )}
         </div>
       </menu>
-      <menu>
-        {token && (
+      {token && (
+        <menu>
           <div>
             <h2>Mon compte</h2>
             <ul>
@@ -35,8 +38,16 @@ const BurgerModal = ({
               </div>
             </ul>
           </div>
-        )}
-      </menu>
+          <div>
+            <h2>Zone de danger</h2>
+            <ul>
+              <div>
+                <button>Supprimer mon compte</button>
+              </div>
+            </ul>
+          </div>
+        </menu>
+      )}
     </main>
   );
 };
