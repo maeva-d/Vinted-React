@@ -42,7 +42,7 @@ const CheckoutForm = ({ title, amount }) => {
         {
           title: title,
           amount: amount,
-          // currency: currency,
+          currency: "eur",
         }
       );
       console.log("response.data =>", response.data); // OK !
