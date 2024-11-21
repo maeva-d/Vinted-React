@@ -1,0 +1,25 @@
+.profile-container {
+  margin: 40px auto;
+  width: 600px;
+}
+
+.profile-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-input {
+  margin: 16px 0;
+  border: none;
+  padding: 8px 0;
+}
+
+.profile-button {
+  cursor: pointer;
+  color: white;
+  background-color: hsl(186, 100%, 26%);
+  border: none;
+  padding: 8px 0;
+  margin-bottom: 16px;
+}
