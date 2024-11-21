@@ -1,4 +1,5 @@
-import "../../info-input.scss";
+// import "../../info-input.scss";
+import InfosInput from "../../Infos-Input/InfosInput";
 
 const LogInModal = ({
   onSubmit,
@@ -15,17 +16,15 @@ const LogInModal = ({
       <form onSubmit={onSubmit}>
         {errorMessage !== "" && <h2>Identifiant ou mot de passe incorrect</h2>}
         <div className="log-in-form">
-          <input
-            className="info-input"
+          <InfosInput
             type="email"
-            placeholder="E-mail ou nom d'utilisateur"
+            placeholder="E-mail"
             value={email}
             onChange={setEmail}
           />
         </div>
         <div className="log-in-form">
-          <input
-            className="info-input"
+          <InfosInput
             type="password"
             placeholder="Mot de passe"
             value={password}

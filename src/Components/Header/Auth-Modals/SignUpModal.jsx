@@ -1,4 +1,5 @@
-import "../../info-input.scss";
+// import "../../info-input.scss";
+import InfosInput from "../../Infos-Input/InfosInput";
 
 const SignUpModal = ({
   onSubmit,
@@ -21,8 +22,7 @@ const SignUpModal = ({
       <h1>Inscris-toi avec ton email</h1>
       <form onSubmit={onSubmit}>
         <div className="sign-up-form">
-          <input
-            className="info-input"
+          <InfosInput
             type="text"
             placeholder="Nom d'utilisateur"
             value={username}
@@ -39,8 +39,7 @@ const SignUpModal = ({
           </small>
         </div>
         <div className="sign-up-form">
-          <input
-            className="info-input"
+          <InfosInput
             type="email"
             placeholder="E-mail"
             value={email}
@@ -57,8 +56,7 @@ const SignUpModal = ({
           </small>
         </div>
         <div className="sign-up-form">
-          <input
-            className="info-input"
+          <InfosInput
             type="password"
             placeholder="Mot de passe"
             value={password}

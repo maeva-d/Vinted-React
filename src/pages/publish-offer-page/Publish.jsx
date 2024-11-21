@@ -1,9 +1,9 @@
 import "./publish.scss";
-import "../../Components/info-input.scss";
 import axios from "axios";
 import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
+import InfosInput from "../../Components/Infos-Input/InfosInput";
 
 const Publish = () => {
   const [data, setData] = useState("");
@@ -106,15 +106,13 @@ const Publish = () => {
             <section>
               <label htmlFor="title">Titre</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="title"
                   type="text"
                   placeholder="ex: Chemise Sézane verte"
                   value={title}
                   onChange={(event) => {
                     setTitle(event.target.value);
-                    console.log(title);
                   }}
                 />
                 <div>
@@ -128,8 +126,7 @@ const Publish = () => {
             <section>
               <label htmlFor="description">Décris ton article</label>
               <div>
-                <textarea
-                  className="info-input"
+                <InfosInput
                   id="description"
                   placeholder="ex: porté quelquefois, taille correctement"
                   value={description}
@@ -150,8 +147,7 @@ const Publish = () => {
             <section>
               <label htmlFor="brand">Marque</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="brand"
                   type="text"
                   placeholder="ex: Zara"
@@ -165,8 +161,7 @@ const Publish = () => {
             <section>
               <label htmlFor="size">Taille</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="size"
                   type="text"
                   placeholder="ex: L / 40 / 12"
@@ -180,8 +175,7 @@ const Publish = () => {
             <section>
               <label htmlFor="color">Couleur</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="color"
                   type="text"
                   placeholder="ex: Jaune"
@@ -195,8 +189,7 @@ const Publish = () => {
             <section>
               <label htmlFor="condition">Etat</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="condition"
                   type="text"
                   placeholder="Neuf avec étiquette"
@@ -210,8 +203,7 @@ const Publish = () => {
             <section>
               <label htmlFor="location">Lieu</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="location"
                   type="text"
                   placeholder="ex: Paris"
@@ -227,8 +219,7 @@ const Publish = () => {
             <section>
               <label htmlFor="price">Prix</label>
               <div>
-                <input
-                  className="info-input"
+                <InfosInput
                   id="price"
                   type="text"
                   placeholder="0,00 €"

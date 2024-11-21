@@ -1,13 +1,16 @@
-.info-input {
+.infos-input {
   width: 100%;
   padding: 8px 0;
   border-right: none;
   border-left: none;
   border-top: none;
   color: black;
-  font-weight: 200;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid #dbdbdb;
+  font-size: 16px;
   &::placeholder {
     color: rgb(117, 117, 117, 0.7);
+    font-size: 17px;
   }
   &:focus {
     outline-style: none;
