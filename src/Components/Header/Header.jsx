@@ -1,5 +1,6 @@
 import "./header.scss";
 import cross from "../../assets/cross.svg";
+import burger from "../../assets/burger-menu.svg";
 import vinted from "../../assets/vinted-logo.svg";
 import { useState, useContext } from "react";
 import { createPortal } from "react-dom";
@@ -40,57 +41,20 @@ const Header = ({ search, setSearch, userId }) => {
           </div>
           {showBurgerModal ? (
             <img
-              className="cross-on-small-screen"
+              className="close-burger-menu"
               src={cross}
               alt="close-window"
               onClick={() => setShowBurgerModal(!showBurgerModal)}
             />
           ) : (
-            <svg
+            <img
+              className="burger-menu"
+              src={burger}
+              alt="menu"
               onClick={() => setShowBurgerModal(!showBurgerModal)}
-              className="header-burger"
-              width="45"
-              height="45"
-              viewBox="0 0 45 45"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.625 11.2518H39.375M5.625 22.5018H39.375M5.625 33.7518H39.375"
-                stroke="black"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            />
           )}
-          {/* -- Pour le responsive, j'affiche une modale lorsque l'utilisateur appuie sur le burger menu -- */}
-          {showBurgerModal &&
-            createPortal(
-              <BurgerModal
-                onClickAuth={() => {
-                  setShowMainModal(!showMainModal);
-                }}
-                onClickSell={() => {
-                  setShowBurgerModal(!showBurgerModal);
-                  navigate("/publish");
-                }}
-                onClickGoToProfile={() => {
-                  setShowBurgerModal(!showBurgerModal);
-                  setShowMainModal(!showMainModal);
-                  // navigate("/profile");
-                  navigate("/");
-                }}
-                onClickDisconnect={() => {
-                  setShowBurgerModal(false);
-                  setShowMainModal(false);
-                  handleToken(null);
-                  navigate("/");
-                }}
-              />,
-              burgerModalRoot
-            )}
         </div>
-
         <nav>
           {token ? (
             <button
@@ -103,28 +67,14 @@ const Header = ({ search, setSearch, userId }) => {
               Mon profil
             </button>
           ) : (
-            <div>
-              <HeaderCTAButton
-                onClick={() => {
-                  setShowMainModal(true);
-                  navigate("/");
-                }}
-              >
-                S'inscrire | Se connecter
-              </HeaderCTAButton>
-
-              {/* -- Modal pour s'inscrire ou se connecter -- */}
-              {showMainModal &&
-                createPortal(
-                  <Modals
-                    darkBG={showMainModal}
-                    onClose={() => {
-                      setShowMainModal(false);
-                    }}
-                  />,
-                  MainModalRoot
-                )}
-            </div>
+            <HeaderCTAButton
+              onClick={() => {
+                setShowMainModal(true);
+                navigate("/");
+              }}
+            >
+              S'inscrire | Se connecter
+            </HeaderCTAButton>
           )}
           <Link to={"/publish"}>
             <HeaderCTAButton>Vends tes articles</HeaderCTAButton>
@@ -132,8 +82,7 @@ const Header = ({ search, setSearch, userId }) => {
         </nav>
       </div>
 
-      {/* -- Si burger modale n'est pas ouverte, je veux afficher en bas du header la barre de recherche pour écrans plus petits --  */}
-      {!showBurgerModal && (
+      {!showBurgerModal ? (
         <div className="small-screen-input ">
           <SearchBar
             value={search}
@@ -142,7 +91,43 @@ const Header = ({ search, setSearch, userId }) => {
             }}
           />
         </div>
+      ) : (
+        createPortal(
+          <BurgerModal
+            onClickAuth={() => {
+              setShowMainModal(!showMainModal);
+            }}
+            onClickSell={() => {
+              setShowBurgerModal(!showBurgerModal);
+              navigate("/publish");
+            }}
+            onClickGoToProfile={() => {
+              setShowBurgerModal(!showBurgerModal);
+              setShowMainModal(!showMainModal);
+              // navigate("/profile");
+              navigate("/");
+            }}
+            onClickDisconnect={() => {
+              setShowBurgerModal(false);
+              setShowMainModal(false);
+              handleToken(null);
+              navigate("/");
+            }}
+          />,
+          burgerModalRoot
+        )
       )}
+
+      {showMainModal &&
+        createPortal(
+          <Modals
+            darkBG={showMainModal}
+            onClose={() => {
+              setShowMainModal(false);
+            }}
+          />,
+          MainModalRoot
+        )}
     </header>
   );
 };
