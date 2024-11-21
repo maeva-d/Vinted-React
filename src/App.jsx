@@ -1,9 +1,7 @@
-// import { AuthContext } from "./contexts/authContext.js";
 import { AuthProvider } from "./contexts/authContext.jsx";
+import { useState } from "react";
 // Etape 1 : J'instale react-router-dom, puis j'importe ses composants:
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import Cookies from "js-cookie";
 
 // Etape 2 :J'importe toutes les pages que j'ai créees dans mon dossier pages
 import Home from "./pages/home-page/Home";
@@ -18,56 +16,20 @@ import Header from "./Components/Header/Header.jsx";
 
 // Etape 3 : J'utilise les composants que j'ai importés
 function App() {
-  const [token, setToken] = useState(Cookies.get("connexion-token") || null);
   // search et setSearch sont dans App car je ne peux pas mettre dans header et ensuite remonter à Home: je les mets dans l'ancêtre commun le plus proche
   const [search, setSearch] = useState("");
-  // const [userId, setUserId] = useState("");
-
-  const handleToken = (token) => {
-    if (token !== null) {
-      Cookies.set("connexion-token", token, { expires: 31 });
-      setToken(token);
-    } else {
-      Cookies.remove("connexion-token");
-      setToken(null);
-    }
-  };
 
   return (
     <AuthProvider>
       <Router>
-        <Header
-          // token={token}
-          // handleToken={handleToken}
-          search={search}
-          setSearch={setSearch}
-          // userId={userId}
-        ></Header>
+        <Header search={search} setSearch={setSearch}></Header>
         <Routes>
-          <Route
-            path="/"
-            element={<Home token={token} handleToken={handleToken} />}
-          />
-          <Route
-            path="/offers/:id"
-            element={<Offer token={token} handleToken={handleToken} />}
-          />
-          <Route
-            path="/user/:id"
-            element={<Profile token={token} handleToken={handleToken} />}
-          />
-          <Route
-            path="/login"
-            element={<Auth token={token} handleToken={handleToken} />}
-          />
-          <Route
-            path="/publish"
-            element={<Publish token={token} handleToken={handleToken} />}
-          />
-          <Route
-            path="/payment"
-            element={<Payment token={token} handleToken={handleToken} />}
-          />
+          <Route path="/" element={<Home search={search} />} />
+          <Route path="/authentification" element={<Auth />} />
+          <Route path="/offers/:id" element={<Offer />} />
+          <Route path="/publish" element={<Publish />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/user/:id" element={<Profile />} />
         </Routes>
       </Router>
     </AuthProvider>

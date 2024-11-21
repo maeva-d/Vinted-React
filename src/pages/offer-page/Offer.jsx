@@ -1,8 +1,8 @@
-import axios from "axios";
 import "./offer.scss";
+import axios from "axios";
+import placeholder from "../../assets/react.svg";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import placeholder from "../../assets/react.svg";
 
 const Offer = () => {
   const [data, setData] = useState();

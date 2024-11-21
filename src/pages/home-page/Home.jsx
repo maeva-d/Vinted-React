@@ -1,13 +1,13 @@
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./home.scss";
 // images :
 import heroimage from "../../assets/hero-image.jpg";
 import tear from "../../assets/tear.svg";
 import placeholder from "../../assets/react.svg";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
-const Home = ({ token, search }) => {
+const Home = ({ search }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +40,7 @@ const Home = ({ token, search }) => {
           <div className="container">
             <div>
               <h2>Prêts à faire du tri dans vos placards ?</h2>
-              <Link to={token ? "/publish" : "/login"}>
+              <Link to={"/publish"}>
                 <button>Vends maintenant</button>
               </Link>
             </div>

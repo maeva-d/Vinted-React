@@ -1,10 +1,11 @@
 import "./publish.scss";
 import "../../Components/info-input.scss";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
 
-const Publish = ({ token }) => {
+const Publish = () => {
   const [data, setData] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,6 +22,7 @@ const Publish = ({ token }) => {
   const [descErr, setDescErr] = useState("");
   const [priceErr, setPriceErr] = useState("");
 
+  const { token } = useContext(AuthContext);
   const descCharLimit = 500;
   const offerCharLimit = 50;
 
@@ -76,9 +78,11 @@ const Publish = ({ token }) => {
     }
   };
 
+  // Si l'utilisteur a crée une annonce avec succès (et donc si je reçois bien un objet data), je veux qu'il soit redirigé sur la page home
+
   return !token ? (
-    <Navigate to={"/login"} />
-  ) : data ? ( // Si data existe (donc si l'annonce a bien été crée) alors je redirige l'utilisateur :
+    <Navigate to={"/authentification"} />
+  ) : data ? (
     <Navigate to={`/offers/${data._id}`} />
   ) : (
     <main className="publish-component">
