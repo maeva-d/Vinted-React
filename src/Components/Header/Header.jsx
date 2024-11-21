@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../Header/Auth-Modals/modals.scss";
 import Modals from "../Header/Auth-Modals/Modals.jsx";
 import BurgerModal from "../Header/Burger-Modal/BurgerModal.jsx";
+import SearchBar from "./Search-Bar/SearchBar.jsx";
 import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
 import { AuthContext } from "../../contexts/authContext.jsx";
 
@@ -29,15 +30,14 @@ const Header = ({ search, setSearch, userId }) => {
           <Link to={"/"}>
             <img src={vinted} alt="vinted-logo" />
           </Link>
-          <input
-            className="big-screen-input search-bar"
-            type="text"
-            placeholder="&#128270; Rechercher des articles"
-            value={search}
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
+          <div className="big-screen-input">
+            <SearchBar
+              value={search}
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
+            />
+          </div>
           {showBurgerModal ? (
             <img
               className="cross-on-small-screen"
@@ -118,7 +118,6 @@ const Header = ({ search, setSearch, userId }) => {
                 createPortal(
                   <Modals
                     darkBG={showMainModal}
-                    // handleToken={handleToken}
                     onClose={() => {
                       setShowMainModal(false);
                     }}
@@ -136,10 +135,7 @@ const Header = ({ search, setSearch, userId }) => {
       {/* -- Si burger modale n'est pas ouverte, je veux afficher en bas du header la barre de recherche pour écrans plus petits --  */}
       {!showBurgerModal && (
         <div className="small-screen-input ">
-          <input
-            className="search-bar"
-            type="text"
-            placeholder="Rechercher des articles"
+          <SearchBar
             value={search}
             onChange={(event) => {
               setSearch(event.target.value);

@@ -25,14 +25,13 @@
     justify-content: space-between;
     gap: 48px;
 
-    div {
+    > div {
       display: flex;
       align-items: center;
-      a {
-        img {
-          height: 100%;
-          margin-right: 40px;
-        }
+      gap: 56px;
+
+      img {
+        height: 100%;
       }
     }
 
@@ -62,6 +61,7 @@
   border-radius: 4px;
   padding-left: 16px;
   height: 40px;
+  width: 100%;
   &::placeholder {
     font-size: 18px;
   }
@@ -70,13 +70,13 @@
   }
 }
 
-// Pour les grandes dimensions :
+// Search bar pour les grandes dimensions :
 .big-screen-input {
   max-width: 100%;
   min-width: 670px;
 }
 
-// Pour les plus petites dimensions (avec le burger menu)
+// Search bar pour les plus petites dimensions (avec le burger menu)
 .small-screen-input {
   border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray;
@@ -84,20 +84,16 @@
   background-color: white;
   width: 100%;
   display: none;
-
-  input {
-    width: 100%;
-  }
 }
 
-// -- MEDIA -- //
+// -------------- MEDIA -------------- //
 @media (max-width: 1400px) {
   .header-container {
     width: 1024px;
   }
 
   .big-screen-input {
-    min-width: 470px;
+    min-width: 500px;
   }
 }
 
@@ -106,9 +102,9 @@
     width: 100%;
   }
 
+  .small-screen-input,
   .header-burger,
-  .cross-on-small-screen,
-  .small-screen-input {
+  .cross-on-small-screen {
     display: inline-block;
   }
 
