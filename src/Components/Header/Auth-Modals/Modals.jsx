@@ -1,14 +1,15 @@
 import axios from "axios";
 import cross from "../../../assets/cross.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../contexts/authContext";
 // Components :
 import "./modals.scss";
 import RedirectionModal from "./RedirectionModal";
 import LogInModal from "./LogInModal";
 import SignUpModal from "./SignUpModal";
 
-const Modals = ({ darkBG, onClose, handleToken }) => {
+const Modals = ({ darkBG, onClose }) => {
   const [showRedirectionModal, setShowRedirectionModal] = useState(true);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -24,6 +25,8 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
   const [signUpTermsAndConditionsError, setSignUpTermsAndConditionsError] =
     useState("");
 
+  // let userId;
+  const { handleToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,6 +83,9 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
       // Si ça a fonctionné, la réponse me renvoie le token:
       handleToken(response.data.token);
       navigate("/");
+
+      console.log(response.data);
+      // userId = response.data._id;
     } catch (error) {
       setLoginErrorMessage(error.response.data.message);
     }
@@ -101,11 +107,9 @@ const Modals = ({ darkBG, onClose, handleToken }) => {
           termsAndConditions: termsAndConditions,
         }
       );
-      // Si les informations entrées sont valides, le serveur retournera, entre autres, le token (dans response?)
-      console.log(response.data);
-      // const token = response.data.token;
-      // Maintenant que j'ai le token, je crée le cookie pour une utilisation ultérieure => Cookies.set("Authentification token", token, { expires: 31 });
-      // MAIS Je peux aussi fractionner mon code avec une fonction réutilisable sur chaque page où j'ai besoin d'un token
+
+      console.log(response.data); //_id ?
+      // userId = response.data._id;
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {

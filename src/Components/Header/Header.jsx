@@ -1,22 +1,23 @@
 import "./header.scss";
 import cross from "../../assets/cross.svg";
 import vinted from "../../assets/vinted-logo.svg";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { createPortal } from "react-dom";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { PiMagnifyingGlassLight } from "react-icons/pi";
+import { Link, useNavigate } from "react-router-dom";
 // Components :
-import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
-import Modals from "../Header/Auth-Modals/Modals.jsx";
 import "../Header/Auth-Modals/modals.scss";
+import Modals from "../Header/Auth-Modals/Modals.jsx";
 import BurgerModal from "../Header/Burger-Modal/BurgerModal.jsx";
+import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
+import { AuthContext } from "../../contexts/authContext.jsx";
 
-const Header = ({ token, handleToken, search, setSearch }) => {
+const Header = ({ search, setSearch, userId }) => {
   const [showMainModal, setShowMainModal] = useState(false);
   const [showBurgerModal, setShowBurgerModal] = useState(false);
 
   const navigate = useNavigate();
   // const location = useLocation();
+  const { token, handleToken } = useContext(AuthContext);
 
   const MainModalRoot = document.getElementById("main-modal-root");
   const burgerModalRoot = document.getElementById("burger-modal-root");
@@ -66,9 +67,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
           {showBurgerModal &&
             createPortal(
               <BurgerModal
-                token={token}
                 onClickAuth={() => {
-                  setShowBurgerModal(!showBurgerModal);
                   setShowMainModal(!showMainModal);
                 }}
                 onClickSell={() => {
@@ -82,7 +81,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
                   navigate("/");
                 }}
                 onClickDisconnect={() => {
-                  setShowBurgerModal(!showBurgerModal);
+                  setShowBurgerModal(false);
                   setShowMainModal(false);
                   handleToken(null);
                   navigate("/");
@@ -97,12 +96,11 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             <button
               onClick={() => {
                 setShowMainModal(!showMainModal);
-                handleToken(null);
-                navigate("/");
-                // navigate("/profile");
+                // navigate("/");
+                navigate(`/user/${userId}`);
               }}
             >
-              Mon profil (se déco)
+              Mon profil
             </button>
           ) : (
             <div>
@@ -120,7 +118,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
                 createPortal(
                   <Modals
                     darkBG={showMainModal}
-                    handleToken={handleToken}
+                    // handleToken={handleToken}
                     onClose={() => {
                       setShowMainModal(false);
                     }}
