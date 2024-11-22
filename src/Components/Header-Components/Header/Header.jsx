@@ -1,5 +1,4 @@
 import "./header.scss";
-// import cross from "../../../assets/cross.svg";
 import cross from "../../../assets/cross.svg";
 import burger from "../../../assets/burger-menu.svg";
 import vinted from "../../../assets/vinted-logo.svg";
@@ -7,7 +6,6 @@ import { useState, useContext } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 // Components :
-// import "../Auth-Modals/modals.scss";
 import Modals from "../../Auth-Modals/Main-Modal-Structure/Modals.jsx";
 import BurgerModal from "../Burger-Modal/BurgerModal.jsx";
 import SearchBar from "../Search-Bar/SearchBar.jsx";
@@ -114,16 +112,17 @@ const Header = ({ search, setSearch, userId }) => {
         )
       )}
 
-      {showMainModal &&
-        createPortal(
-          <Modals
-            darkBG={showMainModal}
-            onClose={() => {
-              setShowMainModal(false);
-            }}
-          />,
-          MainModalRoot
-        )}
+      {showMainModal & !token
+        ? createPortal(
+            <Modals
+              darkBG={true}
+              onClose={() => {
+                setShowMainModal(false);
+              }}
+            />,
+            MainModalRoot
+          )
+        : null}
     </header>
   );
 };

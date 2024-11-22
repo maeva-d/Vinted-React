@@ -9,7 +9,7 @@ import placeholder from "../../assets/react.svg";
 import { GoChevronLeft } from "react-icons/go";
 import { GoChevronRight } from "react-icons/go";
 
-const Home = ({ search }) => {
+const Home = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -18,20 +18,17 @@ const Home = ({ search }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/`,
-          {
-            params: { page: page },
-          }
+          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/`
         );
         setData(response.data);
         setIsLoading(false);
-        console.log("response =>", response.data);
+        // console.log("response =>", data);
       } catch (error) {
         console.log(error.response.data);
       }
     };
     fetchData();
-  }, [search]);
+  }, [page]);
 
   return isLoading ? (
     <p>Chargement en cours...</p>

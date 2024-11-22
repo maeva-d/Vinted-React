@@ -19,7 +19,12 @@ const Profile = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-vinted--rfd99txfpp4t.code.run/user/${id}`
+          `https://site--backend-vinted--rfd99txfpp4t.code.run/user/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setData(response.data);
         setIsLoading(false);
