@@ -8,7 +8,6 @@ import { AuthContext } from "../../contexts/authContext";
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const { id } = useParams();
   const { token } = useContext(AuthContext);
@@ -28,7 +27,7 @@ const Profile = () => {
         setIsLoading(false);
         console.log("response data =>", response.data);
       } catch (error) {
-        setErrorMessage(error.response);
+        console.log(error.response.data.error);
       }
     };
     fetchData();
@@ -71,10 +70,6 @@ const Profile = () => {
             </div>
           </div>
         </menu>
-        <div>
-          <h2></h2>
-        </div>
-        {errorMessage !== "" && <p>{errorMessage}</p>}
       </section>
     </main>
   );
