@@ -1,25 +1,56 @@
 .profile-container {
   margin: 40px auto;
-  width: 600px;
+  width: 1024px;
 }
 
-.profile-form {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-}
+.profile-component {
+  min-height: 100vh;
 
-.profile-input {
-  margin: 16px 0;
-  border: none;
-  padding: 8px 0;
-}
+  h1 {
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
 
-.profile-button {
-  cursor: pointer;
-  color: white;
-  background-color: hsl(186, 100%, 26%);
-  border: none;
-  padding: 8px 0;
-  margin-bottom: 16px;
+  menu {
+    display: flex;
+    gap: 56px;
+
+    > aside {
+      img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    > div {
+      width: 100%;
+      > div {
+        display: flex;
+        justify-content: space-between;
+        margin: 24px 0;
+
+        h2 {
+          font-size: 20px;
+        }
+
+        h3 {
+          padding: 8px 0;
+          color: #222;
+        }
+
+        button {
+          cursor: pointer;
+          color: rgb(200, 0, 0);
+          background-color: transparent;
+          border: 1px solid rgb(200, 0, 0);
+          border-radius: 3px;
+          padding: 8px;
+          align-self: flex-start;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }

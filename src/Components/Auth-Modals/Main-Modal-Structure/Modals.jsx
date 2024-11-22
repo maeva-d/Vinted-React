@@ -26,7 +26,7 @@ const Modals = ({ darkBG, onClose }) => {
     useState("");
 
   // let userId;
-  const { handleToken } = useContext(AuthContext);
+  const { handleToken, fetchUserId, fetchUsername } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,10 +82,11 @@ const Modals = ({ darkBG, onClose }) => {
       );
       // Si ça a fonctionné, la réponse me renvoie le token:
       handleToken(response.data.token);
+      fetchUserId(response.data._id);
+      fetchUsername(response.data.account.username);
       alert("Connexion réussie !");
       navigate("/");
       console.log("response data =>", response.data);
-      // userId = response.data._id;
     } catch (error) {
       setLoginErrorMessage(error.response.data.message);
     }
@@ -110,6 +111,8 @@ const Modals = ({ darkBG, onClose }) => {
 
       console.log("response data =>", response.data); //_id ?
       handleToken(response.data.token);
+      fetchUserId(response.data._id);
+      alert("Ton compte a bien été crée !");
       navigate("/");
     } catch (error) {
       const { error: errorsArray, message } = error.response.data;

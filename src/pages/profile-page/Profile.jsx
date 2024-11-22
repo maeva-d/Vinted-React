@@ -1,5 +1,6 @@
 import "./profile.scss";
 import axios from "axios";
+import placeholder from "../../assets/react.svg";
 import { useState, useEffect, useContext } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
@@ -7,9 +8,6 @@ import { AuthContext } from "../../contexts/authContext";
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [newsletter, setNewsletter] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const { id } = useParams();
@@ -36,20 +34,48 @@ const Profile = () => {
     fetchData();
   }, [id]);
 
+  const handleDeleteAccount = () => {
+    if (
+      window.confirm(
+        "Cette action est définitive. Veux-tu vraiment supprimer ton compte?"
+      )
+    ) {
+      window.open(
+        "exit.html",
+        "Ton compte a été supprimé, nous sommes tristes de te voir partir!"
+      );
+    }
+  };
+
   return !token ? (
     <Navigate to={"/authentification"} />
   ) : isLoading ? (
     <p>Chargement...</p>
   ) : (
     <main className="profile-container">
-      <form>
-        <h1>Testtttttt</h1>
-        <h2>Inscris-toi avec ton email</h2>
-
-        <span>Je souhaite m'inscrire à la newsletter</span>
-        <button className="signup-button">S'inscrire</button>
-      </form>
-      {errorMessage !== "" && <p>{errorMessage}</p>}
+      <section className="profile-component">
+        <h1>Mon profil</h1>
+        <menu>
+          <aside>
+            <img src={data.account.avatar ?? placeholder} />
+          </aside>
+          <div>
+            <div>
+              <aside>
+                <h2>{data.account.username}</h2>
+                <h3>Pas encore d'évaluation</h3>
+              </aside>
+              <button onClick={handleDeleteAccount}>
+                Supprimer mon compte
+              </button>
+            </div>
+          </div>
+        </menu>
+        <div>
+          <h2></h2>
+        </div>
+        {errorMessage !== "" && <p>{errorMessage}</p>}
+      </section>
     </main>
   );
 };

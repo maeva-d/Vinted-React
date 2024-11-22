@@ -12,13 +12,13 @@ import SearchBar from "../Search-Bar/SearchBar.jsx";
 import HeaderCTAButton from "../Header-CTA/Header-CTAButton.jsx";
 import { AuthContext } from "../../../contexts/authContext.jsx";
 
-const Header = ({ search, setSearch, userId }) => {
+const Header = ({ search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);
   const [showBurgerModal, setShowBurgerModal] = useState(false);
 
   const navigate = useNavigate();
   // const location = useLocation();
-  const { token, handleToken } = useContext(AuthContext);
+  const { token, handleToken, userId, connectedUser } = useContext(AuthContext);
 
   const MainModalRoot = document.getElementById("main-modal-root");
   const burgerModalRoot = document.getElementById("burger-modal-root");
@@ -57,7 +57,7 @@ const Header = ({ search, setSearch, userId }) => {
         <nav>
           {token ? (
             <Link to={`/user/${userId}`}>
-              <HeaderCTAButton>Mon profil</HeaderCTAButton>
+              <HeaderCTAButton>{connectedUser}</HeaderCTAButton>
             </Link>
           ) : (
             <HeaderCTAButton

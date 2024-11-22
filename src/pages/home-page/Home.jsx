@@ -18,11 +18,12 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/`
+          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/?page=${page}`
         );
         setData(response.data);
         setIsLoading(false);
         // console.log("response =>", data);
+        // fetchUserId(response.data._id);
       } catch (error) {
         console.log(error.response.data);
       }

@@ -5,6 +5,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(Cookies.get("connexion-token") || null);
+  const [userId, setUserId] = useState();
+  const [connectedUser, setConnectedUser] = useState();
 
   // Avec un token, je peux le stocker dans les cookies pour rester connecté.
   // Je passe le token à null pour me déconnecter : ainsi il sera retiré des cookies
@@ -18,8 +20,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Pour que l'utilisateur puisse accéder à son profil, il faut connaître son user id
+  // Création d'un state et d'une fonction mettre à jour le state
+
+  const fetchUserId = (id) => {
+    setUserId(id);
+  };
+
+  // Je veux récupérer le pseudo de l'utilisateur après connexion pour le garder affiché dans le header:
+  const fetchUsername = (username) => {
+    setConnectedUser(username);
+  };
+
   return (
-    <AuthContext.Provider value={{ token, handleToken }}>
+    <AuthContext.Provider
+      value={{
+        token,
+        handleToken,
+        userId,
+        fetchUserId,
+        connectedUser,
+        fetchUsername,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

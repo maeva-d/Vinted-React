@@ -8,9 +8,9 @@ const HeaderCTAButton = ({ onClick, children }) => {
         "header-CTA-button " +
         (children === "S'inscrire | Se connecter"
           ? "green"
-          : children === "Mon profil"
-          ? "my-profile"
-          : children === "Vends tes articles" && "sell")
+          : children === "Vends tes articles"
+          ? "sell"
+          : "my-profile")
       }
     >
       {children}
