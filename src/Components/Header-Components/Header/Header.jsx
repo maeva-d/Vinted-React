@@ -5,6 +5,7 @@ import vinted from "../../../assets/vinted-logo.svg";
 import { useState, useContext } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
+import { GoTriangleDown } from "react-icons/go";
 // Components :
 import Modals from "../../Auth-Modals/Main-Modal-Structure/Modals.jsx";
 import BurgerModal from "../Burger-Modal/BurgerModal.jsx";
@@ -15,6 +16,7 @@ import { AuthContext } from "../../../contexts/authContext.jsx";
 const Header = ({ search, setSearch }) => {
   const [showMainModal, setShowMainModal] = useState(false);
   const [showBurgerModal, setShowBurgerModal] = useState(false);
+  const [showMiniList, setShowMiniList] = useState(false);
 
   const navigate = useNavigate();
   // const location = useLocation();
@@ -56,9 +58,16 @@ const Header = ({ search, setSearch }) => {
         </div>
         <nav>
           {token ? (
-            <Link to={`/user/${userId}`}>
-              <HeaderCTAButton>{connectedUser}</HeaderCTAButton>
-            </Link>
+            <>
+              <Link to={`/user/${userId}`}>
+                <HeaderCTAButton>{connectedUser}</HeaderCTAButton>
+              </Link>
+              <GoTriangleDown
+                onClick={() => {
+                  setShowMiniList(!showMiniList);
+                }}
+              />
+            </>
           ) : (
             <HeaderCTAButton
               onClick={() => {
@@ -73,6 +82,32 @@ const Header = ({ search, setSearch }) => {
             <HeaderCTAButton>Vends tes articles</HeaderCTAButton>
           </Link>
         </nav>
+
+        {showMiniList && (
+          <div className="mini-list">
+            <ul>
+              <Link to={`/user/${userId}`}>
+                <button
+                  onClick={() => {
+                    setShowMiniList(false);
+                  }}
+                >
+                  Mon profil
+                </button>
+              </Link>
+              <button
+                onClick={() => {
+                  setShowMiniList(false);
+                  handleToken(null);
+                  navigate("/");
+                  alert("Déconnexion réussie");
+                }}
+              >
+                Se déconnecter
+              </button>
+            </ul>
+          </div>
+        )}
       </div>
 
       {!showBurgerModal ? (
@@ -91,14 +126,13 @@ const Header = ({ search, setSearch }) => {
               setShowMainModal(!showMainModal);
             }}
             onClickSell={() => {
-              setShowBurgerModal(!showBurgerModal);
+              setShowBurgerModal(false);
               navigate("/publish");
             }}
             onClickGoToProfile={() => {
-              setShowBurgerModal(!showBurgerModal);
-              setShowMainModal(!showMainModal);
-              // navigate("/profile");
-              navigate("/");
+              setShowBurgerModal(false);
+              setShowMainModal(false);
+              navigate(`user/${userId}`);
             }}
             onClickDisconnect={() => {
               setShowBurgerModal(false);

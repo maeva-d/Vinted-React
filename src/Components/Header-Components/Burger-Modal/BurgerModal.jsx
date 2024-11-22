@@ -4,13 +4,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/authContext";
 
 const BurgerModal = ({
-  // token,
   onClickAuth,
   onClickSell,
   onClickDisconnect,
   onClickGoToProfile,
 }) => {
   const { token } = useContext(AuthContext);
+
   return (
     <main className="burger-modal">
       <menu>
@@ -35,14 +35,6 @@ const BurgerModal = ({
               </div>
               <div>
                 <button onClick={onClickDisconnect}>Se déconnecter</button>
-              </div>
-            </ul>
-          </div>
-          <div>
-            <h2>Zone de danger</h2>
-            <ul>
-              <div>
-                <button>Supprimer mon compte</button>
               </div>
             </ul>
           </div>

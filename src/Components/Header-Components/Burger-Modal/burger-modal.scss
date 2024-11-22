@@ -3,7 +3,6 @@
     position: fixed;
     top: 56px;
     background-color: white;
-    //   z-index: 2;
     width: 100%;
     min-height: 100vh;
     max-height: 100%;
@@ -42,23 +41,6 @@
               text-align: left;
               font-size: 16px;
               padding: 0;
-            }
-          }
-        }
-      }
-
-      > div:last-of-type {
-        padding: 0 24px;
-
-        h2 {
-          color: rgb(201, 0, 0);
-        }
-
-        ul {
-          > div {
-            button {
-              color: rgb(201, 0, 0);
-              font-weight: bold;
             }
           }
         }
