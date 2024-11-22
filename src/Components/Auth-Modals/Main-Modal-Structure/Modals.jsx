@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/authContext";
 // Components :
 import "./modals.scss";
-import RedirectionModal from "./RedirectionModal";
-import LogInModal from "./LogInModal";
-import SignUpModal from "./SignUpModal";
+import RedirectionWindow from "../Windows/RedirectionWindow";
+import LogInWindow from "../Windows/LogInWindow";
+import SignUpWindow from "../Windows/SignUpWindow";
 
 const Modals = ({ darkBG, onClose }) => {
-  const [showRedirectionModal, setShowRedirectionModal] = useState(true);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showRedirectionWindow, setShowRedirectionWindow] = useState(true);
+  const [showLoginWindow, setShowLoginWindow] = useState(false);
+  const [showSignUpWindow, setShowSignUpWindow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -54,17 +54,17 @@ const Modals = ({ darkBG, onClose }) => {
   const switchToLoginForm = () => {
     resetFormStates();
     resetErrorsStates();
-    setShowRedirectionModal(false);
-    setShowSignUpModal(false);
-    setShowLoginModal(true);
+    setShowRedirectionWindow(false);
+    setShowSignUpWindow(false);
+    setShowLoginWindow(true);
   };
 
   const switchToSignUpForm = () => {
     resetFormStates();
     resetErrorsStates();
-    setShowRedirectionModal(false);
-    setShowLoginModal(false);
-    setShowSignUpModal(true);
+    setShowRedirectionWindow(false);
+    setShowLoginWindow(false);
+    setShowSignUpWindow(true);
   };
 
   // LOGIN REQUEST :
@@ -82,9 +82,9 @@ const Modals = ({ darkBG, onClose }) => {
       );
       // Si ça a fonctionné, la réponse me renvoie le token:
       handleToken(response.data.token);
+      alert("Connexion réussie !");
       navigate("/");
-
-      console.log(response.data);
+      console.log("response data =>", response.data);
       // userId = response.data._id;
     } catch (error) {
       setLoginErrorMessage(error.response.data.message);
@@ -108,8 +108,7 @@ const Modals = ({ darkBG, onClose }) => {
         }
       );
 
-      console.log(response.data); //_id ?
-      // userId = response.data._id;
+      console.log("response data =>", response.data); //_id ?
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {
@@ -136,15 +135,15 @@ const Modals = ({ darkBG, onClose }) => {
       <div>
         <img alt="close-pop-up" src={cross} onClick={onClose} />
         {/* -- Main modal -- */}
-        {showRedirectionModal && (
-          <RedirectionModal
+        {showRedirectionWindow && (
+          <RedirectionWindow
             onClickSignUp={switchToSignUpForm}
             onClickLogIn={switchToLoginForm}
           />
         )}
         {/* -- Login modal -- */}
-        {showLoginModal && (
-          <LogInModal
+        {showLoginWindow && (
+          <LogInWindow
             onSubmit={loginSubmit}
             errorMessage={loginErrorMessage}
             email={email}
@@ -159,8 +158,8 @@ const Modals = ({ darkBG, onClose }) => {
           />
         )}
         {/* -- Signup modal -- */}
-        {showSignUpModal && (
-          <SignUpModal
+        {showSignUpWindow && (
+          <SignUpWindow
             onSubmit={createAccount}
             username={username}
             setUsername={(event) => {

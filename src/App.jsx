@@ -12,7 +12,7 @@ import Publish from "./pages/publish-offer-page/Publish";
 import Payment from "./pages/Payment";
 
 // components
-import Header from "./Components/Header/Header.jsx";
+import Header from "./Components/Header-Components/Header/Header.jsx";
 
 // Etape 3 : J'utilise les composants que j'ai importés
 function App() {

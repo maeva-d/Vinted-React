@@ -1,6 +1,8 @@
-const RedirectionModal = ({ onClickSignUp, onClickLogIn }) => {
+import "./all-windows.scss";
+
+const RedirectionWindow = ({ onClickSignUp, onClickLogIn }) => {
   return (
-    <menu>
+    <menu className="all-windows">
       <h1>Bienvenue !</h1>
       <p>
         Inscris-toi avec
@@ -14,4 +16,4 @@ const RedirectionModal = ({ onClickSignUp, onClickLogIn }) => {
   );
 };
 
-export default RedirectionModal;
+export default RedirectionWindow;

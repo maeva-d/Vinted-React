@@ -7,9 +7,9 @@
   font-size: 12px;
   height: 28px;
   cursor: pointer;
-  &:not(:last-child) {
-    margin-right: 16px;
-  }
+  // &:not(:last-child) {
+  //   margin-right: 16px;
+  // }
 }
 
 .green {
@@ -19,15 +19,23 @@
   margin-right: 16px;
 }
 
-// .my-profile {
-//   border: none;
-//   color: #555555;
+.my-profile {
+  border: none;
+  color: #555555;
+  background-color: transparent;
+  margin-right: 24px !important;
+  text-decoration: none;
+  text-align: left;
+  font-size: 14px !important;
+  padding: 0;
+}
+
+// > button {
+//   margin-right: 24px;
 //   background-color: transparent;
-//   margin-right: 24px !important;
-//   text-decoration: none;
-//   text-align: left;
-//   font-size: 16px;
-//   padding: 0;
+//   border: none;
+//   color: #4a4a4a;
+//   cursor: pointer;
 // }
 
 .sell {

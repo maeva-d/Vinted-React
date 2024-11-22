@@ -1,7 +1,7 @@
-// import "../../info-input.scss";
+import "./all-windows.scss";
 import InfosInput from "../../Infos-Input/InfosInput";
 
-const LogInModal = ({
+const LogInWindow = ({
   onSubmit,
   errorMessage,
   email,
@@ -11,7 +11,7 @@ const LogInModal = ({
   onClickSwitch,
 }) => {
   return (
-    <menu>
+    <menu className="all-windows">
       <h1>Se connecter</h1>
       <form onSubmit={onSubmit}>
         {errorMessage !== "" && <h2>Identifiant ou mot de passe incorrect</h2>}
@@ -41,4 +41,4 @@ const LogInModal = ({
   );
 };
 
-export default LogInModal;
+export default LogInWindow;

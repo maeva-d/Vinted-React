@@ -1,5 +1,5 @@
 import "./auth.scss";
-import Modals from "../../Components/Header/Auth-Modals/Modals.jsx";
+import Modals from "../../Components/Auth-Modals/Main-Modal-Structure/Modals";
 
 const Auth = () => {
   return (

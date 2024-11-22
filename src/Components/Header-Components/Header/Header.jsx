@@ -1,17 +1,18 @@
 import "./header.scss";
-import cross from "../../assets/cross.svg";
-import burger from "../../assets/burger-menu.svg";
-import vinted from "../../assets/vinted-logo.svg";
+// import cross from "../../../assets/cross.svg";
+import cross from "../../../assets/cross.svg";
+import burger from "../../../assets/burger-menu.svg";
+import vinted from "../../../assets/vinted-logo.svg";
 import { useState, useContext } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 // Components :
-import "../Header/Auth-Modals/modals.scss";
-import Modals from "../Header/Auth-Modals/Modals.jsx";
-import BurgerModal from "../Header/Burger-Modal/BurgerModal.jsx";
-import SearchBar from "./Search-Bar/SearchBar.jsx";
-import HeaderCTAButton from "../Header/Header-CTA/Header-CTAButton";
-import { AuthContext } from "../../contexts/authContext.jsx";
+// import "../Auth-Modals/modals.scss";
+import Modals from "../../Auth-Modals/Main-Modal-Structure/Modals.jsx";
+import BurgerModal from "../Burger-Modal/BurgerModal.jsx";
+import SearchBar from "../Search-Bar/SearchBar.jsx";
+import HeaderCTAButton from "../Header-CTA/Header-CTAButton.jsx";
+import { AuthContext } from "../../../contexts/authContext.jsx";
 
 const Header = ({ search, setSearch, userId }) => {
   const [showMainModal, setShowMainModal] = useState(false);
@@ -57,15 +58,9 @@ const Header = ({ search, setSearch, userId }) => {
         </div>
         <nav>
           {token ? (
-            <button
-              onClick={() => {
-                setShowMainModal(!showMainModal);
-                // navigate("/");
-                navigate(`/user/${userId}`);
-              }}
-            >
-              Mon profil
-            </button>
+            <Link to={`/user/${userId}`}>
+              <HeaderCTAButton>Mon profil</HeaderCTAButton>
+            </Link>
           ) : (
             <HeaderCTAButton
               onClick={() => {
@@ -112,6 +107,7 @@ const Header = ({ search, setSearch, userId }) => {
               setShowMainModal(false);
               handleToken(null);
               navigate("/");
+              alert("Déconnexion réussie");
             }}
           />,
           burgerModalRoot

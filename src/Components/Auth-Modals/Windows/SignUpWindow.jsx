@@ -1,7 +1,7 @@
-// import "../../info-input.scss";
+import "./all-windows.scss";
 import InfosInput from "../../Infos-Input/InfosInput";
 
-const SignUpModal = ({
+const SignUpWindow = ({
   onSubmit,
   username,
   setUsername,
@@ -18,7 +18,7 @@ const SignUpModal = ({
   onClickSwitch,
 }) => {
   return (
-    <menu>
+    <menu className="all-windows">
       <h1>Inscris-toi avec ton email</h1>
       <form onSubmit={onSubmit}>
         <div className="sign-up-form">
@@ -28,11 +28,7 @@ const SignUpModal = ({
             value={username}
             onChange={setUsername}
           />
-          <small
-            style={{
-              color: usernameErr && "#df0000",
-            }}
-          >
+          <small className={usernameErr && `error-message`}>
             {usernameErr
               ? usernameErr
               : `Crée ton nom d'utilisateur en n'utilisant que des lettres et des chiffres. Choisis-en un qui te plaît, tu ne pourras plus le changer.`}
@@ -110,4 +106,4 @@ const SignUpModal = ({
   );
 };
 
-export default SignUpModal;
+export default SignUpWindow;

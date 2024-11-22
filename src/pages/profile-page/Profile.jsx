@@ -1,7 +1,8 @@
 import "./profile.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,8 +12,8 @@ const Profile = () => {
   // const [newsletter, setNewsletter] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const navigate = useNavigate();
   const { id } = useParams();
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +23,7 @@ const Profile = () => {
         );
         setData(response.data);
         setIsLoading(false);
-        console.log("data =>", data);
+        console.log("response data =>", response.data);
       } catch (error) {
         setErrorMessage(error.response);
       }
@@ -30,7 +31,9 @@ const Profile = () => {
     fetchData();
   }, [id]);
 
-  return isLoading ? (
+  return !token ? (
+    <Navigate to={"/authentification"} />
+  ) : isLoading ? (
     <p>Chargement...</p>
   ) : (
     <main className="profile-container">

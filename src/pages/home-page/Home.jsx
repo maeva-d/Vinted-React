@@ -1,8 +1,8 @@
+import "./home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./home.scss";
-// images :
+// images et icônes :
 import heroimage from "../../assets/hero-image.jpg";
 import tear from "../../assets/tear.svg";
 import placeholder from "../../assets/react.svg";
@@ -25,6 +25,7 @@ const Home = ({ search }) => {
         );
         setData(response.data);
         setIsLoading(false);
+        console.log("response =>", response.data);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -82,12 +83,12 @@ const Home = ({ search }) => {
         })}
         <nav>
           <div className={page === 1 && `disabled`}>
-            <GoChevronLeft onClick={page > 1 && setPage(page - 1)} />
+            <GoChevronLeft onClick={page > 1 ? setPage(page - 1) : undefined} />
           </div>
-          <button> 1 </button>
-          <button> 2 </button>
-          <button> 3 </button>
-          <div>
+          {page > 1 && <button> {page - 1} </button>}
+          <button className="current-page"> {page} </button>
+          <button> {page + 1} </button>
+          <div className={data.results < data.limit && `disabled`}>
             <GoChevronRight />
           </div>
         </nav>
