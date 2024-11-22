@@ -131,6 +131,53 @@ body {
       }
     }
   }
+
+  // Pages :
+  nav {
+    height: 48px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 3px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 88px;
+
+    > * {
+      height: 48px;
+      width: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(236, 236, 236);
+      }
+    }
+
+    > button {
+      color: rgb(100, 100, 100);
+      background-color: transparent;
+      border: none;
+    }
+
+    > div {
+      color: rgb(140, 140, 140);
+      > * {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.current-page {
+  background-color: rgb(236, 236, 236);
+}
+
+.disabled {
+  cursor: unset;
+  &:hover {
+    background-color: unset;
+  }
 }
 
 // ---- MEDIA ---- //

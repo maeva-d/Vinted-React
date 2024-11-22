@@ -6,19 +6,22 @@ import "./home.scss";
 import heroimage from "../../assets/hero-image.jpg";
 import tear from "../../assets/tear.svg";
 import placeholder from "../../assets/react.svg";
+import { GoChevronLeft } from "react-icons/go";
+import { GoChevronRight } from "react-icons/go";
 
 const Home = ({ search }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/`
-          //, {
-          //   params: { title: search },
-          // }
+          `https://site--backend-vinted--rfd99txfpp4t.code.run/offers/`,
+          {
+            params: { page: page },
+          }
         );
         setData(response.data);
         setIsLoading(false);
@@ -59,7 +62,6 @@ const Home = ({ search }) => {
                 />
                 <span>{offer.owner.account.username}</span>
               </div>
-              {/* backticks pour faire une interpolation, et des accolades autours des backticks car je code dans du HTML et HTML ne connait pas les backticks (mais JS oui) */}
               <Link to={`/offers/${offer._id}`} key={offer._id}>
                 <img
                   alt="clothes-preview"
@@ -78,6 +80,17 @@ const Home = ({ search }) => {
             </article>
           );
         })}
+        <nav>
+          <div className={page === 1 && `disabled`}>
+            <GoChevronLeft onClick={page > 1 && setPage(page - 1)} />
+          </div>
+          <button> 1 </button>
+          <button> 2 </button>
+          <button> 3 </button>
+          <div>
+            <GoChevronRight />
+          </div>
+        </nav>
       </section>
     </main>
   );
