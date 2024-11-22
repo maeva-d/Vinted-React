@@ -24,11 +24,13 @@ export const AuthProvider = ({ children }) => {
   // Création d'un state et d'une fonction mettre à jour le state
 
   const fetchUserId = (id) => {
+    Cookies.set("user-id", id, { expire: 31 });
     setUserId(id);
   };
 
   // Je veux récupérer le pseudo de l'utilisateur après connexion pour le garder affiché dans le header:
   const fetchUsername = (username) => {
+    Cookies.set("connected-user", username, { expire: 31 });
     setConnectedUser(username);
   };
 
