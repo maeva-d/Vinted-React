@@ -60,23 +60,17 @@ const SignUpWindow = ({
               : `Il doit contenir 7 lettres minimum, dont au moins un chiffre.`}
           </small>
         </div>
+
+        {/* Pour des input de type checkbox, on utilise par convention onChange au lieu de onClick (même si les deux fonctionnent très bien) */}
         <div className="checkboxes">
-          <input
-            // Pour des input de type checkbox, on utilise onChange au lieu de onClick (même si les deux fonctionnent très bien)
-            type="checkbox"
-            onChange={setNewsletter}
-          />
+          <input type="checkbox" onChange={setNewsletter} />
           <span>
             Je souhaite recevoir par e-mail des offres personnalisées et les
             dernières mises à jour de Vinted.
           </span>
         </div>
         <div className="checkboxes">
-          <input
-            // Pour des input de type checkbox, on utilise onChange au lieu de onClick (même si les deux fonctionnent très bien)
-            type="checkbox"
-            onChange={setTermsAndConditions}
-          />
+          <input type="checkbox" onChange={setTermsAndConditions} />
           <span>
             En t'inscrivant, tu confirmes que tu acceptes les{" "}
             <a>Termes & Conditions de Vinted</a>, avoir lu la{" "}
