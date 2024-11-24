@@ -5,10 +5,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(Cookies.get("connexion-token") || null);
-  const [userId, setUserId] = useState(Cookies.get("user-id") || null);
-  const [connectedUser, setConnectedUser] = useState(
-    Cookies.get("connected-user") || null
-  );
+  const [userId, setUserId] = useState();
+  const [connectedUser, setConnectedUser] = useState();
 
   // Avec un token, je peux le stocker dans les cookies pour rester connecté.
   // Je passe le token à null pour me déconnecter : ainsi il sera retiré des cookies

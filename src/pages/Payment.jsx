@@ -11,7 +11,7 @@ import { Navigate, useLocation } from "react-router-dom";
 // On crée ensuite le composant CheckoutForm que l'on importe
 import CheckoutForm from "../Components/Checkout-Form/CheckoutForm";
 const stripePromise = loadStripe(
-  "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
+  "pk_test_51Pux3xP5BeUBwArZYrkTGYEVbS4swgumcNLuVEsVp2WWXGnJXR1L8lJcXYy9JQZF7GY0AawKm9nDbist6Gh2Oxr100Ap1YmMil"
 ); // clé publique
 
 const Payment = () => {

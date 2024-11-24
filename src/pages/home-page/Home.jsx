@@ -22,8 +22,7 @@ const Home = () => {
         );
         setData(response.data);
         setIsLoading(false);
-        // console.log("response =>", data);
-        // fetchUserId(response.data._id);
+        console.log(response.data);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -85,9 +84,13 @@ const Home = () => {
           </div>
           {page > 1 && <button> {page - 1} </button>}
           <button className="current-page"> {page} </button>
-          <button> {page + 1} </button>
+          {data.results < data.limit && <button> {page + 1} </button>}
           <div className={data.results < data.limit && `disabled`}>
-            <GoChevronRight />
+            <GoChevronRight
+              onClick={
+                data.results === data.limit ? () => setPage(page + 1) : null
+              }
+            />
           </div>
         </nav>
       </section>
