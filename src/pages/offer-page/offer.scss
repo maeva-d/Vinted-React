@@ -74,6 +74,11 @@
         border-radius: 4px;
       }
 
+      // .not-allowed {
+      //   background-color: hsl(186, 50%, 70%);
+      //   cursor: not-allowed;
+      // }
+
       .user-info {
         margin-top: 40px;
         display: flex;
@@ -87,6 +92,14 @@
         }
       }
     }
+  }
+}
+
+// L'utilisateur ne peut pas acheter un article qu'il a lui-même publié
+.not-allowed {
+  button {
+    background-color: hsl(186, 50%, 70%) !important;
+    cursor: not-allowed !important;
   }
 }
 

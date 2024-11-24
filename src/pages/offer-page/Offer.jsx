@@ -1,12 +1,14 @@
 import "./offer.scss";
 import axios from "axios";
 import placeholder from "../../assets/react.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
 
 const Offer = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const { connectedUser } = useContext(AuthContext);
   // Je déstructure la clé id de useParams()
   const { id } = useParams();
 
@@ -64,12 +66,15 @@ const Offer = () => {
             <h3>{data.product_description}</h3>
           </menu>
           <Link
-            to="/payment"
+            to={connectedUser !== data.owner.account.username && `/payment`}
             state={{
               title: data.product_name,
               amount: data.product_price,
             }}
-            className="fixed-button-sm-screen"
+            className={`fixed-button-sm-screen
+              ${
+                connectedUser === data.owner.account.username && `not-allowed`
+              }`}
           >
             <button>Acheter</button>
           </Link>
