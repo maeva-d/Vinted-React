@@ -1,11 +1,11 @@
 .profile-container {
-  margin: 40px auto;
+  margin: 0 auto;
   width: 1024px;
 }
 
 .profile-component {
-  min-height: 100vh;
-
+  max-height: 100vh;
+  margin-top: 80px;
   h1 {
     font-size: 30px;
   }
