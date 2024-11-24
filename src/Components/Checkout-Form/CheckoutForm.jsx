@@ -1,5 +1,5 @@
 import "./checkout-form.scss";
-
+import greencheck from "../../assets/success.svg";
 import axios from "axios";
 import { useState } from "react";
 // ! important
@@ -37,7 +37,6 @@ const CheckoutForm = ({ title, amount }) => {
       }
 
       const response = await axios.post(
-        // "https://lereacteur-vinted-api.herokuapp.com/v2/payment",
         "https://site--backend-vinted--rfd99txfpp4t.code.run/payment",
         {
           title: title,
@@ -74,7 +73,10 @@ const CheckoutForm = ({ title, amount }) => {
   };
 
   return success ? (
-    <p>Transaction validée</p>
+    <section className="checkout-container payment-success">
+      <img src={greencheck} alt="payment-confirmed" />
+      <h2>Transaction validée !</h2>
+    </section>
   ) : (
     <main className="checkout-container">
       <form className="checkout-form" onSubmit={handleSubmit}>
@@ -98,7 +100,7 @@ const CheckoutForm = ({ title, amount }) => {
         <button disabled={!stripe || !elements || isPaying}>
           Confirmer votre achat
         </button>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <small>{errorMessage}</small>}
       </form>
     </main>
   );
