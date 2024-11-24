@@ -24,8 +24,8 @@ const Modals = ({ darkBG, onClose }) => {
   const [signUpPasswordError, setSignUpPasswordError] = useState("");
   const [signUpTermsAndConditionsError, setSignUpTermsAndConditionsError] =
     useState("");
+  // const [data, setData] = useState();
 
-  // let userId;
   const { handleToken, fetchUserId, fetchUsername } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -81,12 +81,12 @@ const Modals = ({ darkBG, onClose }) => {
         }
       );
       // Si ça a fonctionné, la réponse me renvoie le token:
-      handleToken(response.data.token);
-      fetchUserId(response.data._id);
-      fetchUsername(response.data.account.username);
-      alert("Connexion réussie !");
+      console.log("resp data =>", response.data);
+      await handleToken(response.data.token);
+      await fetchUserId(response.data._id);
+      await fetchUsername(response.data.account.username);
       navigate("/");
-      console.log("response data =>", response.data);
+      alert("Connexion réussie !");
     } catch (error) {
       setLoginErrorMessage(error.response.data.message);
     }
