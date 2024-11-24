@@ -59,10 +59,9 @@ const Header = ({ search, setSearch }) => {
         <nav>
           {token ? (
             <>
-              <Link to={`/user/${userId}`}>
-                <HeaderCTAButton>{connectedUser}</HeaderCTAButton>
-              </Link>
+              <span>{connectedUser}</span>
               <GoTriangleDown
+                className="chevron-down"
                 onClick={() => {
                   setShowMiniList(!showMiniList);
                 }}
