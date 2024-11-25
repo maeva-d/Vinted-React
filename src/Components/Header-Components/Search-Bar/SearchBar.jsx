@@ -1,16 +1,15 @@
 import "./search-bar.scss";
 
-const SearchBar = ({ value, onChange }) => {
+const SearchBar = ({ value, onChange, onKeyDown }) => {
   return (
-    // <div size = "big-screen">
     <input
       className="search-bar"
       type="text"
       placeholder="&#128270; Rechercher des articles"
       value={value}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
-    // </div>
   );
 };
 

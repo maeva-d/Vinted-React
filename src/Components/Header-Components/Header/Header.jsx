@@ -12,8 +12,9 @@ import BurgerModal from "../Burger-Modal/BurgerModal.jsx";
 import SearchBar from "../Search-Bar/SearchBar.jsx";
 import HeaderCTAButton from "../Header-CTA/Header-CTAButton.jsx";
 import { AuthContext } from "../../../contexts/authContext.jsx";
+import { FindOffersContext } from "../../../contexts/findOffersContext.jsx";
 
-const Header = ({ search, setSearch }) => {
+const Header = () => {
   const [showMainModal, setShowMainModal] = useState(false);
   const [showBurgerModal, setShowBurgerModal] = useState(false);
   const [showMiniList, setShowMiniList] = useState(false);
@@ -21,9 +22,16 @@ const Header = ({ search, setSearch }) => {
   const navigate = useNavigate();
   // const location = useLocation();
   const { token, handleToken, userId, connectedUser } = useContext(AuthContext);
+  const { title, setTitle, setSearchParams } = useContext(FindOffersContext);
 
   const MainModalRoot = document.getElementById("main-modal-root");
   const burgerModalRoot = document.getElementById("burger-modal-root");
+
+  const send = (event) => {
+    if (event.key === "Enter") {
+      setSearchParams({ title: title });
+    }
+  };
 
   return (
     <header className="header-component">
@@ -34,10 +42,11 @@ const Header = ({ search, setSearch }) => {
           </Link>
           <div className="big-screen-input">
             <SearchBar
-              value={search}
+              value={title}
               onChange={(event) => {
-                setSearch(event.target.value);
+                setTitle(event.target.value);
               }}
+              onKeyDown={(event) => send(event)}
             />
           </div>
           {showBurgerModal ? (
@@ -112,10 +121,11 @@ const Header = ({ search, setSearch }) => {
       {!showBurgerModal ? (
         <div className="small-screen-input ">
           <SearchBar
-            value={search}
+            value={title}
             onChange={(event) => {
-              setSearch(event.target.value);
+              setTitle(event.target.value);
             }}
+            onKeyDown={(event) => send(event)}
           />
         </div>
       ) : (
