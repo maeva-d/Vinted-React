@@ -41,7 +41,7 @@ const SignUpWindow = ({
             value={email}
             onChange={setEmail}
           />
-          <small className={usernameErr && `error-message`}>
+          <small className={emailErr && `error-message`}>
             {emailErr
               ? emailErr
               : `Saisis l'adresse e-mail que tu souhaites utiliser sur Vinted`}
@@ -54,7 +54,7 @@ const SignUpWindow = ({
             value={password}
             onChange={setPassword}
           />
-          <small className={usernameErr && `error-message`}>
+          <small className={passwordErr ? `error-message` : undefined}>
             {passwordErr
               ? passwordErr
               : `Il doit contenir 7 lettres minimum, dont au moins un chiffre.`}

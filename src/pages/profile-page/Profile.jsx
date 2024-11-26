@@ -10,7 +10,9 @@ const Profile = () => {
   const [data, setData] = useState("");
 
   const { id } = useParams();
-  const { token } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  const { token, handleToken, fetchUserId, fetchUsername } =
+    useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,17 +35,36 @@ const Profile = () => {
     fetchData();
   }, [id]);
 
+  const deleteAccount = async () => {
+    const response = await axios.delete(
+      `https://site--backend-vinted--rfd99txfpp4t.code.run/user/account`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.data.message) {
+      handleToken(null);
+      fetchUserId(null);
+      fetchUsername(null);
+      window.open(
+        "/",
+        // "Ton compte a été supprimé, nous sommes tristes de te voir partir!"
+        `${response.data.message}`
+      );
+    } else {
+      window.open(`user/${id}`, "Une erreur est survenue");
+    }
+  };
+
   const handleDeleteAccount = () => {
     if (
       window.confirm(
         "Cette action est définitive. Veux-tu vraiment supprimer ton compte?"
       )
-    ) {
-      window.open(
-        "exit.html",
-        "Ton compte a été supprimé, nous sommes tristes de te voir partir!"
-      );
-    }
+    )
+      deleteAccount();
   };
 
   return !token ? (
