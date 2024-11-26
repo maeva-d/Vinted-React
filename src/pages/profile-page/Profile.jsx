@@ -45,7 +45,10 @@ const Profile = () => {
       }
     );
     if (response.data.message) {
-      window.open("/", response.data.message);
+      window.open(
+        "/",
+        "Ton compte a bien été supprimé, nous sommes tristes de te voir partir!"
+      );
       handleToken(null);
       fetchUserId(null);
       fetchUsername(null);
@@ -81,9 +84,11 @@ const Profile = () => {
                 <h2>{data.account.username}</h2>
                 <h3>Pas encore d'évaluation</h3>
               </aside>
-              <button onClick={handleDeleteAccount}>
-                Supprimer mon compte
-              </button>
+              {token === data.token && (
+                <button onClick={handleDeleteAccount}>
+                  Supprimer mon compte
+                </button>
+              )}
             </div>
           </div>
         </menu>
