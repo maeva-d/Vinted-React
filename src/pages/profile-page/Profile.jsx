@@ -45,14 +45,10 @@ const Profile = () => {
       }
     );
     if (response.data.message) {
+      window.open("/", response.data.message);
       handleToken(null);
       fetchUserId(null);
       fetchUsername(null);
-      window.open(
-        "/",
-        // "Ton compte a été supprimé, nous sommes tristes de te voir partir!"
-        `${response.data.message}`
-      );
     } else {
       window.open(`user/${id}`, "Une erreur est survenue");
     }
