@@ -143,17 +143,12 @@ body {
     margin-bottom: 88px;
 
     > * {
+      transition: all 0.01s ease-in !important;
       height: 48px;
       width: 48px;
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      &:hover {
-        border-top: 1px solid rgb(224, 224, 224);
-        border-bottom: 1px solid rgb(224, 224, 224);
-        background-color: #fafafa;
-      }
     }
 
     > button {
@@ -163,7 +158,13 @@ body {
     }
 
     > div {
+      cursor: pointer;
       color: rgb(140, 140, 140);
+      &:hover {
+        border-top: 1px solid rgb(224, 224, 224);
+        border-bottom: 1px solid rgb(224, 224, 224);
+        background-color: #fafafa;
+      }
       > * {
         font-size: 24px;
       }
@@ -175,9 +176,11 @@ body {
   background-color: #fafafa !important;
   border-top: 1px solid rgb(224, 224, 224) !important;
   border-bottom: 1px solid rgb(224, 224, 224) !important;
+  transition: all 0.01s ease-in !important;
 }
 
 .disabled {
+  transition: all 0.01s ease-in !important;
   cursor: unset !important;
   color: #e4e4e4 !important;
   &:hover {

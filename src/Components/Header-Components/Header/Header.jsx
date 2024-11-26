@@ -21,7 +21,14 @@ const Header = () => {
 
   const navigate = useNavigate();
   // const location = useLocation();
-  const { token, handleToken, userId, connectedUser } = useContext(AuthContext);
+  const {
+    token,
+    handleToken,
+    userId,
+    fetchUserId,
+    connectedUser,
+    fetchUsername,
+  } = useContext(AuthContext);
   const { title, setTitle, setSearchParams } = useContext(FindOffersContext);
 
   const MainModalRoot = document.getElementById("main-modal-root");
@@ -107,6 +114,8 @@ const Header = () => {
                 onClick={() => {
                   setShowMiniList(false);
                   handleToken(null);
+                  fetchUserId(null);
+                  fetchUsername(null);
                   navigate("/");
                   alert("Déconnexion réussie");
                 }}
@@ -147,6 +156,8 @@ const Header = () => {
               setShowBurgerModal(false);
               setShowMainModal(false);
               handleToken(null);
+              fetchUserId(null);
+              fetchUsername(null);
               navigate("/");
               alert("Déconnexion réussie");
             }}

@@ -6,17 +6,15 @@ export const FindOffersContext = createContext();
 
 export const FindOffersProvider = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
   const [title, setTitle] = useState("");
-
-  // setSearchParams({ page: page, title: title });
+  const [page, setPage] = useState(1);
 
   return (
     <FindOffersContext.Provider
       value={{
+        page,
         title,
         setTitle,
-        page,
         setPage,
         searchParams,
         setSearchParams,

@@ -24,7 +24,6 @@ const Modals = ({ darkBG, onClose }) => {
   const [signUpPasswordError, setSignUpPasswordError] = useState("");
   const [signUpTermsAndConditionsError, setSignUpTermsAndConditionsError] =
     useState("");
-  // const [data, setData] = useState();
 
   const { handleToken, fetchUserId, fetchUsername } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -80,8 +79,6 @@ const Modals = ({ darkBG, onClose }) => {
           password: password,
         }
       );
-      // Si ça a fonctionné, la réponse me renvoie le token:
-      console.log("resp data =>", response.data);
       await handleToken(response.data.token);
       await fetchUserId(response.data._id);
       await fetchUsername(response.data.account.username);
@@ -108,10 +105,9 @@ const Modals = ({ darkBG, onClose }) => {
           termsAndConditions: termsAndConditions,
         }
       );
-
-      console.log("response data =>", response.data); //_id ?
-      handleToken(response.data.token);
-      fetchUserId(response.data._id);
+      await handleToken(response.data.token);
+      await fetchUserId(response.data._id);
+      await fetchUsername(response.data.account.username);
       alert("Ton compte a bien été crée !");
       navigate("/");
     } catch (error) {
@@ -144,7 +140,7 @@ const Modals = ({ darkBG, onClose }) => {
             onClickLogIn={switchToLoginForm}
           />
         )}
-        {/* -- Login modal -- */}
+        {/* -- Login window -- */}
         {showLoginWindow && (
           <LogInWindow
             onSubmit={loginSubmit}
@@ -160,7 +156,7 @@ const Modals = ({ darkBG, onClose }) => {
             onClickSwitch={switchToSignUpForm}
           />
         )}
-        {/* -- Signup modal -- */}
+        {/* -- Signup window -- */}
         {showSignUpWindow && (
           <SignUpWindow
             onSubmit={createAccount}

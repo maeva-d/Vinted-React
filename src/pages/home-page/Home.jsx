@@ -1,7 +1,7 @@
 import "./home.scss";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FindOffersContext } from "../../contexts/findOffersContext";
 // images et icônes :
 import heroimage from "../../assets/hero-image.jpg";
@@ -13,7 +13,13 @@ import { GoChevronRight } from "react-icons/go";
 const Home = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const { searchParams, page, setPage } = useContext(FindOffersContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    // searchParams,
+    // setSearchParams,
+    page,
+    setPage,
+  } = useContext(FindOffersContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,14 +31,22 @@ const Home = () => {
         setData(response.data);
         setIsLoading(false);
         console.log(response.data);
-        console.log(searchParams);
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchData();
   }, [searchParams]);
+
+  const goUp = async () => {
+    await setPage(page + 1);
+    setSearchParams({ page: page + 1 });
+  };
+
+  const goDown = async () => {
+    await setPage(page - 1);
+    setSearchParams({ page: page - 1 });
+  };
 
   return isLoading ? (
     <p>Chargement en cours...</p>
@@ -83,17 +97,21 @@ const Home = () => {
           );
         })}
         <nav>
-          <div className={page === 1 && `disabled`}>
-            <GoChevronLeft onClick={page > 1 ? setPage(page - 1) : undefined} />
+          <div className={page === 1 ? `disabled` : undefined}>
+            <GoChevronLeft onClick={page > 1 ? goDown : null} />
           </div>
           {page > 1 && <button> {page - 1} </button>}
           <button className="current-page"> {page} </button>
-          {data.results < data.limit && <button> {page + 1} </button>}
-          <div className={data.results < data.limit && `disabled`}>
+          {data.count - data.offers.length <= 1 && (
+            // ||
+            //   (data.offers.length > data.limit
+            <button> {page + 1} </button>
+          )}
+          <div
+            className={data.offers.length < data.limit ? `disabled` : undefined}
+          >
             <GoChevronRight
-              onClick={
-                data.results === data.limit ? () => setPage(page + 1) : null
-              }
+              onClick={data.count > data.offers.length ? goUp : null}
             />
           </div>
         </nav>

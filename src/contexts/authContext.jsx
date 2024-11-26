@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Pour que l'utilisateur puisse accéder à son profil, il faut connaître son user id
-  // Création d'un state et d'une fonction mettre à jour le state
 
   const fetchUserId = (id) => {
     if (id !== null) {
