@@ -1,6 +1,6 @@
 import "./infos-input.scss";
 
-const InfosInput = ({ id, type, placeholder, value, onChange }) => {
+const InfosInput = ({ id, type, placeholder, value, onChange, onKeyDown }) => {
   return id === "description" ? (
     <textarea
       className="infos-input"
@@ -18,6 +18,7 @@ const InfosInput = ({ id, type, placeholder, value, onChange }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 };

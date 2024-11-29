@@ -82,6 +82,68 @@ body {
     margin-top: 80px;
   }
 
+  > menu {
+    width: 100%;
+    padding: 16px 0;
+
+    > p,
+    label {
+      color: #828482;
+      font-size: 15px;
+    }
+
+    > div {
+      border-top: 1.5px solid rgb(169, 169, 169, 0.3);
+      border-bottom: 1.5px solid rgb(169, 169, 169, 0.3);
+      margin-bottom: 88px;
+      padding: 32px 0;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      > a {
+        margin-left: auto;
+      }
+
+      > button {
+        position: relative;
+        cursor: pointer;
+        background-color: transparent;
+        border-radius: 3px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        margin: 8px 0px;
+        &:not(:last-of-type) {
+          padding: 10px;
+          border: 1px solid lightgray;
+          margin-right: 8px;
+        }
+        &:last-of-type {
+          color: #007784;
+          border: none;
+          margin-left: auto;
+          font-size: 13px;
+          padding: 8px;
+          &:hover {
+            background-color: #fafcfd;
+            border: none;
+          }
+        }
+        &:hover,
+        &:focus {
+          border: 1px solid #007784;
+        }
+        &:hover {
+          background-color: #f2f2f2;
+        }
+        &:focus {
+          background-color: #c8f0ee;
+        }
+      }
+    }
+  }
+
   article {
     width: calc(20% - 16px);
     max-height: 500px;
@@ -113,7 +175,7 @@ body {
     }
 
     // img offres :
-    a {
+    > a {
       img {
         height: 360px;
         width: 100%;
@@ -132,7 +194,7 @@ body {
     }
   }
 
-  // Pages :
+  // Pages style commun / par défaut :
   nav {
     height: 48px;
     border: 1px solid rgb(224, 224, 224);
@@ -142,7 +204,8 @@ body {
     align-items: center;
     margin-bottom: 88px;
 
-    > * {
+    > button,
+    div {
       transition: all 0.01s ease-in !important;
       height: 48px;
       width: 48px;
@@ -165,13 +228,71 @@ body {
         border-bottom: 1px solid rgb(224, 224, 224);
         background-color: #fafafa;
       }
-      > * {
-        font-size: 24px;
+    }
+  }
+}
+
+.chevron {
+  font-size: 21px;
+  margin: 0px 6px;
+}
+
+///////// Liste déroulate filtres /////////
+.list {
+  position: absolute;
+  top: 48px;
+  z-index: 7;
+  background-color: white;
+  box-shadow: 1px 1px 7px rgb(169, 169, 169, 0.5);
+  border-radius: 3px;
+
+  > ul {
+    transform-origin: top left;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 100%;
+      background-color: transparent;
+      padding: 16px;
+      border-right: none;
+      border-left: none;
+      border-top: none;
+      font-size: 17px;
+      border-bottom: 1px solid lightgray;
+      text-align: left;
+      &:hover {
+        cursor: pointer;
+        background-color: #fbfbfb;
       }
     }
   }
 }
 
+.for-limit {
+  right: 0px;
+}
+
+.for-sort,
+.for-range {
+  left: 0px;
+}
+
+.for-sort {
+  width: 155px;
+}
+
+.for-range {
+  display: flex;
+  ul {
+    text-align: left;
+    padding: 16px;
+    width: 100px;
+  }
+}
+/////////
+
+///////// Pagination /////////
 .current-page {
   background-color: #fafafa !important;
   border-top: 1px solid rgb(224, 224, 224) !important;
@@ -187,6 +308,7 @@ body {
     background-color: unset !important;
   }
 }
+/////////
 
 // ---- MEDIA ---- //
 @media (max-width: 1400px) {
@@ -284,6 +406,11 @@ body {
   }
 
   .home-all-offers {
+    menu {
+      > div {
+        flex-direction: column;
+      }
+    }
     article {
       a {
         img {
