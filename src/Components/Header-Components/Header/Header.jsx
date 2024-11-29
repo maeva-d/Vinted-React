@@ -4,7 +4,7 @@ import burger from "../../../assets/burger-menu.svg";
 import vinted from "../../../assets/vinted-logo.svg";
 import { useState, useContext } from "react";
 import { createPortal } from "react-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { GoTriangleDown } from "react-icons/go";
 // Components :
 import Modals from "../../Auth-Modals/Main-Modal-Structure/Modals.jsx";
@@ -15,6 +15,7 @@ import { AuthContext } from "../../../contexts/authContext.jsx";
 import { FindOffersContext } from "../../../contexts/findOffersContext.jsx";
 
 const Header = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [showMainModal, setShowMainModal] = useState(false);
   const [showBurgerModal, setShowBurgerModal] = useState(false);
   const [showMiniList, setShowMiniList] = useState(false);
@@ -29,7 +30,7 @@ const Header = () => {
     connectedUser,
     fetchUsername,
   } = useContext(AuthContext);
-  const { title, setTitle, setSearchParams } = useContext(FindOffersContext);
+  const { title, setTitle } = useContext(FindOffersContext);
 
   const MainModalRoot = document.getElementById("main-modal-root");
   const burgerModalRoot = document.getElementById("burger-modal-root");
