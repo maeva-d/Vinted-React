@@ -236,9 +236,9 @@ const Home = () => {
           </div>
           {page > 1 && <button> {page - 1} </button>}
           <button className="current-page"> {page} </button>
-          {data.count - data.offers.length <= 1 && (
+          {(data.count > data.limit) & (data.offers.length === data.limit) ? (
             <button> {page + 1} </button>
-          )}
+          ) : null}
           <div
             className={data.offers.length < data.limit ? `disabled` : undefined}
           >
