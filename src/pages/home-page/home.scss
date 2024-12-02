@@ -118,6 +118,16 @@ body {
           padding: 10px;
           border: 1px solid lightgray;
           margin-right: 8px;
+          &:hover,
+          &:focus {
+            border: 1px solid #007784;
+          }
+          &:hover {
+            background-color: #f2f2f2;
+          }
+          &:focus {
+            background-color: #c8f0ee;
+          }
         }
         &:last-of-type {
           color: #007784;
@@ -129,16 +139,6 @@ body {
             background-color: #fafcfd;
             border: none;
           }
-        }
-        &:hover,
-        &:focus {
-          border: 1px solid #007784;
-        }
-        &:hover {
-          background-color: #f2f2f2;
-        }
-        &:focus {
-          background-color: #c8f0ee;
         }
       }
     }

@@ -13,7 +13,7 @@ const Publish = () => {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [condition, setCondition] = useState("");
-  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
   const [price, setPrice] = useState("");
   const [pictures, setPictures] = useState([]);
 
@@ -30,16 +30,24 @@ const Publish = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("title", title);
-      formData.append("description", description);
-      formData.append("price", price);
-      formData.append("condition", condition);
-      formData.append("city", location);
-      formData.append("brand", brand);
-      formData.append("size", size);
-      formData.append("color", color);
+
       for (let pic of pictures) {
         formData.append("pictures", pic);
+      }
+
+      const offersData = {
+        title,
+        description,
+        price,
+        condition,
+        city,
+        brand,
+        size,
+        color,
+      };
+
+      for (let [key, value] of Object.entries(offersData)) {
+        formData.append(key, value);
       }
 
       const response = await axios.post(
@@ -201,15 +209,15 @@ const Publish = () => {
               </div>
             </section>
             <section>
-              <label htmlFor="location">Lieu</label>
+              <label htmlFor="city">Lieu</label>
               <div>
                 <InfosInput
-                  id="location"
+                  id="city"
                   type="text"
                   placeholder="ex: Paris"
-                  value={location}
+                  value={city}
                   onChange={(event) => {
-                    setLocation(event.target.value);
+                    setCity(event.target.value);
                   }}
                 />
               </div>

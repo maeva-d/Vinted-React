@@ -27,12 +27,7 @@ const Home = () => {
   const [priceMax, setPriceMax] = useState();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const {
-    // searchParams,
-    // setSearchParams,
-    page,
-    setPage,
-  } = useContext(FindOffersContext);
+  const { page, setPage, title } = useContext(FindOffersContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,23 +69,39 @@ const Home = () => {
 
   const handleLimit = (limit) => {
     setLimit(limit);
-    setSearchParams({ limit: limit });
+    setSearchParams({ limit: limit, page: 1 });
   };
 
   const handleSort = (toSort) => {
     setSort(toSort);
-    setSearchParams({ sort: toSort });
+    setSearchParams({ sort: toSort, page: 1 });
     console.log(sort);
   };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      setSearchParams({ priceMin: priceMin, priceMax: priceMax });
+      if (event.target.id === "from") {
+        setSearchParams({ priceMin: priceMin });
+      } else if (event.target.id === "to")
+        setSearchParams({ priceMax: priceMax });
     }
+    setSearchParams({ page: 1 });
   };
 
   const resetFilters = () => {
-    setSearchParams({});
+    setSearchParams((params) => {
+      const queriesToDelete = [
+        "title",
+        "page",
+        "limit",
+        "sort",
+        "priceMin",
+        "priceMax",
+      ];
+      queriesToDelete.forEach((query) => params.delete(query));
+
+      return params;
+    });
   };
 
   const handlePage = (page) => {
@@ -166,7 +177,7 @@ const Home = () => {
                     className="chevron"
                     onClick={openPriceRangeList}
                   />
-                  <div className="list for-range">
+                  <div className="list for-range" onClick>
                     <ul>
                       <label htmlFor="from">De</label>
                       <InfosInput
@@ -197,7 +208,10 @@ const Home = () => {
             </button>
             <button onClick={resetFilters}>Effacer les filtres</button>
           </div>
-          <p>{data.offers.length} résultats.</p>
+          <p>
+            {title !== "" ? data.offers.length : data.count} résultat
+            {data.offers.length > 1 && `s`}.
+          </p>
         </menu>
         {data.offers.map((offer) => {
           return (
