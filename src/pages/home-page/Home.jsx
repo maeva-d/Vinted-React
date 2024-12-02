@@ -244,11 +244,11 @@ const Home = () => {
           );
         })}
         <nav>
-          <div className={page === 1 ? `disabled` : undefined}>
-            <GoChevronLeft
-              className="chevron"
-              onClick={page > 1 ? () => handlePage(page - 1) : null}
-            />
+          <div
+            className={page === 1 ? `disabled` : undefined}
+            onClick={page > 1 ? () => handlePage(page - 1) : null}
+          >
+            <GoChevronLeft className="chevron" />
           </div>
           {page > 1 && <button> {page - 1} </button>}
           <button className="current-page"> {page} </button>
@@ -257,15 +257,13 @@ const Home = () => {
           ) : null}
           <div
             className={data.offers.length < data.limit ? `disabled` : undefined}
+            onClick={
+              data.count < data.offers.length
+                ? null
+                : () => handlePage(page + 1)
+            }
           >
-            <GoChevronRight
-              className="chevron"
-              onClick={
-                data.count < data.offers.length
-                  ? null
-                  : () => handlePage(page + 1)
-              }
-            />
+            <GoChevronRight className="chevron" />
           </div>
         </nav>
       </section>
