@@ -10,9 +10,9 @@ export const FindOffersProvider = ({ children }) => {
   return (
     <FindOffersContext.Provider
       value={{
-        page,
         title,
         setTitle,
+        page,
         setPage,
       }}
     >

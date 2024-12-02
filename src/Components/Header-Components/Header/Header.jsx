@@ -15,7 +15,7 @@ import { AuthContext } from "../../../contexts/authContext.jsx";
 import { FindOffersContext } from "../../../contexts/findOffersContext.jsx";
 
 const Header = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [showMainModal, setShowMainModal] = useState(false);
   const [showBurgerModal, setShowBurgerModal] = useState(false);
   const [showMiniList, setShowMiniList] = useState(false);

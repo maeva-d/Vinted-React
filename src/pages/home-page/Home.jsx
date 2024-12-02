@@ -21,8 +21,8 @@ const Home = () => {
   const [showLimitList, setShowLimitList] = useState(false);
   const [showPriceRangeList, setShowPriceRangeList] = useState(false);
 
-  const [limit, setLimit] = useState();
-  const [sort, setSort] = useState();
+  const [, setLimit] = useState();
+  const [, setSort] = useState();
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
 
@@ -75,7 +75,6 @@ const Home = () => {
   const handleSort = (toSort) => {
     setSort(toSort);
     setSearchParams({ sort: toSort, page: 1 });
-    console.log(sort);
   };
 
   const handleKeyPress = (event) => {
@@ -211,7 +210,7 @@ const Home = () => {
             <button onClick={resetFilters}>Effacer les filtres</button>
           </div>
           <p>
-            {title !== "" ? data.offers.length : data.count} résultat
+            {title === "" ? data.offers.length : data.count} résultat
             {data.offers.length > 1 && `s`}.
           </p>
         </menu>
