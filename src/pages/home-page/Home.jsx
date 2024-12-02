@@ -210,7 +210,7 @@ const Home = () => {
             <button onClick={resetFilters}>Effacer les filtres</button>
           </div>
           <p>
-            {title === "" ? data.offers.length : data.count} résultat
+            {title !== "" ? data.offers.length : data.count} résultat
             {data.offers.length > 1 && `s`}.
           </p>
         </menu>
@@ -257,7 +257,7 @@ const Home = () => {
           <div
             className={data.offers.length < data.limit ? `disabled` : undefined}
             onClick={
-              data.count < data.offers.length
+              data.offers.length < data.limit
                 ? null
                 : () => handlePage(page + 1)
             }
