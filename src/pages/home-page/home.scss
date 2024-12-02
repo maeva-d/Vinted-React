@@ -196,6 +196,7 @@ body {
 
   // Pages style commun / par défaut :
   nav {
+    transition: unset !important;
     height: 48px;
     border: 1px solid rgb(224, 224, 224);
     border-radius: 3px;
@@ -206,7 +207,6 @@ body {
 
     > button,
     div {
-      transition: all 0.01s ease-in !important;
       height: 48px;
       width: 48px;
       display: flex;

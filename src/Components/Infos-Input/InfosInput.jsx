@@ -12,7 +12,7 @@ const InfosInput = ({ id, type, placeholder, value, onChange, onKeyDown }) => {
     />
   ) : (
     <input
-      className="infos-input"
+      className={`infos-input ${type === "number" ? `type-number` : null}`}
       id={id}
       type={type}
       placeholder={placeholder}

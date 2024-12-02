@@ -184,7 +184,7 @@ const Home = () => {
                       <label htmlFor="from">De</label>
                       <InfosInput
                         id="from"
-                        type="text"
+                        type="number"
                         placeholder="0,50 €"
                         value={priceMin}
                         onChange={(event) => setPriceMin(event.target.value)}
@@ -195,7 +195,7 @@ const Home = () => {
                       <label htmlFor="to">À</label>
                       <InfosInput
                         id="to"
-                        type="text"
+                        type="number"
                         placeholder="10 000 €"
                         value={priceMax}
                         onChange={(event) => setPriceMax(event.target.value)}
@@ -261,9 +261,9 @@ const Home = () => {
             <GoChevronRight
               className="chevron"
               onClick={
-                data.count > data.offers.length
-                  ? () => handlePage(page + 1)
-                  : null
+                data.count < data.offers.length
+                  ? null
+                  : () => handlePage(page + 1)
               }
             />
           </div>
