@@ -23,8 +23,8 @@ const Home = () => {
 
   const [limit, setLimit] = useState();
   const [sort, setSort] = useState();
-  const [priceMin, setPriceMin] = useState();
-  const [priceMax, setPriceMax] = useState();
+  const [priceMin, setPriceMin] = useState("");
+  const [priceMax, setPriceMax] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, setPage, title } = useContext(FindOffersContext);
@@ -79,13 +79,15 @@ const Home = () => {
   };
 
   const handleKeyPress = (event) => {
+    let params = {};
     if (event.key === "Enter") {
-      if (event.target.id === "from") {
-        setSearchParams({ priceMin: priceMin });
-      } else if (event.target.id === "to")
-        setSearchParams({ priceMax: priceMax });
+      if (priceMin !== "") params.priceMin = priceMin;
+      if (priceMax !== "") params.priceMax = priceMax;
     }
-    setSearchParams({ page: 1 });
+    if (params) {
+      params.page = 1;
+      setSearchParams(params);
+    }
   };
 
   const resetFilters = () => {
@@ -177,7 +179,7 @@ const Home = () => {
                     className="chevron"
                     onClick={openPriceRangeList}
                   />
-                  <div className="list for-range" onClick>
+                  <div className="list for-range">
                     <ul>
                       <label htmlFor="from">De</label>
                       <InfosInput
