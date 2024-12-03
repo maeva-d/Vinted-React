@@ -73,7 +73,7 @@ const Profile = () => {
   ) : (
     <main className="profile-container">
       <section className="profile-component">
-        <h1>Mon profil</h1>
+        {token === data.token && <h1>Mon profil</h1>}
         <menu>
           <aside>
             <img src={data.account.avatar ?? placeholder} />

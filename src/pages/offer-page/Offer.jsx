@@ -20,6 +20,7 @@ const Offer = () => {
         );
         setData(response.data);
         setIsLoading(false);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -84,7 +85,9 @@ const Offer = () => {
               src={data.owner.account.avatar?.secure_url ?? placeholder}
               alt="user-avatar"
             />
-            <span>{data.owner.account.username}</span>
+            <Link to={`/user/${data.owner._id}`}>
+              <span>{data.owner.account.username}</span>
+            </Link>
           </div>
         </aside>
       </section>

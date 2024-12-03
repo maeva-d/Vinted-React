@@ -153,6 +153,10 @@ body {
       align-items: center;
       margin-bottom: 8px;
 
+      a {
+        text-decoration: none;
+      }
+
       img {
         border-radius: 50%;
         width: 24px;
@@ -161,12 +165,12 @@ body {
         margin-right: 16px;
       }
 
-      // bottom info (marque + taille)
       span {
         color: #828482;
         font-size: 12px;
       }
 
+      // bottom info (marque + taille)
       p {
         color: #828482;
         font-size: 12px;

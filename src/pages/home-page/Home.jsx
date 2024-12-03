@@ -222,7 +222,9 @@ const Home = () => {
                   alt="user-avatar"
                   src={offer.owner.account.avatar?.secure_url ?? placeholder}
                 />
-                <span>{offer.owner.account.username}</span>
+                <Link to={`/user/${offer.owner._id}`}>
+                  <span>{offer.owner.account.username}</span>
+                </Link>
               </div>
               <Link to={`/offers/${offer._id}`} key={offer._id}>
                 <img
