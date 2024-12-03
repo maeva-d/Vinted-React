@@ -128,6 +128,7 @@ const Home = () => {
         </div>
         <img alt="torn-effect" src={tear} />
       </div>
+
       <section className="home-all-offers container">
         <h3>Fil d'actu</h3>
         <menu>
@@ -135,78 +136,75 @@ const Home = () => {
             <button onClick={openLimitList}>
               Résultats par page
               {showLimitList ? (
-                <>
-                  <GoChevronDown className="chevron" />
-                  <div className="list for-limit">
-                    <ul>
-                      <button onClick={() => handleLimit(20)}>20</button>
-                      <button onClick={() => handleLimit(50)}>50</button>
-                    </ul>
-                  </div>
-                </>
+                <GoChevronDown className="chevron" />
               ) : (
                 <GoChevronUp className="chevron" />
               )}
             </button>
+            {showLimitList && (
+              <div className="list for-limit">
+                <ul>
+                  <button onClick={() => handleLimit(20)}>20</button>
+                  <button onClick={() => handleLimit(50)}>50</button>
+                </ul>
+              </div>
+            )}
 
             <button onClick={openSortList}>
-              Trier par{" "}
+              Trier par
               {showSortPriceList ? (
-                <>
-                  <GoChevronDown className="chevron" />
-                  <div className="list for-sort">
-                    <ul>
-                      <button onClick={() => handleSort("price-asc")}>
-                        Prix croissant
-                      </button>
-                      <button onClick={() => handleSort("price-desc")}>
-                        Prix décroissant
-                      </button>
-                    </ul>
-                  </div>
-                </>
+                <GoChevronDown className="chevron" />
               ) : (
                 <GoChevronUp className="chevron" />
               )}
             </button>
+            {showSortPriceList && (
+              <div className="list for-sort">
+                <ul>
+                  <button onClick={() => handleSort("price-asc")}>
+                    Prix croissant
+                  </button>
+                  <button onClick={() => handleSort("price-desc")}>
+                    Prix décroissant
+                  </button>
+                </ul>
+              </div>
+            )}
 
-            <button>
+            <button onClick={openPriceRangeList}>
               Prix
               {showPriceRangeList ? (
-                <>
-                  <GoChevronDown
-                    className="chevron"
-                    onClick={openPriceRangeList}
-                  />
-                  <div className="list for-range">
-                    <ul>
-                      <label htmlFor="from">De</label>
-                      <InfosInput
-                        id="from"
-                        type="number"
-                        placeholder="0,50 €"
-                        value={priceMin}
-                        onChange={(event) => setPriceMin(event.target.value)}
-                        onKeyDown={(event) => handleKeyPress(event)}
-                      />
-                    </ul>
-                    <ul>
-                      <label htmlFor="to">À</label>
-                      <InfosInput
-                        id="to"
-                        type="number"
-                        placeholder="10 000 €"
-                        value={priceMax}
-                        onChange={(event) => setPriceMax(event.target.value)}
-                        onKeyDown={(event) => handleKeyPress(event)}
-                      />
-                    </ul>
-                  </div>
-                </>
+                <GoChevronDown className="chevron" />
               ) : (
-                <GoChevronUp className="chevron" onClick={openPriceRangeList} />
+                <GoChevronUp className="chevron" />
               )}
             </button>
+            {showPriceRangeList && (
+              <div className="list for-range">
+                <ul>
+                  <label htmlFor="from">De</label>
+                  <InfosInput
+                    id="from"
+                    type="number"
+                    placeholder="0,50 €"
+                    value={priceMin}
+                    onChange={(event) => setPriceMin(event.target.value)}
+                    onKeyDown={(event) => handleKeyPress(event)}
+                  />
+                </ul>
+                <ul>
+                  <label htmlFor="to">À</label>
+                  <InfosInput
+                    id="to"
+                    type="number"
+                    placeholder="10 000 €"
+                    value={priceMax}
+                    onChange={(event) => setPriceMax(event.target.value)}
+                    onKeyDown={(event) => handleKeyPress(event)}
+                  />
+                </ul>
+              </div>
+            )}
             <button onClick={resetFilters}>Effacer les filtres</button>
           </div>
           <p>

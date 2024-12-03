@@ -100,6 +100,7 @@ body {
       display: flex;
       flex-direction: row;
       align-items: baseline;
+      position: relative;
 
       > a {
         margin-left: auto;
@@ -244,7 +245,7 @@ body {
 ///////// Liste déroulate filtres /////////
 .list {
   position: absolute;
-  top: 48px;
+  // top: 96px;
   z-index: 7;
   background-color: white;
   box-shadow: 1px 1px 7px rgb(169, 169, 169, 0.5);
@@ -273,21 +274,27 @@ body {
   }
 }
 
-.for-limit {
-  right: 0px;
-}
-
+.for-limit,
 .for-sort,
 .for-range {
-  left: 0px;
+  top: 96px;
+}
+
+.for-limit {
+  left: 140px;
+  // top: 96px;
 }
 
 .for-sort {
+  // bottom: 24px;
+  left: 198px;
   width: 155px;
 }
 
 .for-range {
+  left: 320px;
   display: flex;
+  background-color: white;
   ul {
     text-align: left;
     padding: 16px;
@@ -422,5 +429,23 @@ body {
         }
       }
     }
+  }
+
+  .for-limit {
+    left: 140px;
+    top: 96px;
+  }
+
+  .for-sort,
+  .for-range {
+    left: -1px;
+  }
+
+  .for-sort {
+    top: 155px;
+  }
+
+  .for-range {
+    top: 210px;
   }
 }
