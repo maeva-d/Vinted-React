@@ -1,6 +1,6 @@
 import "./profile.scss";
 import axios from "axios";
-import placeholder from "../../assets/react.svg";
+import placeholder from "../../assets/user-empty-state.svg";
 import { useState, useEffect, useContext } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";

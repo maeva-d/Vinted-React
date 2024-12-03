@@ -7,7 +7,7 @@ import InfosInput from "../../Components/Infos-Input/InfosInput";
 // images et icônes :
 import heroimage from "../../assets/hero-image.jpg";
 import tear from "../../assets/tear.svg";
-import placeholder from "../../assets/react.svg";
+import placeholder from "../../assets/user-empty-state.svg";
 import { GoChevronLeft } from "react-icons/go";
 import { GoChevronRight } from "react-icons/go";
 import { GoChevronDown } from "react-icons/go";
