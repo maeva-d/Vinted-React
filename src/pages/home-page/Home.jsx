@@ -150,27 +150,6 @@ const Home = () => {
               </div>
             )}
 
-            <button onClick={openSortList}>
-              Trier par
-              {showSortPriceList ? (
-                <GoChevronDown className="chevron" />
-              ) : (
-                <GoChevronUp className="chevron" />
-              )}
-            </button>
-            {showSortPriceList && (
-              <div className="list for-sort">
-                <ul>
-                  <button onClick={() => handleSort("price-asc")}>
-                    Prix croissant
-                  </button>
-                  <button onClick={() => handleSort("price-desc")}>
-                    Prix décroissant
-                  </button>
-                </ul>
-              </div>
-            )}
-
             <button onClick={openPriceRangeList}>
               Prix
               {showPriceRangeList ? (
@@ -205,6 +184,28 @@ const Home = () => {
                 </ul>
               </div>
             )}
+
+            <button onClick={openSortList}>
+              Trier par
+              {showSortPriceList ? (
+                <GoChevronDown className="chevron" />
+              ) : (
+                <GoChevronUp className="chevron" />
+              )}
+            </button>
+            {showSortPriceList && (
+              <div className="list for-sort">
+                <ul>
+                  <button onClick={() => handleSort("price-asc")}>
+                    Prix croissant
+                  </button>
+                  <button onClick={() => handleSort("price-desc")}>
+                    Prix décroissant
+                  </button>
+                </ul>
+              </div>
+            )}
+
             <button onClick={resetFilters}>Effacer les filtres</button>
           </div>
           <p>
@@ -212,6 +213,7 @@ const Home = () => {
             {data.offers.length > 1 && `s`}.
           </p>
         </menu>
+
         {data.offers.map((offer) => {
           return (
             <article key={offer._id}>
